@@ -8,22 +8,23 @@
 
   /* ── Sidebar accordion ───────────────────────────────────── */
   function initSidebar() {
-    const triggers = document.querySelectorAll('.sidebar-zone-trigger');
-    triggers.forEach(trigger => {
-      const zone = trigger.closest('.sidebar-zone');
-      // Current zone is always expanded, no toggle needed
-      if (zone.classList.contains('is-current')) return;
+    document.querySelectorAll('.sidebar-caret-btn').forEach(btn => {
+      const zone = btn.closest('.sidebar-zone');
 
-      trigger.addEventListener('click', (e) => {
-        // If the click came from the zone-name link, let it navigate — don't toggle
-        if (e.target.closest('.sidebar-zone-name')) return;
-
+      btn.addEventListener('click', () => {
         const isOpen = zone.classList.contains('is-open');
         // Close all non-current zones first
         document.querySelectorAll('.sidebar-zone:not(.is-current)')
-          .forEach(z => z.classList.remove('is-open'));
+          .forEach(z => {
+            z.classList.remove('is-open');
+            const b = z.querySelector('.sidebar-caret-btn');
+            if (b) b.setAttribute('aria-expanded', 'false');
+          });
         // Toggle this one
-        if (!isOpen) zone.classList.add('is-open');
+        if (!isOpen) {
+          zone.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
       });
     });
   }

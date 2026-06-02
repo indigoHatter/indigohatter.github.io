@@ -8,8 +8,8 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -85,14 +85,21 @@ body {
   justify-content: space-between;
   width: 100%;
   padding: var(--space-xs) var(--space-md);
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
   transition: background var(--t-fast);
 }
 .sidebar-zone-trigger:hover {
   background: var(--c-zone-hover);
+}
+.sidebar-caret-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  color: inherit;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
 }
 
 .sidebar-zone-name {
@@ -124,10 +131,6 @@ a.sidebar-zone-name:hover {
   opacity: 0.5;
   margin-left: auto;
   pointer-events: none;
-}
-/* Hide the right-pointing caret on the current zone (it's always expanded) */
-.sidebar-zone.is-current .sidebar-caret {
-  display: none;
 }
 
 .sidebar-caret {
@@ -348,6 +351,11 @@ a.sidebar-zone-name:hover {
 .spoke-btn:hover {
   background: var(--c-zone-accent);
   color: var(--c-zone-bg);
+}
+.spoke-btn--unavailable {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ── Bio prose (left professional bio, right actor bio) ─────── */

@@ -27,14 +27,12 @@
   };
 
   function init() {
-    /* Keep menus alive when cursor moves into them */
+    /* Keep menus alive when cursor or keyboard focus moves into them */
     document.querySelectorAll('.brain-menu').forEach(function (menu) {
-      menu.addEventListener('mouseenter', function () {
-        window.showMenu(menu.id);
-      });
-      menu.addEventListener('mouseleave', function () {
-        window.hideMenu(menu.id);
-      });
+      menu.addEventListener('mouseenter', function () { window.showMenu(menu.id); });
+      menu.addEventListener('mouseleave', function () { window.hideMenu(menu.id); });
+      menu.addEventListener('focusin',    function () { window.showMenu(menu.id); });
+      menu.addEventListener('focusout',   function () { window.hideMenu(menu.id); });
     });
   }
 

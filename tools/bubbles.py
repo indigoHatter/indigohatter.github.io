@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 bubbles.py | SVG circle scatter generator for porterwhatever.io right brain block.
+Used for development only — not part of the live environment.
 
 Generates a <g> block of scattered circles suitable for pasting directly into
 index.html. Two-phase placement:

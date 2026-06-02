@@ -6,19 +6,19 @@
   <title>porterwhatever.io</title>
   <meta name="description" content="Engineer. Actor. Human.">
   <!-- Prevent flash of wrong theme before CSS loads -->
-  <script>(function(){var t=localStorage.getItem('pw-theme');document.documentElement.className=t==='theme-light'?'theme-light':'theme-dark';})();</script>
+  <script>(function(){var t=localStorage.getItem('pw-theme'),d=t==='theme-light'||t==='theme-dark'?t:window.matchMedia('(prefers-color-scheme: light)').matches?'theme-light':'theme-dark';document.documentElement.classList.remove('theme-light','theme-dark');document.documentElement.classList.add(d);})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!--
     Font load order matches token variable names in tokens.css:
       Courier Prime  → --font-left, --font-left (body)
       Playfair Display → --font-left-heading
-      DM Sans        → --font-right
+      Outfit         → --font-right
       Caveat         → --font-cloud
       Quicksand      → --font-cloud-body
       Inter          → --font-pfc, --font-splash-name
   -->
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/splash.css">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -147,7 +147,8 @@
         ═══════════════════════════════════════════ -->
         <a href="pfc.html" id="zonePfc" class="brain-zone zone-pfc"
            tabindex="0" role="link" aria-label="Prefrontal cortex - about and contact"
-           onmouseenter="showMenu('menuPfc')" onmouseleave="hideMenu('menuPfc')">
+           onmouseenter="showMenu('menuPfc')" onmouseleave="hideMenu('menuPfc')"
+           onfocus="showMenu('menuPfc')" onblur="hideMenu('menuPfc')">
 
           <rect x="110" y="44" width="380" height="38" rx="4"
                 fill="url(#gradPfc)" stroke="var(--c-pfc-stroke)" stroke-width="1"/>
@@ -207,7 +208,8 @@
         ═══════════════════════════════════════════ -->
         <a href="left.html" id="zoneLeft" class="brain-zone zone-left-geo"
            tabindex="0" role="link" aria-label="Left brain - professional"
-           onmouseenter="showMenu('menuLeft')" onmouseleave="hideMenu('menuLeft')">
+           onmouseenter="showMenu('menuLeft')" onmouseleave="hideMenu('menuLeft')"
+           onfocus="showMenu('menuLeft')" onblur="hideMenu('menuLeft')">
 
           <rect x="110" y="92" width="180" height="180" rx="6"
                 fill="var(--c-left-block-fill)" stroke="var(--c-left-block-stroke)" stroke-width="1.2"/>
@@ -234,7 +236,8 @@
         ═══════════════════════════════════════════ -->
         <a href="right.html" id="zoneRight" class="brain-zone zone-right"
            tabindex="0" role="link" aria-label="Right brain - theatre and creative"
-           onmouseenter="showMenu('menuRight')" onmouseleave="hideMenu('menuRight')">
+           onmouseenter="showMenu('menuRight')" onmouseleave="hideMenu('menuRight')"
+           onfocus="showMenu('menuRight')" onblur="hideMenu('menuRight')">
 
           <rect x="310" y="92" width="180" height="180" rx="6"
                 fill="url(#gradRight)" stroke="var(--c-right-stroke)" stroke-width="1.2"/>
@@ -318,7 +321,8 @@
         ═══════════════════════════════════════════ -->
         <a href="dream.html" id="zoneCloud" class="brain-zone zone-cloud"
            tabindex="0" role="link" aria-label="Dream cloud - hobbies and adventures"
-           onmouseenter="showMenu('menuCloud')" onmouseleave="hideMenu('menuCloud')">
+           onmouseenter="showMenu('menuCloud')" onmouseleave="hideMenu('menuCloud')"
+           onfocus="showMenu('menuCloud')" onblur="hideMenu('menuCloud')">
 
           <!--
             Tether: starts at right block right edge (x=490) at 42% down.

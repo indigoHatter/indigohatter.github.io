@@ -6,19 +6,19 @@
   <title>porterwhatever.io | Right Brain</title>
   <meta name="description" content="Right brain: actor, stage manager, technical designer, and theatre maker.">
   <!-- Prevent flash of wrong theme before CSS loads -->
-  <script>(function(){var t=localStorage.getItem('pw-theme');document.documentElement.className=t==='theme-light'?'theme-light':'theme-dark';})();</script>
+  <script>(function(){var t=localStorage.getItem('pw-theme'),d=t==='theme-light'||t==='theme-dark'?t:window.matchMedia('(prefers-color-scheme: light)').matches?'theme-light':'theme-dark';document.documentElement.classList.remove('theme-light','theme-dark');document.documentElement.classList.add(d);})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!--
     Font load order matches token variable names in tokens.css:
       Courier Prime    --font-left, --font-left (body)
       Playfair Display --font-left-heading
-      DM Sans          --font-right
+      Outfit           --font-right
       Caveat           --font-cloud
       Quicksand        --font-cloud-body
       Inter            --font-pfc, --font-splash-name
   -->
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/zone-tokens.css">
   <link rel="stylesheet" href="css/spoke.css">
@@ -39,10 +39,12 @@
 
     <!-- Left Brain -->
     <nav class="sidebar-zone" aria-label="Left brain navigation">
-      <button class="sidebar-zone-trigger" aria-expanded="false">
+      <div class="sidebar-zone-trigger">
         <a class="sidebar-zone-name" href="left.html">Left Brain</a>
-        <span class="sidebar-caret">&#9658;</span>
-      </button>
+        <button class="sidebar-caret-btn" aria-expanded="false" aria-label="Toggle Left Brain">
+          <span class="sidebar-caret">&#9658;</span>
+        </button>
+      </div>
       <ul class="sidebar-links">
         <li><a href="left.html#bio">About</a></li>
         <li><a href="left.html#resume">Résumé</a></li>
@@ -57,9 +59,9 @@
 
     <!-- Right Brain (current) -->
     <nav class="sidebar-zone is-current" aria-label="Right brain sections">
-      <button class="sidebar-zone-trigger" aria-expanded="true" disabled>
+      <div class="sidebar-zone-trigger">
         <span class="sidebar-zone-name">Right Brain</span>
-      </button>
+      </div>
       <ul class="sidebar-links">
         <li><a href="#bio">Bio</a></li>
         <li><a href="#acting">Acting résumé</a></li>
@@ -70,10 +72,12 @@
 
     <!-- Dream Cloud -->
     <nav class="sidebar-zone" aria-label="Dream cloud navigation">
-      <button class="sidebar-zone-trigger" aria-expanded="false">
+      <div class="sidebar-zone-trigger">
         <a class="sidebar-zone-name" href="dream.html">Dream Cloud</a>
-        <span class="sidebar-caret">&#9658;</span>
-      </button>
+        <button class="sidebar-caret-btn" aria-expanded="false" aria-label="Toggle Dream Cloud">
+          <span class="sidebar-caret">&#9658;</span>
+        </button>
+      </div>
       <ul class="sidebar-links">
         <li><a href="dream.html#hobbies">Hobbies</a></li>
         <li><a href="dream.html#photos">Photos</a></li>
@@ -83,10 +87,12 @@
 
     <!-- PFC -->
     <nav class="sidebar-zone" aria-label="About and contact navigation">
-      <button class="sidebar-zone-trigger" aria-expanded="false">
+      <div class="sidebar-zone-trigger">
         <a class="sidebar-zone-name" href="pfc.html">Prefrontal</a>
-        <span class="sidebar-caret">&#9658;</span>
-      </button>
+        <button class="sidebar-caret-btn" aria-expanded="false" aria-label="Toggle Prefrontal">
+          <span class="sidebar-caret">&#9658;</span>
+        </button>
+      </div>
       <ul class="sidebar-links">
         <li><a href="pfc.html#about">About</a></li>
         <li><a href="pfc.html#contact">Contact</a></li>

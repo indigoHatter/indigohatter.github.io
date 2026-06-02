@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 260">
+  <!--
+  | favicon.svg | porterwhatever.io
+  | Top hat with extravagant feather bouquet.
+  | Designed for use as SVG favicon (modern browsers) and source for .ico generation.
+  | Hardcoded dark-theme colors — do not use CSS variables in favicons.
+  | viewBox: 280x260. Hat centered with room for left-sweeping feathers.
+  -->
+
+  <defs>
+    <linearGradient id="crown" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1a0836"/>
+      <stop offset="40%"  stop-color="#3b1278"/>
+      <stop offset="100%" stop-color="#250c52"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#5b21b6"/>
+      <stop offset="50%"  stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="brim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#4a1fa8"/>
+      <stop offset="100%" stop-color="#1a0836"/>
+    </linearGradient>
+    <clipPath id="crown-clip">
+      <path d="M30,210 L32,82 L188,82 L190,210 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── FEATHERS ── back to front, colors interleaved ── -->
+  <!-- All coords shifted +20 from widget version to clear left edge -->
+
+  <!-- F1: TEAL — wide left sweep -->
+  <path d="M66,82 C50,52 22,26 8,10 C12,7 18,7 24,10 C36,26 58,54 84,82 Z"
+        fill="#0e7490" opacity="0.88"/>
+  <path d="M75,82 C58,54 32,28 16,10" fill="none" stroke="#a5f3fc" stroke-width="1.1" opacity="0.42"/>
+
+  <!-- F2: GOLD — drooping right wilting plume -->
+  <path d="M86,74 C100,62 116,50 130,44 C132,41 137,41 138,44 C128,52 112,64 104,80 Z"
+        fill="#92400e" opacity="0.88"/>
+  <path d="M95,78 C108,66 120,54 135,44" fill="none" stroke="#fde68a" stroke-width="1.1" opacity="0.42"/>
+
+  <!-- F3: CRIMSON — slight left lean -->
+  <path d="M84,82 C80,54 76,26 74,10 C77,7 82,7 85,9 C87,26 92,54 98,82 Z"
+        fill="#991b1b" opacity="0.9"/>
+  <path d="M91,82 C88,56 84,28 79,10" fill="none" stroke="#fca5a5" stroke-width="0.9" opacity="0.44"/>
+
+  <!-- F4: VIOLET — hard left lean -->
+  <path d="M72,82 C62,50 50,22 40,6 C44,3 50,3 56,6 C66,22 80,52 92,82 Z"
+        fill="#6d28d9" opacity="0.88"/>
+  <path d="M82,82 C70,52 58,24 46,6" fill="none" stroke="#ddd6fe" stroke-width="1.1" opacity="0.42"/>
+
+  <!-- F5: DARK TEAL — peacock horizontal droop left -->
+  <path d="M78,76 C58,68 34,62 12,58 C12,53 16,51 20,52 C40,57 66,65 92,72 Z"
+        fill="#134e4a" opacity="0.92"/>
+  <path d="M85,74 C64,66 40,60 16,56" fill="none" stroke="#6ee7b7" stroke-width="1.1" opacity="0.44"/>
+
+  <!-- F6: MAGENTA — big left sweep, hero left plume -->
+  <path d="M76,82 C58,48 36,22 26,8 C30,4 38,4 46,8 C58,24 80,52 106,82 Z"
+        fill="#be185d" opacity="0.88"/>
+  <path d="M91,82 C72,50 48,24 32,8" fill="none" stroke="#fbcfe8" stroke-width="1.6" opacity="0.45"/>
+
+  <!-- F7: INDIGO — slight right lean -->
+  <path d="M106,82 C108,54 112,26 116,8 C119,5 124,5 126,8 C126,26 126,54 120,82 Z"
+        fill="#4338ca" opacity="0.92"/>
+  <path d="M113,82 C114,56 116,28 121,8" fill="none" stroke="#a5b4fc" stroke-width="0.9" opacity="0.44"/>
+
+  <!-- F8: LAVENDER wisp — short, left of center -->
+  <path d="M94,82 C92,66 90,48 88,30 C91,27 96,27 99,29 C100,47 102,66 104,82 Z"
+        fill="#c4b5fd" opacity="0.78"/>
+
+  <!-- F9: DEEP PURPLE spine — tallest, dead center -->
+  <path d="M104,82 C105,50 107,18 108,4 C111,1 114,1 116,4 C117,18 119,50 118,82 Z"
+        fill="#3b0764" opacity="0.98"/>
+  <path d="M111,82 C111,52 111,20 112,4" fill="none" stroke="#7c3aed" stroke-width="2.0" opacity="0.52"/>
+
+  <!-- F10: ROSE — enormous showgirl sweep left, front layer -->
+  <path d="M80,82 C62,48 38,26 14,12 C17,7 25,7 32,11 C52,26 76,52 108,82 Z"
+        fill="#db2777" opacity="0.94"/>
+  <path d="M94,82 C74,50 50,28 22,12" fill="none" stroke="#fce7f3" stroke-width="2.0" opacity="0.48"/>
+
+  <!-- F11: BRIGHT TEAL — fans right -->
+  <path d="M114,82 C120,56 130,30 142,18 C145,15 150,15 152,18 C146,32 136,58 128,82 Z"
+        fill="#0891b2" opacity="0.9"/>
+  <path d="M121,82 C126,58 135,32 147,18" fill="none" stroke="#a5f3fc" stroke-width="1.0" opacity="0.44"/>
+
+  <!-- F12: BRIGHT VIOLET — upright, right of spine -->
+  <path d="M98,82 C100,50 104,20 106,4 C110,1 115,1 118,4 C118,20 120,50 122,82 Z"
+        fill="#7c3aed" opacity="0.96"/>
+  <path d="M110,82 C110,52 110,22 112,4" fill="none" stroke="#ede9fe" stroke-width="1.6" opacity="0.5"/>
+
+  <!-- F13: ORANGE-RED — fans right -->
+  <path d="M120,82 C128,52 140,24 150,10 C153,7 160,7 162,10 C156,26 148,54 138,82 Z"
+        fill="#c2410c" opacity="0.92"/>
+  <path d="M129,82 C136,54 146,26 156,10" fill="none" stroke="#fdba74" stroke-width="1.4" opacity="0.46"/>
+
+  <!-- F14: WIDE VIOLET — fans far right -->
+  <path d="M128,82 C140,50 156,22 164,8 C167,5 174,5 176,8 C172,24 160,52 148,82 Z"
+        fill="#6d28d9" opacity="0.84"/>
+  <path d="M138,82 C148,52 162,24 170,8" fill="none" stroke="#c4b5fd" stroke-width="1.3" opacity="0.42"/>
+
+  <!-- F15: ORANGE — mid-right fan -->
+  <path d="M122,82 C130,54 144,26 154,16 C157,13 163,13 165,16 C158,28 148,56 136,82 Z"
+        fill="#ea580c" opacity="0.86"/>
+  <path d="M129,82 C136,56 148,28 158,16" fill="none" stroke="#fed7aa" stroke-width="1.1" opacity="0.42"/>
+
+  <!-- F16: GOLD slim — far right wisp -->
+  <path d="M136,82 C146,56 160,32 170,22 C173,19 178,19 180,22 C176,34 164,58 146,82 Z"
+        fill="#d97706" opacity="0.86"/>
+  <path d="M141,82 C150,58 163,34 174,22" fill="none" stroke="#fef08a" stroke-width="0.9" opacity="0.42"/>
+
+  <!-- ── HAT ── -->
+
+  <!-- Crown body -->
+  <path d="M30,210 L32,82 L188,82 L190,210 Z"
+        fill="url(#crown)" stroke="#6d28d9" stroke-width="0.9"/>
+
+  <!-- Fabric seam lines -->
+  <g clip-path="url(#crown-clip)" opacity="0.1">
+    <line x1="50"  y1="82" x2="48"  y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="70"  y1="82" x2="68"  y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="90"  y1="82" x2="90"  y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="110" y1="82" x2="110" y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="130" y1="82" x2="132" y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="150" y1="82" x2="152" y2="210" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="170" y1="82" x2="172" y2="210" stroke="#a78bfa" stroke-width="1"/>
+  </g>
+
+  <!-- Left face highlight -->
+  <path d="M30,210 L32,82 L58,82 L56,210 Z" fill="#ffffff" opacity="0.03"/>
+
+  <!-- Band — 1/3 up from brim -->
+  <rect x="30" y="165" width="160" height="18" rx="1"
+        fill="url(#band)" stroke="#a78bfa" stroke-width="0.6"/>
+  <line x1="30"  y1="171" x2="190" y2="171" stroke="#c4b5fd" stroke-width="0.35" opacity="0.4"/>
+  <line x1="30"  y1="176" x2="190" y2="176" stroke="#c4b5fd" stroke-width="0.35" opacity="0.4"/>
+
+  <!-- Crown top oval — seats flush on crown sides at y=82 -->
+  <ellipse cx="110" cy="82" rx="78" ry="11"
+           fill="#2a0d5e" stroke="#7c3aed" stroke-width="0.9"/>
+
+  <!-- Brim top -->
+  <ellipse cx="110" cy="210" rx="104" ry="14"
+           fill="url(#brim)" stroke="#6d28d9" stroke-width="1"/>
+
+  <!-- Brim underside -->
+  <path d="M6,214 C6,214 58,230 110,230 C162,230 214,214 214,214
+           L214,210 C214,210 162,222 110,222 C58,222 6,210 6,210 Z"
+        fill="#120626" stroke="#4c1d95" stroke-width="0.5"/>
+
+</svg>

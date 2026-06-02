@@ -1,0 +1,268 @@
+/* ============================================================
+   SPLASH.CSS -- Geometric splash page styles
+   Shares tokens.css with the rest of the site.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; overflow-x: hidden; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  transition: background var(--t-slow) var(--ease-out),
+              color      var(--t-slow) var(--ease-out);
+}
+
+/* ── Theme toggle ── */
+.theme-toggle {
+  position: fixed;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0.5px solid var(--c-toggle-border);
+  background: var(--c-toggle-bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+.theme-toggle:hover { border-color: var(--c-pfc-stroke); }
+.toggle-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+html.theme-dark .toggle-icon::before, .theme-dark .toggle-icon::before {
+  content: '\2600';
+  font-size: 16px;
+  color: var(--c-toggle-icon);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
+  content: '\263D';
+  font-size: 16px;
+  color: var(--c-toggle-icon);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%);
+}
+
+/* ── Splash layout ── */
+.splash {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  gap: var(--space-xl);
+}
+
+.splash-header { text-align: center; line-height: 1.3; }
+
+.splash-name {
+  font-family: var(--font-splash-name);
+  font-size: clamp(11px, 1.5vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-pfc-text);
+  transition: color var(--t-slow) var(--ease-out);
+}
+.splash-url {
+  font-family: var(--font-left);
+  font-size: clamp(9px, 1.2vw, 11px);
+  color: var(--c-seam-vis);
+  letter-spacing: 0.05em;
+  margin-top: 3px;
+  transition: color var(--t-slow) var(--ease-out);
+}
+
+/* ── Brain container ── */
+.brain-container {
+  position: relative;
+  width: min(600px, 94vw);
+}
+
+.brain-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ── Zone interactivity ── */
+.brain-zone {
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
+.zone-left-geo:hover rect:first-child,
+.zone-left-geo:focus-visible rect:first-child { filter: brightness(0.96); }
+
+.zone-right:hover rect:first-child,
+.zone-right:focus-visible rect:first-child { filter: brightness(1.15); }
+
+.zone-pfc:hover rect:first-child,
+.zone-pfc:focus-visible rect:first-child { filter: brightness(1.3); }
+
+.zone-cloud:hover,
+.zone-cloud:focus-visible { filter: brightness(1.2); }
+
+/* ── Nav menus ── */
+.brain-menu {
+  position: absolute;
+  padding: 13px 17px;
+  border-radius: var(--radius-md);
+  min-width: 152px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity var(--t-med) var(--ease-out),
+              transform var(--t-med) var(--ease-out);
+}
+.brain-menu.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.brain-menu h2 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.brain-menu h2 a { text-decoration: none; color: inherit; }
+.brain-menu h2 a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.brain-menu ul { list-style: none; }
+.brain-menu li { padding: 3px 0; }
+.brain-menu a {
+  font-size: 12px;
+  opacity: 0.85;
+  text-decoration: none;
+  transition: opacity var(--t-fast);
+}
+.brain-menu a:hover { opacity: 1; text-decoration: underline; }
+
+/*
+  Menu positioning strategy:
+  The container is 600px wide (viewBox units scaled to CSS px).
+  Left block occupies roughly the left 48% of the container.
+  Right block occupies roughly x=51% to x=81%.
+  PFC bar sits at the top ~14% of the container height.
+
+  left menu:  appears just outside the left block's left edge.
+              18% from left = ~108px, matching x=110 in viewBox.
+  right menu: appears just outside the right block's right edge.
+              82% from left = ~492px, matching x=490 in viewBox.
+  pfc menu:   appears just below the PFC bar.
+              PFC bar bottom = y=82 of 310 = 26% down the SVG.
+  cloud menu: appears above/left of the cloud area.
+*/
+.menu-left {
+  /* Align to left block left edge (~18% of container) */
+  left: 18%;
+  transform: translateX(-100%) translateX(-12px) translateY(4px);
+  top: 28%;
+  background: var(--c-menu-left-bg);
+  border: 0.5px solid var(--c-menu-left-border);
+}
+.menu-left.visible {
+  transform: translateX(-100%) translateX(-12px) translateY(0);
+}
+.menu-left h2 { font-family: var(--font-left);  color: var(--c-menu-left-head); }
+.menu-left a  { font-family: var(--font-left);  color: var(--c-menu-left-item); }
+
+.menu-right {
+  /* Just right of container edge, pulled 8px left to avoid covering cloud */
+  left: calc(100% + 4px);
+  transform: translateY(4px);
+  top: 30%;
+  background: var(--c-menu-right-bg);
+  border: 0.5px solid var(--c-menu-right-border);
+}
+.menu-right.visible {
+  transform: translateY(0);
+}
+.menu-right h2 { font-family: var(--font-right); color: var(--c-menu-right-head); }
+.menu-right a  { font-family: var(--font-right); color: var(--c-menu-right-item); }
+
+.menu-cloud {
+  /* Original position: upper-right of container, above cloud */
+  right: 0;
+  bottom: calc(68% + 8px);
+  top: auto;
+  background: var(--c-menu-cloud-bg);
+  border: 0.5px solid var(--c-menu-cloud-border);
+}
+.menu-cloud h2 {
+  font-family: var(--font-cloud);
+  color: var(--c-menu-cloud-head);
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.menu-cloud a { font-family: var(--font-cloud); color: var(--c-menu-cloud-item); font-size: 13px; }
+
+.menu-pfc {
+  /* Sits above the PFC bar — bottom of menu aligns ~8px above bar top (y=44 = ~14% of SVG) */
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  bottom: calc(86% + 8px);
+  top: auto;
+  background: var(--c-menu-pfc-bg);
+  border: 0.5px solid var(--c-menu-pfc-border);
+  white-space: nowrap;
+}
+.menu-pfc.visible { transform: translateX(-50%) translateY(0); }
+.menu-pfc h2 { font-family: var(--font-pfc); color: var(--c-menu-pfc-head); }
+.menu-pfc ul { display: flex; gap: var(--space-md); }
+.menu-pfc a  { font-family: var(--font-pfc); color: var(--c-menu-pfc-item); }
+
+/* ── Footer hint ── */
+.splash-footer { text-align: center; }
+.splash-hint {
+  font-family: var(--font-pfc);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  transition: color var(--t-slow) var(--ease-out);
+}
+
+/* ── Light theme overrides ── */
+/* Left block and PFC bar appearances are driven by CSS variable tokens
+   referenced directly in the SVG — no element-level overrides needed here. */
+
+/* ── Narrow screen: all menus centered at same top position ── */
+@media (max-width: 600px) {
+  .menu-left,
+  .menu-right,
+  .menu-cloud,
+  .menu-pfc {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    top: 30%;
+    transform: translateX(-50%) translateY(4px);
+    white-space: normal;
+  }
+  .menu-left.visible,
+  .menu-right.visible,
+  .menu-cloud.visible,
+  .menu-pfc.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+  /* PFC items stack vertically on narrow screens */
+  .menu-pfc ul { flex-direction: column; gap: 0; }
+}

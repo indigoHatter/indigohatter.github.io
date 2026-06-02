@@ -1,0 +1,426 @@
+/* ============================================================
+   SPOKE.CSS — Shared layout for all spoke pages
+   (left.html, right.html, dream.html, pfc.html)
+   Zone identity is applied via body class: zone-left, zone-right,
+   zone-dream, zone-pfc. All color/font tokens are set per-zone
+   in zone-tokens.css.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--c-zone-bg);
+  color:      var(--c-zone-text);
+  font-family: var(--f-zone-body);
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 100svh;
+  transition: background var(--t-slow) var(--ease-out),
+              color      var(--t-slow) var(--ease-out);
+}
+
+/* ── Page shell ────────────────────────────────────────────── */
+.spoke-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr;
+  min-height: 100svh;
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.spoke-sidebar {
+  grid-row: 1 / -1;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 0.5px solid var(--c-zone-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) 0;
+  background: var(--c-zone-sidebar-bg);
+  transition: background var(--t-slow) var(--ease-out),
+              border-color var(--t-slow) var(--ease-out);
+}
+
+/* Home link — back to splash */
+.sidebar-home {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--space-md) var(--space-lg);
+  border-bottom: 0.5px solid var(--c-zone-border);
+  margin-bottom: var(--space-md);
+  text-decoration: none;
+  color: var(--c-zone-text-muted);
+  /* Lock font so it renders identically in every zone */
+  font-family: var(--font-nav);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  transition: color var(--t-fast);
+}
+.sidebar-home:hover { color: var(--c-zone-text); }
+.sidebar-home-glyph {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.6;
+  font-family: var(--font-nav); /* neutral font so glyph renders same size in all zones */
+  display: flex;
+  align-items: center;
+}
+
+/* Zone nav blocks */
+.sidebar-zone {
+  padding: 0 0 var(--space-sm);
+}
+
+.sidebar-zone-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-xs) var(--space-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--t-fast);
+}
+.sidebar-zone-trigger:hover {
+  background: var(--c-zone-hover);
+}
+
+.sidebar-zone-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-zone-text-muted);
+  transition: color var(--t-fast);
+  /* When it's an <a>, strip default link styles */
+  text-decoration: none;
+}
+a.sidebar-zone-name:hover {
+  color: var(--c-zone-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sidebar-zone.is-current .sidebar-zone-name {
+  color: var(--c-zone-accent);
+}
+.sidebar-zone.is-current .sidebar-zone-trigger {
+  cursor: default;
+}
+/* Show a left-pointing triangle for the current zone — greyed, non-interactive */
+.sidebar-zone.is-current .sidebar-zone-trigger::after {
+  content: '\25C0';   /* ◀ */
+  font-size: 9px;
+  color: var(--c-zone-text-muted);
+  opacity: 0.5;
+  margin-left: auto;
+  pointer-events: none;
+}
+/* Hide the right-pointing caret on the current zone (it's always expanded) */
+.sidebar-zone.is-current .sidebar-caret {
+  display: none;
+}
+
+.sidebar-caret {
+  font-size: 10px;
+  color: var(--c-zone-text-muted);
+  transition: transform var(--t-fast);
+}
+.sidebar-zone.is-open .sidebar-caret {
+  transform: rotate(90deg);
+}
+
+/* Section links within a zone */
+.sidebar-links {
+  list-style: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height var(--t-med) var(--ease-out);
+}
+.sidebar-zone.is-open .sidebar-links,
+.sidebar-zone.is-current .sidebar-links {
+  max-height: 400px;
+}
+
+.sidebar-links a {
+  display: block;
+  padding: 5px var(--space-md) 5px calc(var(--space-md) + 12px);
+  font-size: 13px;
+  color: var(--c-zone-text-muted);
+  text-decoration: none;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.sidebar-links a:hover {
+  color: var(--c-zone-text);
+  background: var(--c-zone-hover);
+}
+.sidebar-links a.is-active {
+  color: var(--c-zone-accent);
+  font-weight: 500;
+}
+
+/* Sidebar divider */
+.sidebar-divider {
+  height: 0.5px;
+  background: var(--c-zone-border);
+  margin: var(--space-sm) var(--space-md);
+}
+
+/* Theme toggle in sidebar footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: var(--space-md);
+  border-top: 0.5px solid var(--c-zone-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-theme-btn {
+  background: none;
+  border: 0.5px solid var(--c-zone-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-family: var(--f-zone-body);
+  color: var(--c-zone-text-muted);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.sidebar-theme-btn:hover {
+  color: var(--c-zone-text);
+  border-color: var(--c-zone-accent);
+}
+
+/* ── Main content area ─────────────────────────────────────── */
+.spoke-main {
+  grid-column: 2;
+  padding: var(--space-xl) clamp(var(--space-lg), 5vw, 4rem);
+  max-width: 860px;
+}
+
+/* Page hero */
+.spoke-hero {
+  padding-bottom: var(--space-xl);
+  border-bottom: 0.5px solid var(--c-zone-border);
+  margin-bottom: var(--space-xl);
+}
+
+.spoke-hero-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-zone-accent);
+  margin-bottom: var(--space-sm);
+  font-family: var(--f-zone-label);
+}
+
+.spoke-hero h1 {
+  font-family: var(--f-zone-heading);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--c-zone-heading);
+  margin-bottom: var(--space-md);
+}
+
+.spoke-hero-sub {
+  font-size: 17px;
+  color: var(--c-zone-text-muted);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* ── Sections ──────────────────────────────────────────────── */
+.spoke-section {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 0.5px solid var(--c-zone-border);
+}
+.spoke-section:last-child {
+  border-bottom: none;
+}
+
+.spoke-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.spoke-section h2 {
+  font-family: var(--f-zone-heading);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: var(--c-zone-heading);
+  line-height: 1.2;
+}
+
+.spoke-section-rule {
+  flex: 1;
+  height: 0.5px;
+  background: var(--c-zone-border);
+}
+
+/* Content blocks within a section */
+.spoke-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px var(--space-md);
+  padding: var(--space-md) 0;
+  border-top: 0.5px solid var(--c-zone-border);
+}
+.spoke-entry:first-of-type { border-top: none; }
+
+.spoke-entry-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--c-zone-text);
+  grid-column: 1;
+}
+.spoke-entry-meta {
+  font-size: 13px;
+  color: var(--c-zone-text-muted);
+  grid-column: 1;
+  font-family: var(--f-zone-label);
+}
+.spoke-entry-date {
+  font-size: 13px;
+  color: var(--c-zone-text-muted);
+  grid-column: 2;
+  grid-row: 1;
+  white-space: nowrap;
+  font-family: var(--f-zone-label);
+  text-align: right;
+}
+.spoke-entry-detail {
+  font-size: 14px;
+  color: var(--c-zone-text-muted);
+  grid-column: 1 / -1;
+  line-height: 1.5;
+}
+
+/* Tag pills */
+.spoke-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-sm);
+  grid-column: 1 / -1;
+}
+.spoke-tag {
+  font-size: 11px;
+  font-family: var(--f-zone-label);
+  padding: 2px 10px;
+  border-radius: 20px;
+  border: 0.5px solid var(--c-zone-accent);
+  color: var(--c-zone-accent);
+  letter-spacing: 0.04em;
+}
+
+/* Download / CTA button */
+.spoke-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--c-zone-accent);
+  background: transparent;
+  color: var(--c-zone-accent);
+  font-family: var(--f-zone-body);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+  margin-top: var(--space-md);
+}
+.spoke-btn:hover {
+  background: var(--c-zone-accent);
+  color: var(--c-zone-bg);
+}
+
+/* ── Bio prose (left professional bio, right actor bio) ─────── */
+.spoke-bio-prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.spoke-bio-prose p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--c-zone-text);
+}
+.spoke-bio-prose a {
+  color: var(--c-zone-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.spoke-bio-prose a:hover { opacity: 0.75; }
+
+.spoke-bio-note {
+  margin-top: var(--space-md);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--c-zone-text-muted);
+  opacity: 0.7;
+}
+
+/* ── Placeholder / empty state ─────────────────────────────── */
+.spoke-placeholder {
+  font-size: 14px;
+  color: var(--c-zone-text-muted);
+  font-style: italic;
+  padding: var(--space-md) 0;
+  opacity: 0.6;
+}
+
+/* ── Mobile ────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .spoke-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .spoke-sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 0.5px solid var(--c-zone-border);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+    overflow: visible;
+  }
+
+  /* On mobile sidebar becomes a top bar — hide verbose elements */
+  .sidebar-home { border-bottom: none; margin-bottom: 0; padding: 0; }
+  .sidebar-divider { display: none; }
+  .sidebar-footer { margin-top: 0; border-top: none; padding: 0; }
+  .sidebar-zone { padding: 0; }
+  .sidebar-zone-name { font-size: 10px; }
+
+  /* Collapse all zones, let them expand on tap */
+  .sidebar-zone.is-current .sidebar-links {
+    max-height: 0;
+  }
+  .sidebar-zone.is-open .sidebar-links {
+    max-height: 400px;
+  }
+
+  .spoke-main {
+    grid-column: 1;
+    padding: var(--space-lg) var(--space-md);
+  }
+}

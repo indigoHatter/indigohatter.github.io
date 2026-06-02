@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>porterwhatever.io | Right Brain</title>
+  <meta name="description" content="Right brain: actor, stage manager, technical designer, and theatre maker.">
+  <!-- Prevent flash of wrong theme before CSS loads -->
+  <script>(function(){var t=localStorage.getItem('pw-theme');document.documentElement.className=t==='theme-light'?'theme-light':'theme-dark';})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--
+    Font load order matches token variable names in tokens.css:
+      Courier Prime    --font-left, --font-left (body)
+      Playfair Display --font-left-heading
+      DM Sans          --font-right
+      Caveat           --font-cloud
+      Quicksand        --font-cloud-body
+      Inter            --font-pfc, --font-splash-name
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/zone-tokens.css">
+  <link rel="stylesheet" href="css/spoke.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body class="zone-right">
+
+<div class="spoke-shell">
+
+  <aside class="spoke-sidebar" aria-label="Site navigation">
+
+    <a href="index.html" class="sidebar-home">
+      <span class="sidebar-home-glyph">&#9675;</span>
+      porterwhatever.io
+    </a>
+
+    <!-- Left Brain -->
+    <nav class="sidebar-zone" aria-label="Left brain navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="left.html">Left Brain</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="left.html#bio">About</a></li>
+        <li><a href="left.html#resume">Résumé</a></li>
+        <li><a href="left.html#education">Education</a></li>
+        <li><a href="left.html#awards">Awards</a></li>
+        <li><a href="left.html#publications">Publications</a></li>
+        <li><a href="left.html#services">Professional services</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-divider"></div>
+
+    <!-- Right Brain (current) -->
+    <nav class="sidebar-zone is-current" aria-label="Right brain sections">
+      <button class="sidebar-zone-trigger" aria-expanded="true" disabled>
+        <span class="sidebar-zone-name">Right Brain</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="#bio">Bio</a></li>
+        <li><a href="#acting">Acting résumé</a></li>
+        <li><a href="#productions">Production history</a></li>
+        <li><a href="#projects">Creative projects</a></li>
+      </ul>
+    </nav>
+
+    <!-- Dream Cloud -->
+    <nav class="sidebar-zone" aria-label="Dream cloud navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="dream.html">Dream Cloud</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="dream.html#hobbies">Hobbies</a></li>
+        <li><a href="dream.html#photos">Photos</a></li>
+        <li><a href="dream.html#adventures">Adventures</a></li>
+      </ul>
+    </nav>
+
+    <!-- PFC -->
+    <nav class="sidebar-zone" aria-label="About and contact navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="pfc.html">Prefrontal</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="pfc.html#about">About</a></li>
+        <li><a href="pfc.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-theme-btn" id="sidebarThemeBtn">☀ light</button>
+    </div>
+
+  </aside>
+
+  <main class="spoke-main">
+
+    <header class="spoke-hero">
+      <p class="spoke-hero-label">Right Brain</p>
+      <h1>Actor.<br>Maker.<br>Storyteller.</h1>
+      <p class="spoke-hero-sub">
+        On stage and behind the scenes — from the spotlight to the
+        light board, from script to finished production.
+      </p>
+    </header>
+
+    <!-- ── ACTOR BIO ── -->
+    <section class="spoke-section" id="bio">
+      <div class="spoke-section-header">
+        <h2>Bio</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+      <div class="spoke-bio-prose">
+        <p>
+          Porter Whatever is a [city]-based actor and theatre technician with
+          [X] years of experience in community and regional theatre. [He/She/They]
+          has appeared in productions including [notable titles], and has served
+          as stage manager, lighting designer, sound operator, and stagehand on
+          dozens of productions across [theatres/companies].
+        </p>
+        <p>
+          Equally at home in drama and comedy, Porter brings a technical
+          precision to performance work — an instinct for detail and timing
+          honed by years of running light boards and calling cues. [He/She/They]
+          is a committed collaborator who believes the best theatre happens
+          when every department trusts each other completely.
+        </p>
+        <p>
+          This bio is available in a shorter format upon request for program
+          use. <a href="pfc.html#contact">Contact for casting inquiries.</a>
+        </p>
+      </div>
+      <p class="spoke-bio-note">
+        &#9432; This is a working draft — update with current credits and
+        preferred pronouns before sharing.
+      </p>
+    </section>
+
+    <!-- ── ACTING RÉSUMÉ ── -->
+    <section class="spoke-section" id="acting">
+      <div class="spoke-section-header">
+        <h2>Acting Résumé</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">Role — Production Title</span>
+        <span class="spoke-entry-date">20XX</span>
+        <span class="spoke-entry-meta">Theatre Company · Director Name</span>
+      </div>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">Role — Production Title</span>
+        <span class="spoke-entry-date">20XX</span>
+        <span class="spoke-entry-meta">Theatre Company · Director Name</span>
+      </div>
+
+      <p class="spoke-placeholder">Full acting credits coming soon.</p>
+    </section>
+
+    <!-- ── PRODUCTION HISTORY ── -->
+    <section class="spoke-section" id="productions">
+      <div class="spoke-section-header">
+        <h2>Production History</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">Production Title</span>
+        <span class="spoke-entry-date">20XX</span>
+        <span class="spoke-entry-meta">Theatre Company</span>
+        <p class="spoke-entry-detail">Role in production — e.g. Stage Manager, Lighting Designer, Spot Op.</p>
+        <div class="spoke-tags">
+          <span class="spoke-tag">Stage Management</span>
+          <span class="spoke-tag">Lighting</span>
+        </div>
+      </div>
+
+      <p class="spoke-placeholder">More productions to be catalogued.</p>
+    </section>
+
+    <!-- ── CREATIVE PROJECTS ── -->
+    <section class="spoke-section" id="projects">
+      <div class="spoke-section-header">
+        <h2>Creative Projects</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <p class="spoke-placeholder">Original and collaborative projects coming soon.</p>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/theme.js"></script>
+  <script src="js/spoke.js"></script>
+</body>
+</html>

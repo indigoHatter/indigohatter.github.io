@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>porterwhatever.io | Prefrontal Cortex</title>
+  <meta name="description" content="Prefrontal cortex: the part that holds it all together.">
+  <!-- Prevent flash of wrong theme before CSS loads -->
+  <script>(function(){var t=localStorage.getItem('pw-theme');document.documentElement.className=t==='theme-light'?'theme-light':'theme-dark';})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--
+    Font load order matches token variable names in tokens.css:
+      Courier Prime    --font-left, --font-left (body)
+      Playfair Display --font-left-heading
+      DM Sans          --font-right (fallback)
+      Outfit           --font-right
+      Caveat           --font-cloud
+      Quicksand        --font-cloud-body
+      Inter            --font-pfc, --font-splash-name
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;700&family=Playfair+Display:wght@600;700&family=Caveat:wght@600&family=Quicksand:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/zone-tokens.css">
+  <link rel="stylesheet" href="css/spoke.css">
+  <link rel="stylesheet" href="css/pfc.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body class="zone-pfc">
+
+<div class="spoke-shell">
+
+  <aside class="spoke-sidebar" aria-label="Site navigation">
+
+    <a href="index.html" class="sidebar-home">
+      <span class="sidebar-home-glyph">&#9675;</span>
+      porterwhatever.io
+    </a>
+
+    <nav class="sidebar-zone" aria-label="Left brain navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="left.html">Left Brain</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="left.html#bio">About</a></li>
+        <li><a href="left.html#resume">Résumé</a></li>
+        <li><a href="left.html#education">Education</a></li>
+        <li><a href="left.html#awards">Awards</a></li>
+        <li><a href="left.html#publications">Publications</a></li>
+        <li><a href="left.html#services">Professional services</a></li>
+      </ul>
+    </nav>
+
+    <nav class="sidebar-zone" aria-label="Right brain navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="right.html">Right Brain</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="right.html#bio">Bio</a></li>
+        <li><a href="right.html#acting">Acting résumé</a></li>
+        <li><a href="right.html#productions">Production history</a></li>
+        <li><a href="right.html#projects">Creative projects</a></li>
+      </ul>
+    </nav>
+
+    <nav class="sidebar-zone" aria-label="Dream cloud navigation">
+      <button class="sidebar-zone-trigger" aria-expanded="false">
+        <a class="sidebar-zone-name" href="dream.html">Dream Cloud</a>
+        <span class="sidebar-caret">&#9658;</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="dream.html#hobbies">Hobbies</a></li>
+        <li><a href="dream.html#photos">Photos</a></li>
+        <li><a href="dream.html#adventures">Adventures</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-divider"></div>
+
+    <nav class="sidebar-zone is-current" aria-label="Prefrontal cortex sections">
+      <button class="sidebar-zone-trigger" aria-expanded="true" disabled>
+        <span class="sidebar-zone-name">Prefrontal</span>
+      </button>
+      <ul class="sidebar-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#bio">Bio</a></li>
+        <li><a href="#concept">Why a brain?</a></li>
+        <li><a href="#currently">Currently</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="sidebar-theme-btn" id="sidebarThemeBtn">&#9728; light</button>
+    </div>
+
+  </aside>
+
+  <main class="spoke-main">
+
+    <!-- ════════════════════════════════
+         ABOUT
+         ════════════════════════════════ -->
+    <header class="spoke-hero spoke-section about-hero" id="about">
+      <p class="spoke-hero-label">About</p>
+      <h1>Hi. I'm Porter.</h1>
+      <p class="spoke-hero-sub">
+        Engineer, actor, tinkerer, community member. I don't think
+        those things are in conflict — I think they're the same impulse
+        pointed in different directions.
+      </p>
+    </header>
+
+    <!-- ── PHOTOS ── -->
+    <section class="about-photos" aria-label="Photos of Porter">
+      <div class="about-photo-slot" aria-label="Primary photo">
+        <div class="photo-placeholder">
+          <span class="photo-placeholder-label">photo</span>
+        </div>
+      </div>
+      <div class="about-photo-slot about-photo-slot--sm" aria-label="Secondary photo">
+        <div class="photo-placeholder">
+          <span class="photo-placeholder-label">photo</span>
+        </div>
+      </div>
+      <div class="about-photo-slot about-photo-slot--sm" aria-label="Third photo">
+        <div class="photo-placeholder">
+          <span class="photo-placeholder-label">photo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BIO ── -->
+    <section class="spoke-section" id="bio">
+      <div class="spoke-section-header">
+        <h2>The short version</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <div class="about-prose">
+        <p>
+          I'm an electrical engineer and electronics technician based in
+          [location]. I've spent years working on systems that have to
+          actually work — avionics, embedded hardware, technical infrastructure
+          — and I find that same care-about-getting-it-right sensibility
+          showing up everywhere else in my life.
+        </p>
+        <p>
+          I've been doing community theatre almost as long. Acting, stage
+          managing, running lights, building things, occasionally doing all of
+          those on the same production. Theatre taught me how to collaborate
+          under pressure and care about the audience — lessons that transfer
+          pretty directly to engineering teams and classrooms.
+        </p>
+        <p>
+          I also tutor, do handyman work, and have been known to spend an
+          entire weekend on a LEGO set without any guilt whatsoever.
+        </p>
+        <p>
+          This site is an attempt to put all of that in one place. If you're
+          here for the engineering, <a href="left.html">the left brain</a>
+          has what you need. If you're here for theatre,
+          <a href="right.html">the right brain</a> is yours. If you're just
+          curious, keep reading.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── LEFT / RIGHT CONCEPT ── -->
+    <section class="spoke-section" id="concept">
+      <div class="spoke-section-header">
+        <h2>Why a brain?</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <div class="about-concept">
+        <div class="concept-half concept-half--left">
+          <a href="left.html" class="concept-link">
+            <span class="concept-label">Left Brain</span>
+            <span class="concept-desc">
+              Analytical. Structured. Technical work, engineering,
+              education, process improvement.
+            </span>
+            <span class="concept-arrow">&#8594;</span>
+          </a>
+        </div>
+        <div class="concept-divider" aria-hidden="true">&#9675;</div>
+        <div class="concept-half concept-half--right">
+          <a href="right.html" class="concept-link">
+            <span class="concept-label">Right Brain</span>
+            <span class="concept-desc">
+              Expressive. Collaborative. Theatre, creative projects,
+              community, storytelling.
+            </span>
+            <span class="concept-arrow">&#8594;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-prose" style="margin-top: 1.5rem;">
+        <p>
+          The left brain / right brain model is a simplification, obviously.
+          But it's a useful one. The part of me that debugs a circuit and the
+          part of me that learns a script are doing different things — different
+          enough that they deserve different spaces on this site, with different
+          aesthetics and different audiences in mind.
+        </p>
+        <p>
+          The <a href="dream.html">dream cloud</a> is everything that doesn't
+          fit either hemisphere cleanly. The prefrontal cortex — this page —
+          is the part trying to hold it all together.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── CURRENTLY ── -->
+    <section class="spoke-section" id="currently">
+      <div class="spoke-section-header">
+        <h2>Currently</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <div class="about-currently">
+
+        <div class="currently-item">
+          <span class="currently-dot currently-dot--left" aria-hidden="true"></span>
+          <div>
+            <p class="currently-label">Working on</p>
+            <p class="currently-value">[Current job / project / contract]</p>
+          </div>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-dot currently-dot--right" aria-hidden="true"></span>
+          <div>
+            <p class="currently-label">In rehearsal for</p>
+            <p class="currently-value">[Current or upcoming production]</p>
+          </div>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-dot currently-dot--cloud" aria-hidden="true"></span>
+          <div>
+            <p class="currently-label">Obsessing over</p>
+            <p class="currently-value">[Current hobby / build / game]</p>
+          </div>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-dot currently-dot--pfc" aria-hidden="true"></span>
+          <div>
+            <p class="currently-label">Reading</p>
+            <p class="currently-value">[Current book]</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         CONTACT
+         ════════════════════════════════ -->
+    <section class="spoke-section" id="contact">
+      <div class="spoke-section-header">
+        <h2>Contact</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <p class="spoke-hero-sub" style="margin-bottom: var(--space-lg);">
+        Reach out about engineering work, theatre, tutoring, or
+        anything else. Response time: usually pretty good.
+      </p>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">Email</span>
+        <span class="spoke-entry-meta">hello@porterwhatever.io</span>
+      </div>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">LinkedIn</span>
+        <span class="spoke-entry-meta">linkedin.com/in/porterwhatever</span>
+      </div>
+
+      <div class="spoke-entry">
+        <span class="spoke-entry-title">GitHub</span>
+        <span class="spoke-entry-meta">github.com/porterwhatever</span>
+      </div>
+    </section>
+
+    <section class="spoke-section" id="contact-form">
+      <div class="spoke-section-header">
+        <h2>Send a message</h2>
+        <div class="spoke-section-rule"></div>
+      </div>
+
+      <p class="spoke-placeholder">
+        Contact form coming soon. For now, email works great.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/theme.js"></script>
+<script src="js/spoke.js"></script>
+</body>
+</html>

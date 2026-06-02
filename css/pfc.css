@@ -1,0 +1,243 @@
+/* ============================================================
+   PFC.CSS | Styles specific to pfc.html
+   Extends spoke.css — do not duplicate base styles here.
+   ============================================================ */
+
+/* ── Photo strip ────────────────────────────────────────────── */
+.about-photos {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px;
+  gap: 8px;
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.about-photo-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+/* When a real <img> is added, it fills the slot */
+.about-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--c-zone-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px dashed var(--c-zone-text-muted);
+  border-radius: var(--radius-md);
+}
+
+.photo-placeholder-label {
+  font-family: var(--f-zone-label);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--c-zone-text-muted);
+  opacity: 0.5;
+}
+
+/* ── Prose paragraphs ───────────────────────────────────────── */
+.about-prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-prose p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--c-zone-text);
+}
+
+.about-prose a {
+  color: var(--c-zone-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--t-fast);
+}
+.about-prose a:hover { opacity: 0.75; }
+
+/* ── Left / right concept split ────────────────────────────── */
+.about-concept {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-md);
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.concept-half {
+  border: 0.5px solid var(--c-zone-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--t-fast);
+}
+.concept-half:hover { border-color: var(--c-zone-accent); }
+
+.concept-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-md) var(--space-lg);
+  text-decoration: none;
+}
+
+.concept-half--left .concept-link {
+  background: color-mix(in srgb, var(--c-left-fill, #181510) 60%, transparent);
+}
+.concept-half--right .concept-link {
+  background: color-mix(in srgb, var(--c-right-grad-b, #6d28d9) 20%, transparent);
+}
+
+.concept-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.concept-half--left  .concept-label { font-family: var(--font-left);  color: var(--c-left-text,  #9a9080); }
+.concept-half--right .concept-label { font-family: var(--font-right); color: var(--c-right-text, #e9d5ff); }
+
+.concept-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--c-zone-text-muted);
+}
+.concept-half--left  .concept-desc { font-family: var(--font-left); }
+.concept-half--right .concept-desc { font-family: var(--font-right); }
+
+.concept-arrow {
+  font-size: 16px;
+  color: var(--c-zone-accent);
+  margin-top: 4px;
+  transition: transform var(--t-fast);
+}
+.concept-half:hover .concept-arrow { transform: translateX(4px); }
+
+.concept-divider {
+  font-size: 18px;
+  color: var(--c-zone-text-muted);
+  opacity: 0.4;
+  text-align: center;
+}
+
+/* ── Currently ──────────────────────────────────────────────── */
+.about-currently {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.currently-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.currently-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.currently-dot--left  { background: var(--c-left-stroke,  #6b6050); }
+.currently-dot--right { background: var(--c-right-stroke, #7c3aed); }
+.currently-dot--cloud { background: var(--c-cloud-stroke, #3b82f6); }
+.currently-dot--pfc   { background: var(--c-pfc-stroke,   #4a4a7a); }
+
+.currently-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-zone-text-muted);
+  font-family: var(--f-zone-label);
+  margin-bottom: 2px;
+}
+.currently-value {
+  font-size: 15px;
+  color: var(--c-zone-text);
+}
+
+/* ── Explore grid — UNUSED (section removed from pfc.html; retained for reuse) ──
+.about-explore-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: var(--space-md) var(--space-lg);
+  border: 0.5px solid var(--c-zone-border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: border-color var(--t-fast), background var(--t-fast);
+  position: relative;
+}
+.explore-card:hover { border-color: var(--c-zone-accent); }
+
+.explore-card-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-zone-text);
+}
+.explore-card-sub {
+  font-size: 12px;
+  color: var(--c-zone-text-muted);
+  line-height: 1.4;
+}
+.explore-card-arrow {
+  font-size: 16px;
+  color: var(--c-zone-accent);
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  transition: transform var(--t-fast);
+}
+.explore-card:hover .explore-card-arrow { transform: translateX(3px); }
+
+.explore-card--left  { border-left: 2px solid var(--c-left-stroke,  #6b6050); }
+.explore-card--right { border-left: 2px solid var(--c-right-stroke, #7c3aed); }
+.explore-card--dream { border-left: 2px solid var(--c-cloud-stroke, #3b82f6); }
+.explore-card--pfc   { border-left: 2px solid var(--c-pfc-stroke,   #4a4a7a); }
+
+.explore-card--left  .explore-card-label { font-family: var(--font-left-heading); }
+.explore-card--right .explore-card-label { font-family: var(--font-right); }
+.explore-card--dream .explore-card-label { font-family: var(--font-cloud); font-size: 16px; }
+.explore-card--pfc   .explore-card-label { font-family: var(--font-pfc); }
+── */
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .about-photos {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px 120px;
+  }
+  .about-photo-slot:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .about-concept {
+    grid-template-columns: 1fr;
+  }
+  .concept-divider { display: none; }
+
+  /* .about-explore-grid { grid-template-columns: 1fr; } — unused, see explore block above */
+}

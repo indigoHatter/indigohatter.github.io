@@ -1,0 +1,194 @@
+/* ============================================================
+   TOKENS.CSS — Single source of truth for porterwhatever.io
+   All visual decisions live here. Edit freely.
+   ============================================================ */
+
+/* ── Google Fonts are loaded in <head>; aliases live here ── */
+:root {
+  --font-left:         'Courier Prime', 'Courier New', monospace;  /* typewriter | left brain body */
+  --font-left-heading: 'Playfair Display', Georgia, serif;         /* left brain headings */
+  --font-right:        'Outfit', system-ui, sans-serif;            /* right brain | creative */
+  --font-cloud:        'Caveat', cursive;                          /* dream cloud headings */
+  --font-cloud-body:   'Quicksand', system-ui, sans-serif;         /* dream cloud body */
+  --font-pfc:          'Inter', system-ui, sans-serif;             /* prefrontal | neutral UI */
+  --font-splash-name:  'Inter', system-ui, sans-serif;             /* splash page title (same as pfc) */
+  --font-nav:          system-ui, sans-serif;                      /* zone-neutral chrome | sidebar home link */
+
+  /* ── Spacing scale ── */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+
+  /* ── Border radius ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* ── Transition ── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 150ms;
+  --t-med:  250ms;
+  --t-slow: 400ms;
+}
+
+/* ════════════════════════════════════════════════════════════
+   DARK THEME (default)
+   ════════════════════════════════════════════════════════════ */
+html.theme-dark, .theme-dark {
+  color-scheme: dark;
+
+  /* Page */
+  --c-bg:           #09080f;
+  --c-text:         #e2ddd5;
+  --c-text-muted:   #5a5870;
+
+  /* ── Left brain ── */
+  --c-left-fill:        #181510;
+  --c-left-stroke:      #6b6050;
+  --c-left-line:        #8a8070;
+  --c-left-text:        #9a9080;
+  --c-left-text-sub:    #6b6050;
+  --c-left-highlight:   #c8c4b0;
+  --c-left-block-fill:  #f0ece0;   /* SVG block background */
+  --c-left-block-stroke:#b8b0a0;   /* SVG block border */
+
+  /* ── Right brain ── */
+  --c-right-grad-a:   #3b0f6e;
+  --c-right-grad-b:   #6d28d9;
+  --c-right-grad-c:   #a21caf;
+  --c-right-stroke:   #7c3aed;
+  --c-right-circle:   #c084fc;
+  --c-right-circle-b: #a78bfa;
+  --c-right-text:     #e9d5ff;
+  --c-right-text-sub: #c084fc;
+  --c-right-highlight:#a78bfa;
+
+  /* ── PFC / seam ── */
+  --c-seam-vis:     #3a3a5a;
+  --c-pfc-fill:     #13132a;
+  --c-pfc-stroke:   #4a4a7a;
+  --c-pfc-text:     #64748b;
+  --c-pfc-grad-a:   #1a1812;
+  --c-pfc-grad-b:   #13132a;
+  --c-pfc-grad-c:   #1e0f38;
+
+  /* ── Dream cloud ── */
+  --c-cloud-fill:   #091523;
+  --c-cloud-stroke: #3b82f6;
+  --c-cloud-text:   #60a5fa;
+  --c-cloud-rain:   #3b82f6;
+
+  /* ── Nav menus ── */
+  --c-menu-left-bg:     #18160f;
+  --c-menu-left-border: #6b6050;
+  --c-menu-left-head:   #9a9080;
+  --c-menu-left-item:   #c8c0a8;
+
+  --c-menu-right-bg:     #1a0b30;
+  --c-menu-right-border: #7c3aed;
+  --c-menu-right-head:   #c084fc;
+  --c-menu-right-item:   #e9d5ff;
+
+  --c-menu-cloud-bg:     #091523;
+  --c-menu-cloud-border: #3b82f6;
+  --c-menu-cloud-head:   #60a5fa;
+  --c-menu-cloud-item:   #93c5fd;
+
+  --c-menu-pfc-bg:     #0e0e20;
+  --c-menu-pfc-border: #4a4a6a;
+  --c-menu-pfc-head:   #64748b;
+  --c-menu-pfc-item:   #94a3b8;
+
+  /* ── Theme toggle ── */
+  --c-toggle-bg:     #1e1e38;
+  --c-toggle-border: #4a4a6a;
+  --c-toggle-icon:   #94a3b8;
+
+  /* ── Spoke pages ── */
+  --c-spoke-left-bg:   #0f0e0a;
+  --c-spoke-right-bg:  #100820;
+  --c-spoke-cloud-bg:  #080f18;
+  --c-spoke-pfc-bg:    #0a0a14;
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIGHT THEME — warm sepia/parchment, not stark white
+   ════════════════════════════════════════════════════════════ */
+html.theme-light, .theme-light {
+  color-scheme: light;
+
+  /* Page */
+  --c-bg:           #f0ead8;   /* warm parchment */
+  --c-text:         #2a2318;
+  --c-text-muted:   #7a6e5a;
+
+  /* ── Left brain ── */
+  --c-left-fill:        #e8e0cc;
+  --c-left-stroke:      #9a8e78;
+  --c-left-line:        #c0b49a;
+  --c-left-text:        #5a5040;
+  --c-left-text-sub:    #8a8070;
+  --c-left-highlight:   #5a5040;
+  --c-left-block-fill:  #e8e0cc;   /* SVG block background */
+  --c-left-block-stroke:#a09880;   /* SVG block border */
+
+  /* ── Right brain ── */
+  --c-right-grad-a:   #6d28d9;
+  --c-right-grad-b:   #9333ea;
+  --c-right-grad-c:   #c026d3;
+  --c-right-stroke:   #7c3aed;
+  --c-right-circle:   #f3e8ff;
+  --c-right-circle-b: #e9d5ff;
+  --c-right-text:     #f3e8ff;
+  --c-right-text-sub: #e9d5ff;
+  --c-right-highlight:#6d28d9;
+
+  /* ── PFC / seam ── */
+  --c-seam-vis:     #b8b0c8;
+  --c-pfc-fill:     #ddd8ec;
+  --c-pfc-stroke:   #8080b8;
+  --c-pfc-text:     #5050a0;
+  --c-pfc-grad-a:   #e8e4f4;
+  --c-pfc-grad-b:   #ddd8ec;
+  --c-pfc-grad-c:   #d4cce8;
+
+  /* ── Dream cloud ── */
+  --c-cloud-fill:   #dceefa;
+  --c-cloud-stroke: #2563eb;
+  --c-cloud-text:   #1d4ed8;
+  --c-cloud-rain:   #60a5fa;
+
+  /* ── Nav menus ── */
+  --c-menu-left-bg:     #ede7d6;
+  --c-menu-left-border: #b0a890;
+  --c-menu-left-head:   #6a6050;
+  --c-menu-left-item:   #2a2318;
+
+  --c-menu-right-bg:     #f0e8ff;
+  --c-menu-right-border: #9333ea;
+  --c-menu-right-head:   #6d28d9;
+  --c-menu-right-item:   #3b0764;
+
+  --c-menu-cloud-bg:     #e8f4ff;
+  --c-menu-cloud-border: #93c5fd;
+  --c-menu-cloud-head:   #1d4ed8;
+  --c-menu-cloud-item:   #1e3a5f;
+
+  --c-menu-pfc-bg:     #edf0f4;
+  --c-menu-pfc-border: #a8bccf;
+  --c-menu-pfc-head:   #2d6a9f;
+  --c-menu-pfc-item:   #1e2a38;
+
+  /* ── Theme toggle ── */
+  --c-toggle-bg:     #e0d8c4;
+  --c-toggle-border: #b0a890;
+  --c-toggle-icon:   #5a5040;
+
+  /* ── Spoke pages ── */
+  --c-spoke-left-bg:   #ede7d6;
+  --c-spoke-right-bg:  #f0e8ff;
+  --c-spoke-cloud-bg:  #e8f4ff;
+  --c-spoke-pfc-bg:    #edf0f4;
+}

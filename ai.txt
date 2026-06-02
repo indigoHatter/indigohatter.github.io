@@ -1,0 +1,12 @@
+# ai.txt for https://indigohatter.github.io
+# Spec: https://site.ai/ai.txt
+
+User-agent: *
+Allow: inference
+Allow: summarization
+Allow: assistive
+Disallow: training
+Disallow: scraping
+Disallow: indexing-for-ai
+Disallow: likeness
+Disallow: synthetic-media

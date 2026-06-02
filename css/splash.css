@@ -70,7 +70,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 
 .splash-name {
   font-family: var(--font-splash-name);
-  font-size: clamp(11px, 1.5vw, 14px);
+  font-size: clamp(11px, 1.5vw, 24px);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -79,7 +79,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 }
 .splash-url {
   font-family: var(--font-left);
-  font-size: clamp(9px, 1.2vw, 11px);
+  font-size: clamp(9px, 1.2vw, 18px);
   color: var(--c-seam-vis);
   letter-spacing: 0.05em;
   margin-top: 3px;

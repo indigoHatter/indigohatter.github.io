@@ -9,9 +9,9 @@
 * no need for hover menus to show on click - just click on a region.
 * nav bar on spokes is not organized, and still opens vertically despite listing horizontally.
     * Perhaps:
-        | * porterwhatever.io                   | 🌗 light/dark
-        | **>** Left 🧠   < Right 🧠   < Dreams 💭   < PFC ✉️
-        | * Resume  * Academics  * Awards  ...etc
+        > [o] porterwhatever.io  .................   🌗 light/dark  
+        > **>** Left 🧠   < Right 🧠   < Dreams 💭   < PFC ✉️  
+        > \* Resume  \* Academics  \* Awards  ...etc
         ----
 
 

@@ -39,6 +39,10 @@ body {
   height: 100svh;
   overflow-y: auto;
   overflow-x: hidden;
+  /* Hide the scrollbar drawable while keeping scroll functional.
+     The sidebar can still be scrolled natively; no visible track is drawn. */
+  scrollbar-width: none;                          /* Firefox */
+  &::-webkit-scrollbar { display: none; }         /* Chrome, Safari (CSS nesting) */
   border-right: 0.5px solid var(--c-zone-border);
   display: flex;
   flex-direction: column;
@@ -47,6 +51,9 @@ body {
   transition: background var(--t-slow) var(--ease-out),
               border-color var(--t-slow) var(--ease-out);
 }
+
+/* Fallback for browsers without CSS nesting support (pre-Chrome 112, pre-Safari 16.5) */
+.spoke-sidebar::-webkit-scrollbar { display: none; }
 
 /* Home link — back to splash */
 .sidebar-home {
@@ -126,15 +133,15 @@ a.sidebar-zone-name:hover {
 /* Show a left-pointing triangle for the current zone — greyed, non-interactive */
 .sidebar-zone.is-current .sidebar-zone-trigger::after {
   content: '\25C0';   /* ◀ */
-  font-size: 9px;
+  font-size: 10px; /* ← inactive ◀ size (~line 129); match active caret below */
   color: var(--c-zone-text-muted);
-  opacity: 0.5;
+  opacity: 0.5;    /* ← inactive ◀ opacity (~line 131) */
   margin-left: auto;
   pointer-events: none;
 }
 
 .sidebar-caret {
-  font-size: 10px;
+  font-size: 10px; /* ← active ▶/▼ size (~line 137); tweak alongside inactive ◀ above */
   color: var(--c-zone-text-muted);
   transition: transform var(--t-fast);
 }
@@ -384,6 +391,39 @@ a.sidebar-zone-name:hover {
   opacity: 0.7;
 }
 
+/* ── Sidebar font-size compensation (desktop only) ─────────── */
+/*
+   Each zone uses a different typeface with a different optical size.
+   At the same px value they render visually unequal (PFC > Dream > Right > Left).
+   These overrides nudge each zone toward visual parity.
+
+   Scoped to min-width: 701px intentionally — mobile uses its own
+   font sizes for the tab row and shouldn't inherit these corrections.
+
+   Baseline (spoke.css defaults):
+     .sidebar-zone-name  → 11px
+     .sidebar-links a    → 13px
+
+   Tune the values below by eye — zone-name and links move independently.
+*/
+@media (min-width: 701px) {
+  /* Left / Courier Prime — smallest optical size */
+  .zone-left .sidebar-zone-name { font-size: 12px; } /* +1 from baseline */
+  /* .zone-left .sidebar-links a   { font-size: 13px; } */
+
+  /* Right / Outfit */
+  /* .zone-right .sidebar-zone-name { font-size: 11px; } */
+  /* .zone-right .sidebar-links a   { font-size: 13px; } */
+
+  /* Dream / Quicksand */
+  /* .zone-dream .sidebar-zone-name { font-size: 11px; } */
+  /* .zone-dream .sidebar-links a   { font-size: 13px; } */
+
+  /* PFC / Inter — reference; no correction needed */
+  /* .zone-pfc .sidebar-zone-name { font-size: 11px; } */
+  /* .zone-pfc .sidebar-links a   { font-size: 13px; } */
+}
+
 /* ── Placeholder / empty state ─────────────────────────────── */
 .spoke-placeholder {
   font-size: 14px;
@@ -393,42 +433,156 @@ a.sidebar-zone-name:hover {
   opacity: 0.6;
 }
 
+/* ── Layout wrappers (desktop behaviour) ───────────────────── */
+/*
+   These divs exist to enable the mobile 3-row layout. On desktop they
+   are invisible to the flex algorithm — their children behave as direct
+   children of .spoke-sidebar.
+*/
+.sidebar-brand-row,
+.sidebar-zones {
+  display: contents;
+}
+
+/* Mobile strip and current-zone caret are desktop-invisible */
+.sidebar-mobile-strip,
+.sidebar-caret--current {
+  display: none;
+}
+
+
+/* Footer must sort after all zones in the flex column.
+   With .sidebar-brand-row { display:contents }, home and footer become
+   direct flex children — but footer appears before the zones in DOM order.
+   A high order value moves it to the end so margin-top:auto works correctly. */
+.sidebar-footer {
+  order: 999;
+}
+
 /* ── Mobile ────────────────────────────────────────────────── */
 @media (max-width: 700px) {
+
   .spoke-shell {
     grid-template-columns: 1fr;
   }
 
   .spoke-sidebar {
-    position: static;
+    position: sticky;
+    top: 0;
+    z-index: 50; /* content scrolls behind the header */
     height: auto;
     border-right: none;
-    border-bottom: 0.5px solid var(--c-zone-border);
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-sm) var(--space-md);
-    gap: var(--space-sm);
+    border-bottom: none; /* each row provides its own bottom border */
+    flex-direction: column;
+    padding: 0;
     overflow: visible;
   }
 
-  /* On mobile sidebar becomes a top bar — hide verbose elements */
-  .sidebar-home { border-bottom: none; margin-bottom: 0; padding: 0; }
-  .sidebar-divider { display: none; }
-  .sidebar-footer { margin-top: 0; border-top: none; padding: 0; }
-  .sidebar-zone { padding: 0; }
-  .sidebar-zone-name { font-size: 10px; }
-
-  /* Collapse all zones, let them expand on tap */
-  .sidebar-zone.is-current .sidebar-links {
-    max-height: 0;
+  /* Very short viewports (landscape phone, etc.) — unfreeze the header so
+     it doesn't consume the usable screen. Threshold is ~350px tall. */
+  @media (max-height: 350px) {
+    .spoke-sidebar {
+      position: static;
+    }
   }
-  .sidebar-zone.is-open .sidebar-links {
-    max-height: 400px;
+
+  /* ── Row 1: brand bar (home left, theme toggle right) ──── */
+  .sidebar-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 0.5px solid var(--c-zone-border);
+  }
+  .sidebar-brand-row .sidebar-home {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .sidebar-brand-row .sidebar-footer {
+    margin-top: 0;
+    border-top: none;
+    padding: 0;
+  }
+
+  /* ── Row 2: zone tabs ──────────────────────────────────── */
+  .sidebar-zones {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.5px solid var(--c-zone-border);
+  }
+  .sidebar-zone {
+    flex: 1;
+    padding: 0;
+  }
+  .sidebar-zone-trigger {
+    padding: var(--space-xs) var(--space-sm);
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .sidebar-zone-name {
+    font-size: 10px;
+  }
+  /* No dividers inside the tab row */
+  .sidebar-divider {
+    display: none;
+  }
+  /* Suppress the desktop CSS-generated ◀ indicator — mobile uses the
+     .sidebar-caret--current span instead */
+  .sidebar-zone.is-current .sidebar-zone-trigger::after {
+    display: none;
+  }
+  /* Section links are hidden on mobile — sections live in the strip */
+  .sidebar-links {
+    display: none !important;
+  }
+
+  /* ◀ caret on the current zone tab.
+     ◀ when another zone's strip is showing (not is-open).
+     Rotates to ▼ (rotate -90deg) when this zone's strip is showing (is-open). */
+  .sidebar-caret--current {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: var(--c-zone-text-muted);
+    opacity: 0.6;
+    transition: transform var(--t-fast);
+  }
+  .sidebar-zone.is-open .sidebar-caret--current {
+    transform: rotate(-90deg); /* ◀ → ▼ */
+  }
+
+  /* ── Row 3: section strip ──────────────────────────────── */
+  .sidebar-mobile-strip {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: var(--space-xs) var(--space-md);
+    gap: var(--space-md);
+    border-bottom: 0.5px solid var(--c-zone-border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-zone-border) transparent;
+  }
+  .sidebar-mobile-strip a {
+    white-space: nowrap;
+    font-size: 12px;
+    font-family: var(--font-nav);
+    color: var(--c-zone-text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+    flex-shrink: 0;
+    transition: color var(--t-fast);
+  }
+  .sidebar-mobile-strip a:hover,
+  .sidebar-mobile-strip a.is-active {
+    color: var(--c-zone-accent);
   }
 
   .spoke-main {
     grid-column: 1;
     padding: var(--space-lg) var(--space-md);
   }
+
 }

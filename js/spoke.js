@@ -8,9 +8,9 @@
 
   /* ── Zone / section config ───────────────────────────────── */
   /*
-     Single source of truth for the sidebar (and eventually the
-     mobile top-bar). To add, remove, or rename a zone or section,
-     edit ZONES only — no HTML changes needed.
+     Single source of truth for the sidebar (and mobile top-bar).
+     To add, remove, or rename a zone or section, edit ZONES only
+     — no HTML changes needed.
 
      Fields per zone:
        id       — matches the body class suffix (zone-<id>)
@@ -63,11 +63,11 @@
       page:  'pfc.html',
       label: 'Prefrontal cortex',
       sections: [
-        { label: 'About',       id: 'about' },
-        { label: 'Bio',         id: 'bio' },
-        { label: 'Why a brain?',id: 'concept' },
-        { label: 'Currently',   id: 'currently' },
-        { label: 'Contact',     id: 'contact' },
+        { label: 'About',        id: 'about' },
+        { label: 'Bio',          id: 'bio' },
+        { label: 'Why a brain?', id: 'concept' },
+        { label: 'Currently',    id: 'currently' },
+        { label: 'Contact',      id: 'contact' },
       ],
     },
   ];
@@ -81,45 +81,79 @@
   }
 
   /* ── Build sidebar DOM ───────────────────────────────────── */
+  /*
+     Emits two layout-wrapper divs that CSS treats differently at each
+     breakpoint:
+
+     .sidebar-brand-row  — home link + theme toggle
+       Desktop: display:contents → children are direct sidebar flex children
+                (home stays at top, footer stays at bottom via margin-top:auto)
+       Mobile:  flex row, space-between → visible row 1
+
+     .sidebar-zones  — all zone navs + dividers
+       Desktop: display:contents → zones flow normally in the flex column
+       Mobile:  flex row → zone tabs (row 2)
+
+     .sidebar-mobile-strip  — section links for the active mobile tab
+       Desktop: display:none
+       Mobile:  horizontal scroll strip (row 3)
+  */
   function buildSidebar() {
     const sidebar = document.querySelector('.spoke-sidebar');
     if (!sidebar) return;
 
     const currentId  = getCurrentZoneId();
-    const currentIdx = ZONES.findIndex(z => z.id === currentId);
     const frag = document.createDocumentFragment();
 
-    /* Home link */
+    /* Brand row */
+    const brandRow = document.createElement('div');
+    brandRow.className = 'sidebar-brand-row';
+
     const home = document.createElement('a');
     home.href      = 'index.html';
     home.className = 'sidebar-home';
     home.innerHTML = '<span class="sidebar-home-glyph">&#9675;</span> porterwhatever.io';
-    frag.appendChild(home);
+    brandRow.appendChild(home);
 
-    /* Zone navs */
+    const footer = document.createElement('div');
+    footer.className = 'sidebar-footer';
+    footer.innerHTML = '<button class="sidebar-theme-btn" id="sidebarThemeBtn">&#9728; light</button>';
+    brandRow.appendChild(footer);
+
+    frag.appendChild(brandRow);
+
+    /* Zones wrapper */
+    const zonesWrapper = document.createElement('div');
+    zonesWrapper.className = 'sidebar-zones';
+
     ZONES.forEach((zone, idx) => {
       const isCurrent = zone.id === currentId;
 
-      /* Divider BEFORE current zone (skip if it's the first item) */
-      if (isCurrent && idx > 0) frag.appendChild(makeDivider());
+      /* Divider before current zone (skip if first) */
+      if (isCurrent && idx > 0) zonesWrapper.appendChild(makeDivider());
 
-      /* Nav block */
       const nav = document.createElement('nav');
       nav.className = 'sidebar-zone' + (isCurrent ? ' is-current' : '');
+      nav.dataset.zone = zone.id;
       nav.setAttribute('aria-label', zone.label + (isCurrent ? ' sections' : ' navigation'));
 
-      /* Trigger row */
       const trigger = document.createElement('div');
       trigger.className = 'sidebar-zone-trigger';
 
       if (isCurrent) {
-        /* Current zone — plain span, no link or caret */
         const nameSpan = document.createElement('span');
         nameSpan.className   = 'sidebar-zone-name';
         nameSpan.textContent = zone.name;
         trigger.appendChild(nameSpan);
+
+        /* ◀ caret — only visible on mobile. Points left when another
+           zone's strip is showing (current zone not open); rotates
+           to ▼ when this zone's strip is showing (is-open). */
+        const caret = document.createElement('span');
+        caret.className = 'sidebar-caret--current';
+        caret.innerHTML = '&#9664;'; /* ◀ */
+        trigger.appendChild(caret);
       } else {
-        /* Other zones — linked name + caret button */
         const nameLink = document.createElement('a');
         nameLink.className   = 'sidebar-zone-name';
         nameLink.href        = zone.page;
@@ -130,36 +164,37 @@
         caretBtn.className = 'sidebar-caret-btn';
         caretBtn.setAttribute('aria-expanded', 'false');
         caretBtn.setAttribute('aria-label', 'Toggle ' + zone.name);
-        caretBtn.innerHTML = '<span class="sidebar-caret">&#9658;</span>';
+        caretBtn.innerHTML = '<span class="sidebar-caret">&#9658;</span>'; /* ▶ */
         trigger.appendChild(caretBtn);
       }
 
       nav.appendChild(trigger);
 
-      /* Section links */
+      /* Section links (desktop accordion / source for mobile strip) */
       const ul = document.createElement('ul');
       ul.className = 'sidebar-links';
       zone.sections.forEach(sec => {
         const li = document.createElement('li');
         const a  = document.createElement('a');
-        /* In-page anchors for the current zone; cross-page hrefs for others */
         a.href        = isCurrent ? '#' + sec.id : zone.page + '#' + sec.id;
         a.textContent = sec.label;
         li.appendChild(a);
         ul.appendChild(li);
       });
       nav.appendChild(ul);
-      frag.appendChild(nav);
+      zonesWrapper.appendChild(nav);
 
-      /* Divider AFTER current zone (skip if it's the last item) */
-      if (isCurrent && idx < ZONES.length - 1) frag.appendChild(makeDivider());
+      /* Divider after current zone (skip if last) */
+      if (isCurrent && idx < ZONES.length - 1) zonesWrapper.appendChild(makeDivider());
     });
 
-    /* Footer / theme toggle */
-    const footer = document.createElement('div');
-    footer.className = 'sidebar-footer';
-    footer.innerHTML = '<button class="sidebar-theme-btn" id="sidebarThemeBtn">&#9728; light</button>';
-    frag.appendChild(footer);
+    frag.appendChild(zonesWrapper);
+
+    /* Mobile row 3 — populated dynamically by initMobileStrip / handleMobileTap */
+    const strip = document.createElement('div');
+    strip.className = 'sidebar-mobile-strip';
+    strip.setAttribute('aria-label', 'Section links');
+    frag.appendChild(strip);
 
     sidebar.appendChild(frag);
   }
@@ -170,52 +205,137 @@
     return d;
   }
 
-  /* ── Sidebar accordion ───────────────────────────────────── */
+  /* ── Mobile helpers ──────────────────────────────────────── */
+  function isMobileLayout() {
+    return window.innerWidth <= 700;
+  }
+
+  /* Write the active zone's sections into the mobile strip */
+  function populateStrip(zone, isCurrent) {
+    const strip = document.querySelector('.sidebar-mobile-strip');
+    if (!strip) return;
+    strip.innerHTML = '';
+    zone.sections.forEach(sec => {
+      const a = document.createElement('a');
+      a.href        = isCurrent ? '#' + sec.id : zone.page + '#' + sec.id;
+      a.textContent = sec.label;
+      strip.appendChild(a);
+    });
+  }
+
+  /* On load: open the current zone and populate the strip with its sections */
+  function initMobileStrip() {
+    const currentNav = document.querySelector('.sidebar-zone.is-current');
+    if (!currentNav) return;
+    currentNav.classList.add('is-open');
+    const zone = ZONES.find(z => z.id === currentNav.dataset.zone);
+    if (zone) populateStrip(zone, true);
+  }
+
   /*
-     Clicking anywhere on the trigger row (whitespace or caret) toggles
-     the zone open/closed. Clicks on the zone name <a> are left alone so
-     they navigate normally.
-
-     TO CHANGE WHITESPACE CLICKS TO NAVIGATE INSTEAD OF TOGGLE:
-     Replace the trigger.addEventListener block below with:
-
-       trigger.addEventListener('click', (e) => {
-         if (e.target.closest('.sidebar-caret-btn')) {
-           e.preventDefault();
-           toggleZone(zone, btn);
-         } else if (!e.target.closest('.sidebar-zone-name')) {
-           window.location.href = zone.page;
-         }
-         // Clicks on .sidebar-zone-name fall through to the <a> href naturally
-       });
+     Mobile tab tap logic:
+       Not open          → unfold: populate strip, mark is-open
+       Open + current    → (a) do nothing — matches desktop behaviour of
+                           not navigating to the page you're already on.
+                           TO CHANGE TO (b) collapse row 3 instead:
+                             zoneNav.classList.remove('is-open');
+                             populateStrip({ sections: [] }, false); // clears strip
+                             (or restore current zone's strip if preferred)
+       Open + not current → navigate to that zone's page
   */
-  function initSidebar() {
-    document.querySelectorAll('.sidebar-zone:not(.is-current)').forEach(zone => {
-      const trigger = zone.querySelector('.sidebar-zone-trigger');
-      const btn     = zone.querySelector('.sidebar-caret-btn');
-      if (!trigger) return;
+  function handleMobileTap(zoneNav, zone, isCurrent) {
+    const isOpen = zoneNav.classList.contains('is-open');
+
+    if (isOpen) {
+      if (isCurrent) {
+        return; /* (a) do nothing */
+      } else {
+        window.location.href = zone.page;
+      }
+    } else {
+      /* Close all, open this one */
+      document.querySelectorAll('.sidebar-zone').forEach(z => z.classList.remove('is-open'));
+      zoneNav.classList.add('is-open');
+      populateStrip(zone, isCurrent);
+    }
+  }
+
+  /* ── Trigger click handler (desktop accordion + mobile tabs) */
+  /*
+     Desktop: clicking the trigger row (whitespace or caret) folds/unfolds
+     the zone. Clicks on the zone name <a> pass through so the link navigates.
+
+     Mobile: all clicks on the trigger are intercepted (including the name
+     link — first tap unfolds, second tap on a non-current zone navigates).
+
+     TO CHANGE DESKTOP WHITESPACE CLICKS TO NAVIGATE INSTEAD OF TOGGLE:
+     Replace the desktop branch below with:
+       if (e.target.closest('.sidebar-caret-btn')) {
+         e.preventDefault();
+         toggleZone(zoneNav, btn);
+       } else if (!e.target.closest('.sidebar-zone-name')) {
+         window.location.href = zone.page;
+       }
+       // Clicks on .sidebar-zone-name fall through to the <a> href naturally
+  */
+  function initTriggers() {
+    document.querySelectorAll('.sidebar-zone').forEach(zoneNav => {
+      const trigger   = zoneNav.querySelector('.sidebar-zone-trigger');
+      const btn       = zoneNav.querySelector('.sidebar-caret-btn');
+      const zone      = ZONES.find(z => z.id === zoneNav.dataset.zone);
+      const isCurrent = zoneNav.classList.contains('is-current');
+      if (!trigger || !zone) return;
 
       trigger.addEventListener('click', (e) => {
-        /* Let native link behaviour on the zone name proceed as-is */
+        if (isMobileLayout()) {
+          e.preventDefault();
+          handleMobileTap(zoneNav, zone, isCurrent);
+          return;
+        }
+        /* Desktop: let zone-name <a> navigate naturally */
         if (e.target.closest('.sidebar-zone-name')) return;
+        if (isCurrent) return;
         e.preventDefault();
-        toggleZone(zone, btn);
+        toggleZone(zoneNav, btn);
       });
     });
   }
 
   function toggleZone(zone, btn) {
     const isOpen = zone.classList.contains('is-open');
-    /* Collapse all non-current zones first */
+
+    /* Step 1: close all open non-current zones; capture the animating element
+       so we can wait for it before opening the new one. */
+    let closingLinks = null;
     document.querySelectorAll('.sidebar-zone:not(.is-current)').forEach(z => {
-      z.classList.remove('is-open');
-      const b = z.querySelector('.sidebar-caret-btn');
-      if (b) b.setAttribute('aria-expanded', 'false');
+      if (z.classList.contains('is-open')) {
+        z.classList.remove('is-open');
+        const b = z.querySelector('.sidebar-caret-btn');
+        if (b) b.setAttribute('aria-expanded', 'false');
+        if (!closingLinks) closingLinks = z.querySelector('.sidebar-links');
+      }
     });
-    /* Then open this one if it was closed */
-    if (!isOpen) {
+
+    if (isOpen) return; /* was open — just closed it above, nothing more to do */
+
+    /* Step 2: open the requested zone only after the close animation finishes.
+       Falls back to a timer in case transitionend doesn't fire (e.g. reduced-motion,
+       or nothing was open and closingLinks is null). */
+    function openZone() {
       zone.classList.add('is-open');
       if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+
+    if (closingLinks) {
+      /* Open when the close animation is halfway done. --t-med is 250ms,
+         Adjust this value to taste:
+           0   = simultaneous (if scrollbar can draw, it may flash briefly)
+           50  = mostly simultaneous (feels snappy, but slightly too fast)
+           125 = midpoint (feels smooth, but still too slow)
+           250 = fully sequential (feels slow) */
+      setTimeout(openZone, 80);
+    } else {
+      openZone(); /* nothing was animating closed; expand immediately */
     }
   }
 
@@ -250,9 +370,10 @@
 
   /* ── Init ────────────────────────────────────────────────── */
   function init() {
-    buildSidebar();   /* Must run before initSidebar (builds the DOM first) */
-    initSidebar();
-    initActiveLinks();
+    buildSidebar();     /* Build DOM first — theme.js needs #sidebarThemeBtn */
+    initMobileStrip();  /* Open current zone + populate strip on mobile */
+    initTriggers();     /* Wire all trigger clicks (desktop + mobile) */
+    initActiveLinks();  /* IntersectionObserver for desktop sidebar links */
   }
 
   if (document.readyState === 'loading') {

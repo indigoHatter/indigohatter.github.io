@@ -22,5 +22,11 @@
 # Minor
 * Pretty URLs? Move all pages into folders (and rename pages to index.html) so that browsers go to /left instead of /left.html. (Note: if doing so, these may need canonical tags?)
 
+# Future Pages
+* Re-add the brainstem/cerebellum (maybe?) to the geometric brain. This would link to personal health, fitness, recipes, etc. -- Or add a occipital/temporal lobe? hrm. Anyway, not important yet. Could just be in the dream cloud until it gets substantially big enough to be on it's own.
+
+# Future Features
+* Spotify widget? Link to whatever I'm currently listening to, or my most-played song of the week or something. (Maybe this goes on the "Currently..." section in About.)
+
 # Known
 * Informal comment at bottom of `index.html`, kept for humor.

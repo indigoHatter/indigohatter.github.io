@@ -50,13 +50,15 @@ Seven families loaded via Google Fonts. Token → family mapping:
 
 | Token | Family |
 |-------|--------|
-| `--font-left` | Courier Prime |
 | `--font-left-heading` | Playfair Display |
-| `--font-right` | Outfit |
-| `--font-cloud` | Caveat |
+| `--font-left-body` | Courier Prime |
+| `--font-right-heading` | Outfit |
+| `--font-right-body` | Outfit |
+| `--font-cloud-heading` | Caveat |
 | `--font-cloud-body` | Quicksand |
-| `--font-pfc` | Inter |
-| `--font-splash-name` | Inter |
+| `--font-pfc-heading` | Inter |
+| `--font-pfc-body` | Inter |
+| `--font-splash-title` | Inter |
 | `--font-nav` | system-ui |
 
 ## Boilerplate That Must Stay in Sync

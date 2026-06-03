@@ -109,16 +109,16 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.concept-half--left  .concept-label { font-family: var(--font-left);  color: var(--c-left-text); }
-.concept-half--right .concept-label { font-family: var(--font-right); color: var(--c-right-text); }
+.concept-half--left  .concept-label { font-family: var(--font-left-body);  color: var(--c-left-text); }
+.concept-half--right .concept-label { font-family: var(--font-right-body); color: var(--c-right-text); }
 
 .concept-desc {
   font-size: 13px;
   line-height: 1.5;
   color: var(--c-zone-text-muted);
 }
-.concept-half--left  .concept-desc { font-family: var(--font-left); }
-.concept-half--right .concept-desc { font-family: var(--font-right); }
+.concept-half--left  .concept-desc { font-family: var(--font-left-body); }
+.concept-half--right .concept-desc { font-family: var(--font-right-body); }
 
 .concept-arrow {
   font-size: 16px;

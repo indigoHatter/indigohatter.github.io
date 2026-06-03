@@ -1,18 +1,68 @@
 /* ============================================================
    TOKENS.CSS — Single source of truth for porterwhatever.io
    All visual decisions live here. Edit freely.
+
+   Structure:
+     :root       — fonts (all roles per zone), sizes, spacing, radii, transitions
+     theme-dark  — dark palette: global colors + zone SVG/splash colors
+     theme-light — light palette: global colors + zone SVG/splash colors
+     zone-tokens — spoke-page tokens scoped by body class (--c-zone-*, --f-zone-*)
    ============================================================ */
 
-/* ── Google Fonts are loaded in <head>; aliases live here ── */
+/* ── Font families ─────────────────────────────────────────────
+   Each zone declares all of its font roles explicitly — even when
+   they resolve to the same family. Design intent is declared, not
+   assumed. Roles: -heading (spoke h1/h2), -body (spoke prose),
+   -splash (SVG label in brain diagram), -menu-heading (hover menu
+   zone label), -menu-body (hover menu nav links).
+   Google Fonts are loaded in <head>; these are aliases only.
+   ──────────────────────────────────────────────────────────── */
 :root {
-  --font-left:         'Courier Prime', 'Courier New', monospace;  /* typewriter | left brain body */
-  --font-left-heading: 'Playfair Display', Georgia, serif;         /* left brain headings */
-  --font-right:        'Outfit', system-ui, sans-serif;            /* right brain | creative */
-  --font-cloud:        'Caveat', cursive;                          /* dream cloud headings */
-  --font-cloud-body:   'Quicksand', system-ui, sans-serif;         /* dream cloud body */
-  --font-pfc:          'Inter', system-ui, sans-serif;             /* prefrontal | neutral UI */
-  --font-splash-name:  'Inter', system-ui, sans-serif;             /* splash page title (same as pfc) */
-  --font-nav:          system-ui, sans-serif;                      /* zone-neutral chrome | sidebar home link */
+  /* Left brain — serif heading, typewriter for everything else */
+  --font-left-heading:      'Playfair Display', Georgia, serif;
+  --font-left-body:         'Courier Prime', 'Courier New', monospace;
+  --font-left-splash:       'Courier Prime', 'Courier New', monospace; /* same as --font-left-body */
+  --font-left-menu-heading: 'Courier Prime', 'Courier New', monospace; /* same as --font-left-body */
+  --font-left-menu-body:    'Courier Prime', 'Courier New', monospace; /* same as --font-left-body */
+
+  /* Right brain — one expressive sans for all roles */
+  --font-right-heading:      'Outfit', system-ui, sans-serif;
+  --font-right-body:         'Outfit', system-ui, sans-serif;
+  --font-right-splash:       'Outfit', system-ui, sans-serif; /* same as --font-right-body */
+  --font-right-menu-heading: 'Outfit', system-ui, sans-serif; /* same as --font-right-body */
+  --font-right-menu-body:    'Outfit', system-ui, sans-serif; /* same as --font-right-body */
+
+  /* Dream cloud — handwritten heading/splash/menus, rounded sans body */
+  --font-cloud-heading:      'Caveat', cursive;
+  --font-cloud-body:         'Quicksand', system-ui, sans-serif;
+  --font-cloud-splash:       'Caveat', cursive;                /* same as --font-cloud-heading */
+  --font-cloud-menu-heading: 'Caveat', cursive;                /* same as --font-cloud-heading */
+  --font-cloud-menu-body:    'Caveat', cursive;                /* same as --font-cloud-heading */
+
+  /* PFC — one neutral sans for all roles */
+  --font-pfc-heading:      'Inter', system-ui, sans-serif;
+  --font-pfc-body:         'Inter', system-ui, sans-serif;
+  --font-pfc-splash:       'Inter', system-ui, sans-serif; /* same as --font-pfc-body */
+  --font-pfc-menu-heading: 'Inter', system-ui, sans-serif; /* same as --font-pfc-body */
+  --font-pfc-menu-body:    'Inter', system-ui, sans-serif; /* same as --font-pfc-body */
+
+  /* Standalone — not zone-scoped */
+  --font-splash-title: 'Inter', system-ui, sans-serif; /* porterwhatever logotype + footer hint */
+  --font-nav:          system-ui, sans-serif;           /* zone-neutral chrome: sidebar home link */
+
+  /* ── Font size scale ────────────────────────────────────────
+     Named for semantic role, not numeric size.
+     rem units = respects the user's browser font-size preference.
+     0.75rem (12px) and 0.875rem (14px) appear as inline values —
+     they are base-derived or context-specific one-offs.
+     ────────────────────────────────────────────────────────── */
+  --sz-2xs:  0.625rem;                       /* 10px — mobile tabs, tiny chrome */
+  --sz-xs:   0.6875rem;                      /* 11px — labels, caps, tags, hints */
+  --sz-sm:   0.8125rem;                      /* 13px — meta, dates, sidebar nav */
+  --sz-base: 0.9375rem;                      /* 15px — primary body prose */
+  --sz-md:   1.0625rem;                      /* 17px — hero subtitle */
+  --sz-h2:   clamp(1.25rem, 3vw, 1.75rem);  /* 20–28px — section headings (fluid) */
+  --sz-h1:   clamp(1.75rem, 5vw, 3rem);     /* 28–48px — page titles (fluid) */
 
   /* ── Spacing scale ── */
   --space-xs:  0.25rem;
@@ -39,22 +89,29 @@
 html.theme-dark, .theme-dark {
   color-scheme: dark;
 
-  /* Page */
+  /* ── Global page colors ── */
   --c-bg:           #09080f;
   --c-text:         #e2ddd5;
   --c-text-muted:   #5a5870;
 
-  /* ── Left brain ── */
-  --c-left-fill:        #181510;
-  --c-left-stroke:      #6b6050;
-  --c-left-line:        #8a8070;
-  --c-left-text:        #9a9080;
-  --c-left-text-sub:    #6b6050;
-  --c-left-highlight:   #c8c4b0;
-  --c-left-block-fill:  #f0ece0;   /* SVG block background */
-  --c-left-block-stroke:#b8b0a0;   /* SVG block border */
+  /* ── Zone SVG / splash colors ───────────────────────────────
+     Bold, saturated values for SVG fills, strokes, and hover menus
+     on the splash page (index.html). NOT used for spoke page text
+     or layout — those use the --c-zone-* tokens in the zone-tokens
+     section below, which are tuned for full-page readability.
+     ────────────────────────────────────────────────────────── */
 
-  /* ── Right brain ── */
+  /* Left brain */
+  --c-left-fill:         #181510;
+  --c-left-stroke:       #6b6050;
+  --c-left-line:         #8a8070;
+  --c-left-text:         #9a9080;
+  --c-left-text-sub:     #6b6050;
+  --c-left-highlight:    #c8c4b0;
+  --c-left-block-fill:   #f0ece0;
+  --c-left-block-stroke: #b8b0a0;
+
+  /* Right brain */
   --c-right-grad-a:   #3b0f6e;
   --c-right-grad-b:   #6d28d9;
   --c-right-grad-c:   #a21caf;
@@ -65,26 +122,26 @@ html.theme-dark, .theme-dark {
   --c-right-text-sub: #c084fc;
   --c-right-highlight:#a78bfa;
 
-  /* ── PFC / seam ── */
-  --c-seam-vis:     #3a3a5a;
-  --c-pfc-fill:     #13132a;
-  --c-pfc-stroke:   #4a4a7a;
-  --c-pfc-text:     #64748b;
-  --c-pfc-grad-a:   #1a1812;
-  --c-pfc-grad-b:   #13132a;
-  --c-pfc-grad-c:   #1e0f38;
+  /* PFC / seam */
+  --c-seam-vis:   #3a3a5a;
+  --c-pfc-fill:   #13132a;
+  --c-pfc-stroke: #4a4a7a;
+  --c-pfc-text:   #64748b;
+  --c-pfc-grad-a: #1a1812;
+  --c-pfc-grad-b: #13132a;
+  --c-pfc-grad-c: #1e0f38;
 
-  /* ── Dream cloud ── */
+  /* Dream cloud */
   --c-cloud-fill:   #091523;
   --c-cloud-stroke: #3b82f6;
   --c-cloud-text:   #60a5fa;
   --c-cloud-rain:   #3b82f6;
 
-  /* ── Nav menus ── */
-  --c-menu-left-bg:     #18160f;
-  --c-menu-left-border: #6b6050;
-  --c-menu-left-head:   #9a9080;
-  --c-menu-left-item:   #c8c0a8;
+  /* ── Nav menus (splash page) ── */
+  --c-menu-left-bg:      #18160f;
+  --c-menu-left-border:  #6b6050;
+  --c-menu-left-head:    #9a9080;
+  --c-menu-left-item:    #c8c0a8;
 
   --c-menu-right-bg:     #1a0b30;
   --c-menu-right-border: #7c3aed;
@@ -105,12 +162,6 @@ html.theme-dark, .theme-dark {
   --c-toggle-bg:     #1e1e38;
   --c-toggle-border: #4a4a6a;
   --c-toggle-icon:   #94a3b8;
-
-  /* ── Spoke pages ── */
-  --c-spoke-left-bg:   #0f0e0a;
-  --c-spoke-right-bg:  #100820;
-  --c-spoke-cloud-bg:  #080f18;
-  --c-spoke-pfc-bg:    #0a0a14;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -119,22 +170,24 @@ html.theme-dark, .theme-dark {
 html.theme-light, .theme-light {
   color-scheme: light;
 
-  /* Page */
-  --c-bg:           #f0ead8;   /* warm parchment */
+  /* ── Global page colors ── */
+  --c-bg:           #f0ead8;
   --c-text:         #2a2318;
   --c-text-muted:   #7a6e5a;
 
-  /* ── Left brain ── */
-  --c-left-fill:        #e8e0cc;
-  --c-left-stroke:      #9a8e78;
-  --c-left-line:        #c0b49a;
-  --c-left-text:        #5a5040;
-  --c-left-text-sub:    #8a8070;
-  --c-left-highlight:   #5a5040;
-  --c-left-block-fill:  #e8e0cc;   /* SVG block background */
-  --c-left-block-stroke:#a09880;   /* SVG block border */
+  /* ── Zone SVG / splash colors ── */
 
-  /* ── Right brain ── */
+  /* Left brain */
+  --c-left-fill:         #e8e0cc;
+  --c-left-stroke:       #9a8e78;
+  --c-left-line:         #c0b49a;
+  --c-left-text:         #5a5040;
+  --c-left-text-sub:     #8a8070;
+  --c-left-highlight:    #5a5040;
+  --c-left-block-fill:   #e8e0cc;
+  --c-left-block-stroke: #a09880;
+
+  /* Right brain */
   --c-right-grad-a:   #6d28d9;
   --c-right-grad-b:   #9333ea;
   --c-right-grad-c:   #c026d3;
@@ -145,26 +198,26 @@ html.theme-light, .theme-light {
   --c-right-text-sub: #e9d5ff;
   --c-right-highlight:#6d28d9;
 
-  /* ── PFC / seam ── */
-  --c-seam-vis:     #b8b0c8;
-  --c-pfc-fill:     #ddd8ec;
-  --c-pfc-stroke:   #8080b8;
-  --c-pfc-text:     #5050a0;
-  --c-pfc-grad-a:   #e8e4f4;
-  --c-pfc-grad-b:   #ddd8ec;
-  --c-pfc-grad-c:   #d4cce8;
+  /* PFC / seam */
+  --c-seam-vis:   #b8b0c8;
+  --c-pfc-fill:   #ddd8ec;
+  --c-pfc-stroke: #8080b8;
+  --c-pfc-text:   #5050a0;
+  --c-pfc-grad-a: #e8e4f4;
+  --c-pfc-grad-b: #ddd8ec;
+  --c-pfc-grad-c: #d4cce8;
 
-  /* ── Dream cloud ── */
+  /* Dream cloud */
   --c-cloud-fill:   #dceefa;
   --c-cloud-stroke: #2563eb;
   --c-cloud-text:   #1d4ed8;
   --c-cloud-rain:   #60a5fa;
 
-  /* ── Nav menus ── */
-  --c-menu-left-bg:     #ede7d6;
-  --c-menu-left-border: #b0a890;
-  --c-menu-left-head:   #6a6050;
-  --c-menu-left-item:   #2a2318;
+  /* ── Nav menus (splash page) ── */
+  --c-menu-left-bg:      #ede7d6;
+  --c-menu-left-border:  #b0a890;
+  --c-menu-left-head:    #6a6050;
+  --c-menu-left-item:    #2a2318;
 
   --c-menu-right-bg:     #f0e8ff;
   --c-menu-right-border: #9333ea;
@@ -185,10 +238,149 @@ html.theme-light, .theme-light {
   --c-toggle-bg:     #e0d8c4;
   --c-toggle-border: #b0a890;
   --c-toggle-icon:   #5a5040;
+}
 
-  /* ── Spoke pages ── */
-  --c-spoke-left-bg:   #ede7d6;
-  --c-spoke-right-bg:  #f0e8ff;
-  --c-spoke-cloud-bg:  #e8f4ff;
-  --c-spoke-pfc-bg:    #edf0f4;
+/* ════════════════════════════════════════════════════════════
+   ZONE TOKENS — Spoke-page identity, scoped by body class
+   (zone-left, zone-right, zone-dream, zone-pfc)
+
+   These drive spoke page layout: backgrounds, text, chrome.
+   Legible, accessible values tuned for full-page readability —
+   deliberately distinct from the bolder SVG/splash palette above.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── ZONE: LEFT BRAIN ────────────────────────────────────────
+   Sepia / parchment / typewriter aesthetic
+   ────────────────────────────────────────────────────────── */
+html.theme-dark.zone-left, .theme-dark.zone-left,
+html.theme-dark .zone-left, .theme-dark .zone-left {
+  --c-zone-bg:         #0f0e0a;
+  --c-zone-sidebar-bg: #0a0906;
+  --c-zone-text:       #d8d0bc;
+  --c-zone-text-muted: #7a7060;
+  --c-zone-heading:    #e8e0cc;
+  --c-zone-accent:     #c8b896;
+  --c-zone-border:     #2a2620;
+  --c-zone-hover:      rgba(200, 184, 150, 0.06);
+
+  --f-zone-heading: var(--font-left-heading);
+  --f-zone-body:    var(--font-left-body);
+  --f-zone-label:   var(--font-left-body);
+}
+html.theme-light.zone-left, .theme-light.zone-left,
+html.theme-light .zone-left, .theme-light .zone-left {
+  --c-zone-bg:         #ede7d6;
+  --c-zone-sidebar-bg: #e5deca;
+  --c-zone-text:       #2a2318;
+  --c-zone-text-muted: #7a6e58;
+  --c-zone-heading:    #1a1510;
+  --c-zone-accent:     #6a5e48;
+  --c-zone-border:     #ccc4b0;
+  --c-zone-hover:      rgba(106, 94, 72, 0.08);
+
+  --f-zone-heading: var(--font-left-heading);
+  --f-zone-body:    var(--font-left-body);
+  --f-zone-label:   var(--font-left-body);
+}
+
+/* ── ZONE: RIGHT BRAIN ───────────────────────────────────────
+   Deep purple / expressive / theatrical
+   ────────────────────────────────────────────────────────── */
+html.theme-dark.zone-right, .theme-dark.zone-right,
+html.theme-dark .zone-right, .theme-dark .zone-right {
+  --c-zone-bg:         #100820;
+  --c-zone-sidebar-bg: #0a0516;
+  --c-zone-text:       #e9d5ff;
+  --c-zone-text-muted: #7c5cb0;
+  --c-zone-heading:    #f3e8ff;
+  --c-zone-accent:     #c084fc;
+  --c-zone-border:     #2a1a40;
+  --c-zone-hover:      rgba(192, 132, 252, 0.07);
+
+  --f-zone-heading: var(--font-right-heading);
+  --f-zone-body:    var(--font-right-body);
+  --f-zone-label:   var(--font-right-body);
+}
+html.theme-light.zone-right, .theme-light.zone-right,
+html.theme-light .zone-right, .theme-light .zone-right {
+  --c-zone-bg:         #f0e8ff;
+  --c-zone-sidebar-bg: #e8dafc;
+  --c-zone-text:       #2a1060;
+  --c-zone-text-muted: #7c4aac;
+  --c-zone-heading:    #1a0840;
+  --c-zone-accent:     #7c3aed;
+  --c-zone-border:     #d8c0f0;
+  --c-zone-hover:      rgba(124, 58, 237, 0.07);
+
+  --f-zone-heading: var(--font-right-heading);
+  --f-zone-body:    var(--font-right-body);
+  --f-zone-label:   var(--font-right-body);
+}
+
+/* ── ZONE: DREAM CLOUD ───────────────────────────────────────
+   Soft blue / sky / handwritten
+   ────────────────────────────────────────────────────────── */
+html.theme-dark.zone-dream, .theme-dark.zone-dream,
+html.theme-dark .zone-dream, .theme-dark .zone-dream {
+  --c-zone-bg:         #080f18;
+  --c-zone-sidebar-bg: #050c14;
+  --c-zone-text:       #bfdbfe;
+  --c-zone-text-muted: #4a6890;
+  --c-zone-heading:    #dbeafe;
+  --c-zone-accent:     #60a5fa;
+  --c-zone-border:     #0f2240;
+  --c-zone-hover:      rgba(96, 165, 250, 0.07);
+
+  --f-zone-heading: var(--font-cloud-heading);
+  --f-zone-body:    var(--font-cloud-body);
+  --f-zone-label:   var(--font-cloud-body);
+}
+html.theme-light.zone-dream, .theme-light.zone-dream,
+html.theme-light .zone-dream, .theme-light .zone-dream {
+  --c-zone-bg:         #e8f4ff;
+  --c-zone-sidebar-bg: #daeeff;
+  --c-zone-text:       #0f2a4a;
+  --c-zone-text-muted: #3a6090;
+  --c-zone-heading:    #082040;
+  --c-zone-accent:     #2563eb;
+  --c-zone-border:     #b0d4f0;
+  --c-zone-hover:      rgba(37, 99, 235, 0.07);
+
+  --f-zone-heading: var(--font-cloud-heading);
+  --f-zone-body:    var(--font-cloud-body);
+  --f-zone-label:   var(--font-cloud-body);
+}
+
+/* ── ZONE: PFC ───────────────────────────────────────────────
+   Neutral / calm / clean sans
+   ────────────────────────────────────────────────────────── */
+html.theme-dark.zone-pfc, .theme-dark.zone-pfc,
+html.theme-dark .zone-pfc, .theme-dark .zone-pfc {
+  --c-zone-bg:         #0a0a14;
+  --c-zone-sidebar-bg: #07070f;
+  --c-zone-text:       #cbd5e1;
+  --c-zone-text-muted: #4a5568;
+  --c-zone-heading:    #e2e8f0;
+  --c-zone-accent:     #818cf8;
+  --c-zone-border:     #1a1a2e;
+  --c-zone-hover:      rgba(129, 140, 248, 0.07);
+
+  --f-zone-heading: var(--font-pfc-heading);
+  --f-zone-body:    var(--font-pfc-body);
+  --f-zone-label:   var(--font-pfc-body);
+}
+html.theme-light.zone-pfc, .theme-light.zone-pfc,
+html.theme-light .zone-pfc, .theme-light .zone-pfc {
+  --c-zone-bg:         #edf0f4;
+  --c-zone-sidebar-bg: #e2e8ef;
+  --c-zone-text:       #1e2a38;
+  --c-zone-text-muted: #4a6278;
+  --c-zone-heading:    #0f1e2e;
+  --c-zone-accent:     #2d6a9f;
+  --c-zone-border:     #b8c8d8;
+  --c-zone-hover:      rgba(45, 106, 159, 0.07);
+
+  --f-zone-heading: var(--font-pfc-heading);
+  --f-zone-body:    var(--font-pfc-body);
+  --f-zone-label:   var(--font-pfc-body);
 }

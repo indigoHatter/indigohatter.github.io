@@ -69,7 +69,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .splash-header { text-align: center; line-height: 1.3; }
 
 .splash-name {
-  font-family: var(--font-splash-name);
+  font-family: var(--font-splash-title);
   font-size: clamp(11px, 1.5vw, 24px);
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -78,7 +78,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
   transition: color var(--t-slow) var(--ease-out);
 }
 .splash-url {
-  font-family: var(--font-left);
+  font-family: var(--font-left-splash);
   font-size: clamp(9px, 1.2vw, 18px);
   color: var(--c-seam-vis);
   letter-spacing: 0.05em;
@@ -181,8 +181,8 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .menu-left.visible {
   transform: translateX(-100%) translateX(-12px) translateY(0);
 }
-.menu-left h2 { font-family: var(--font-left);  color: var(--c-menu-left-head); }
-.menu-left a  { font-family: var(--font-left);  color: var(--c-menu-left-item); }
+.menu-left h2 { font-family: var(--font-left-menu-heading);  color: var(--c-menu-left-head); }
+.menu-left a  { font-family: var(--font-left-menu-body);     color: var(--c-menu-left-item); }
 
 .menu-right {
   /* Just right of container edge, pulled 8px left to avoid covering cloud */
@@ -195,8 +195,8 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .menu-right.visible {
   transform: translateY(0);
 }
-.menu-right h2 { font-family: var(--font-right); color: var(--c-menu-right-head); }
-.menu-right a  { font-family: var(--font-right); color: var(--c-menu-right-item); }
+.menu-right h2 { font-family: var(--font-right-menu-heading); color: var(--c-menu-right-head); }
+.menu-right a  { font-family: var(--font-right-menu-body);    color: var(--c-menu-right-item); }
 
 .menu-cloud {
   /* Original position: upper-right of container, above cloud */
@@ -207,13 +207,13 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
   border: 0.5px solid var(--c-menu-cloud-border);
 }
 .menu-cloud h2 {
-  font-family: var(--font-cloud);
+  font-family: var(--font-cloud-menu-heading);
   color: var(--c-menu-cloud-head);
   font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
 }
-.menu-cloud a { font-family: var(--font-cloud); color: var(--c-menu-cloud-item); font-size: 13px; }
+.menu-cloud a { font-family: var(--font-cloud-menu-body); color: var(--c-menu-cloud-item); font-size: 13px; }
 
 .menu-pfc {
   /* Sits above the PFC bar — bottom of menu aligns ~8px above bar top (y=44 = ~14% of SVG) */
@@ -226,14 +226,14 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
   white-space: nowrap;
 }
 .menu-pfc.visible { transform: translateX(-50%) translateY(0); }
-.menu-pfc h2 { font-family: var(--font-pfc); color: var(--c-menu-pfc-head); }
+.menu-pfc h2 { font-family: var(--font-pfc-menu-heading); color: var(--c-menu-pfc-head); }
 .menu-pfc ul { display: flex; gap: var(--space-md); }
-.menu-pfc a  { font-family: var(--font-pfc); color: var(--c-menu-pfc-item); }
+.menu-pfc a  { font-family: var(--font-pfc-menu-body);    color: var(--c-menu-pfc-item); }
 
 /* ── Footer hint ── */
 .splash-footer { text-align: center; }
 .splash-hint {
-  font-family: var(--font-pfc);
+  font-family: var(--font-splash-title);
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--c-text-muted);

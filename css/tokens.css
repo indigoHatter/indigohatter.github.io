@@ -247,11 +247,19 @@ html.theme-light, .theme-light {
    These drive spoke page layout: backgrounds, text, chrome.
    Legible, accessible values tuned for full-page readability —
    deliberately distinct from the bolder SVG/splash palette above.
+
+   Font families are theme-agnostic — declared once per zone.
+   Colors are theme-scoped — dark and light per zone.
    ════════════════════════════════════════════════════════════ */
 
 /* ── ZONE: LEFT BRAIN ────────────────────────────────────────
    Sepia / parchment / typewriter aesthetic
    ────────────────────────────────────────────────────────── */
+.zone-left {
+  --f-zone-heading: var(--font-left-heading);
+  --f-zone-body:    var(--font-left-body);
+  --f-zone-label:   var(--font-left-body);
+}
 html.theme-dark.zone-left, .theme-dark.zone-left,
 html.theme-dark .zone-left, .theme-dark .zone-left {
   --c-zone-bg:         #0f0e0a;
@@ -262,10 +270,6 @@ html.theme-dark .zone-left, .theme-dark .zone-left {
   --c-zone-accent:     #c8b896;
   --c-zone-border:     #2a2620;
   --c-zone-hover:      rgba(200, 184, 150, 0.06);
-
-  --f-zone-heading: var(--font-left-heading);
-  --f-zone-body:    var(--font-left-body);
-  --f-zone-label:   var(--font-left-body);
 }
 html.theme-light.zone-left, .theme-light.zone-left,
 html.theme-light .zone-left, .theme-light .zone-left {
@@ -277,15 +281,16 @@ html.theme-light .zone-left, .theme-light .zone-left {
   --c-zone-accent:     #6a5e48;
   --c-zone-border:     #ccc4b0;
   --c-zone-hover:      rgba(106, 94, 72, 0.08);
-
-  --f-zone-heading: var(--font-left-heading);
-  --f-zone-body:    var(--font-left-body);
-  --f-zone-label:   var(--font-left-body);
 }
 
 /* ── ZONE: RIGHT BRAIN ───────────────────────────────────────
    Deep purple / expressive / theatrical
    ────────────────────────────────────────────────────────── */
+.zone-right {
+  --f-zone-heading: var(--font-right-heading);
+  --f-zone-body:    var(--font-right-body);
+  --f-zone-label:   var(--font-right-body);
+}
 html.theme-dark.zone-right, .theme-dark.zone-right,
 html.theme-dark .zone-right, .theme-dark .zone-right {
   --c-zone-bg:         #100820;
@@ -296,10 +301,6 @@ html.theme-dark .zone-right, .theme-dark .zone-right {
   --c-zone-accent:     #c084fc;
   --c-zone-border:     #2a1a40;
   --c-zone-hover:      rgba(192, 132, 252, 0.07);
-
-  --f-zone-heading: var(--font-right-heading);
-  --f-zone-body:    var(--font-right-body);
-  --f-zone-label:   var(--font-right-body);
 }
 html.theme-light.zone-right, .theme-light.zone-right,
 html.theme-light .zone-right, .theme-light .zone-right {
@@ -311,15 +312,16 @@ html.theme-light .zone-right, .theme-light .zone-right {
   --c-zone-accent:     #7c3aed;
   --c-zone-border:     #d8c0f0;
   --c-zone-hover:      rgba(124, 58, 237, 0.07);
-
-  --f-zone-heading: var(--font-right-heading);
-  --f-zone-body:    var(--font-right-body);
-  --f-zone-label:   var(--font-right-body);
 }
 
 /* ── ZONE: DREAM CLOUD ───────────────────────────────────────
    Soft blue / sky / handwritten
    ────────────────────────────────────────────────────────── */
+.zone-dream {
+  --f-zone-heading: var(--font-cloud-heading);
+  --f-zone-body:    var(--font-cloud-body);
+  --f-zone-label:   var(--font-cloud-body);
+}
 html.theme-dark.zone-dream, .theme-dark.zone-dream,
 html.theme-dark .zone-dream, .theme-dark .zone-dream {
   --c-zone-bg:         #080f18;
@@ -330,10 +332,6 @@ html.theme-dark .zone-dream, .theme-dark .zone-dream {
   --c-zone-accent:     #60a5fa;
   --c-zone-border:     #0f2240;
   --c-zone-hover:      rgba(96, 165, 250, 0.07);
-
-  --f-zone-heading: var(--font-cloud-heading);
-  --f-zone-body:    var(--font-cloud-body);
-  --f-zone-label:   var(--font-cloud-body);
 }
 html.theme-light.zone-dream, .theme-light.zone-dream,
 html.theme-light .zone-dream, .theme-light .zone-dream {
@@ -345,15 +343,16 @@ html.theme-light .zone-dream, .theme-light .zone-dream {
   --c-zone-accent:     #2563eb;
   --c-zone-border:     #b0d4f0;
   --c-zone-hover:      rgba(37, 99, 235, 0.07);
-
-  --f-zone-heading: var(--font-cloud-heading);
-  --f-zone-body:    var(--font-cloud-body);
-  --f-zone-label:   var(--font-cloud-body);
 }
 
 /* ── ZONE: PFC ───────────────────────────────────────────────
    Neutral / calm / clean sans
    ────────────────────────────────────────────────────────── */
+.zone-pfc {
+  --f-zone-heading: var(--font-pfc-heading);
+  --f-zone-body:    var(--font-pfc-body);
+  --f-zone-label:   var(--font-pfc-body);
+}
 html.theme-dark.zone-pfc, .theme-dark.zone-pfc,
 html.theme-dark .zone-pfc, .theme-dark .zone-pfc {
   --c-zone-bg:         #0a0a14;
@@ -364,10 +363,6 @@ html.theme-dark .zone-pfc, .theme-dark .zone-pfc {
   --c-zone-accent:     #818cf8;
   --c-zone-border:     #1a1a2e;
   --c-zone-hover:      rgba(129, 140, 248, 0.07);
-
-  --f-zone-heading: var(--font-pfc-heading);
-  --f-zone-body:    var(--font-pfc-body);
-  --f-zone-label:   var(--font-pfc-body);
 }
 html.theme-light.zone-pfc, .theme-light.zone-pfc,
 html.theme-light .zone-pfc, .theme-light .zone-pfc {
@@ -379,8 +374,4 @@ html.theme-light .zone-pfc, .theme-light .zone-pfc {
   --c-zone-accent:     #2d6a9f;
   --c-zone-border:     #b8c8d8;
   --c-zone-hover:      rgba(45, 106, 159, 0.07);
-
-  --f-zone-heading: var(--font-pfc-heading);
-  --f-zone-body:    var(--font-pfc-body);
-  --f-zone-label:   var(--font-pfc-body);
 }

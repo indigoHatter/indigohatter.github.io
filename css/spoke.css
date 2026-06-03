@@ -3,7 +3,8 @@
    (left.html, right.html, dream.html, pfc.html)
    Zone identity is applied via body class: zone-left, zone-right,
    zone-dream, zone-pfc. All color/font tokens are set per-zone
-   in zone-tokens.css.
+   in tokens.css (zone-tokens section).
+   Sizing: prefer var(--sz-*) tokens > bare rem > px. See SIZING.md.
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,7 +17,7 @@ body {
   background: var(--c-zone-bg);
   color:      var(--c-zone-text);
   font-family: var(--f-zone-body);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.7;
   min-height: 100svh;
   transition: background var(--t-slow) var(--ease-out),
@@ -71,13 +72,13 @@ body {
   color: var(--c-zone-text-muted);
   /* Lock font so it renders identically in every zone */
   font-family: var(--font-nav);
-  font-size: 11px;
+  font-size: var(--sz-xs);
   letter-spacing: 0.06em;
   transition: color var(--t-fast), background var(--t-slow) var(--ease-out);
 }
 .sidebar-home:hover { color: var(--c-zone-text); }
 .sidebar-home-glyph {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1;
   opacity: 0.6;
   font-family: var(--font-nav); /* neutral font so glyph renders same size in all zones */
@@ -114,7 +115,7 @@ body {
 }
 
 .sidebar-zone-name {
-  font-size: 11px;
+  font-size: var(--sz-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -137,7 +138,7 @@ a.sidebar-zone-name:hover {
 /* Show a left-pointing triangle for the current zone — greyed, non-interactive */
 .sidebar-zone.is-current .sidebar-zone-trigger::after {
   content: '\25C0';   /* ◀ */
-  font-size: 10px; /* ← inactive ◀ size (~line 129); match active caret below */
+  font-size: var(--sz-2xs); /* ← inactive ◀ size; match active caret below */
   color: var(--c-zone-text-muted);
   opacity: 0.5;    /* ← inactive ◀ opacity (~line 131) */
   margin-left: auto;
@@ -145,7 +146,7 @@ a.sidebar-zone-name:hover {
 }
 
 .sidebar-caret {
-  font-size: 10px; /* ← active ▶/▼ size (~line 137); tweak alongside inactive ◀ above */
+  font-size: var(--sz-2xs); /* ← active ▶/▼ size; tweak alongside inactive ◀ above */
   color: var(--c-zone-text-muted);
   transition: transform var(--t-fast);
 }
@@ -168,7 +169,7 @@ a.sidebar-zone-name:hover {
 .sidebar-links a {
   display: block;
   padding: 5px var(--space-md) 5px calc(var(--space-md) + 12px);
-  font-size: 13px;
+  font-size: var(--sz-sm);
   color: var(--c-zone-text-muted);
   text-decoration: none;
   transition: color var(--t-fast), background var(--t-fast);
@@ -207,7 +208,7 @@ a.sidebar-zone-name:hover {
   border: 0.5px solid var(--c-zone-border);
   border-radius: 20px;
   padding: 4px 12px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-family: var(--f-zone-body);
   color: var(--c-zone-text-muted);
   cursor: pointer;
@@ -233,7 +234,7 @@ a.sidebar-zone-name:hover {
 }
 
 .spoke-hero-label {
-  font-size: 11px;
+  font-size: var(--sz-xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -244,7 +245,7 @@ a.sidebar-zone-name:hover {
 
 .spoke-hero h1 {
   font-family: var(--f-zone-heading);
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: var(--sz-h1);
   font-weight: 700;
   line-height: 1.15;
   color: var(--c-zone-heading);
@@ -252,7 +253,7 @@ a.sidebar-zone-name:hover {
 }
 
 .spoke-hero-sub {
-  font-size: 17px;
+  font-size: var(--sz-md);
   color: var(--c-zone-text-muted);
   max-width: 560px;
   line-height: 1.6;
@@ -277,7 +278,7 @@ a.sidebar-zone-name:hover {
 
 .spoke-section h2 {
   font-family: var(--f-zone-heading);
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: var(--sz-h2);
   font-weight: 700;
   color: var(--c-zone-heading);
   line-height: 1.2;
@@ -300,19 +301,19 @@ a.sidebar-zone-name:hover {
 .spoke-entry:first-of-type { border-top: none; }
 
 .spoke-entry-title {
-  font-size: 15px;
+  font-size: var(--sz-base);
   font-weight: 500;
   color: var(--c-zone-text);
   grid-column: 1;
 }
 .spoke-entry-meta {
-  font-size: 13px;
+  font-size: var(--sz-sm);
   color: var(--c-zone-text-muted);
   grid-column: 1;
   font-family: var(--f-zone-label);
 }
 .spoke-entry-date {
-  font-size: 13px;
+  font-size: var(--sz-sm);
   color: var(--c-zone-text-muted);
   grid-column: 2;
   grid-row: 1;
@@ -321,7 +322,7 @@ a.sidebar-zone-name:hover {
   text-align: right;
 }
 .spoke-entry-detail {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--c-zone-text-muted);
   grid-column: 1 / -1;
   line-height: 1.5;
@@ -336,7 +337,7 @@ a.sidebar-zone-name:hover {
   grid-column: 1 / -1;
 }
 .spoke-tag {
-  font-size: 11px;
+  font-size: var(--sz-xs);
   font-family: var(--f-zone-label);
   padding: 2px 10px;
   border-radius: 20px;
@@ -356,7 +357,7 @@ a.sidebar-zone-name:hover {
   background: transparent;
   color: var(--c-zone-accent);
   font-family: var(--f-zone-body);
-  font-size: 13px;
+  font-size: var(--sz-sm);
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
@@ -380,7 +381,7 @@ a.sidebar-zone-name:hover {
   gap: var(--space-md);
 }
 .spoke-bio-prose p {
-  font-size: 15px;
+  font-size: var(--sz-base);
   line-height: 1.75;
   color: var(--c-zone-text);
 }
@@ -393,7 +394,7 @@ a.sidebar-zone-name:hover {
 
 .spoke-bio-note {
   margin-top: var(--space-md);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: italic;
   color: var(--c-zone-text-muted);
   opacity: 0.7;
@@ -409,32 +410,32 @@ a.sidebar-zone-name:hover {
    font sizes for the tab row and shouldn't inherit these corrections.
 
    Baseline (spoke.css defaults):
-     .sidebar-zone-name  → 11px
-     .sidebar-links a    → 13px
+     .sidebar-zone-name  → var(--sz-xs)  [0.6875rem / ~11px]
+     .sidebar-links a    → var(--sz-sm)  [0.8125rem / ~13px]
 
    Tune the values below by eye — zone-name and links move independently.
 */
 @media (min-width: 701px) {
   /* Left / Courier Prime — smallest optical size */
-  .zone-left .sidebar-zone-name { font-size: 12px; } /* +1 from baseline */
-  /* .zone-left .sidebar-links a   { font-size: 13px; } */
+  .zone-left .sidebar-zone-name { font-size: 0.75rem; } /* +1 from baseline — Courier Prime has smaller optical size */
+  /* .zone-left .sidebar-links a   { font-size: var(--sz-sm); } */
 
   /* Right / Outfit */
-  /* .zone-right .sidebar-zone-name { font-size: 11px; } */
-  /* .zone-right .sidebar-links a   { font-size: 13px; } */
+  /* .zone-right .sidebar-zone-name { font-size: var(--sz-xs); } */
+  /* .zone-right .sidebar-links a   { font-size: var(--sz-sm); } */
 
   /* Dream / Quicksand */
-  /* .zone-dream .sidebar-zone-name { font-size: 11px; } */
-  /* .zone-dream .sidebar-links a   { font-size: 13px; } */
+  /* .zone-dream .sidebar-zone-name { font-size: var(--sz-xs); } */
+  /* .zone-dream .sidebar-links a   { font-size: var(--sz-sm); } */
 
   /* PFC / Inter — reference; no correction needed */
-  /* .zone-pfc .sidebar-zone-name { font-size: 11px; } */
-  /* .zone-pfc .sidebar-links a   { font-size: 13px; } */
+  /* .zone-pfc .sidebar-zone-name { font-size: var(--sz-xs); } */
+  /* .zone-pfc .sidebar-links a   { font-size: var(--sz-sm); } */
 }
 
 /* ── Placeholder / empty state ─────────────────────────────── */
 .spoke-placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--c-zone-text-muted);
   font-style: italic;
   padding: var(--space-md) 0;
@@ -538,7 +539,7 @@ a.sidebar-zone-name:hover {
     cursor: pointer;
   }
   .sidebar-zone-name {
-    font-size: 10px;
+    font-size: var(--sz-2xs);
   }
   /* No dividers inside the tab row */
   .sidebar-divider {
@@ -560,7 +561,7 @@ a.sidebar-zone-name:hover {
   .sidebar-caret--current {
     display: flex;
     align-items: center;
-    font-size: 10px;
+    font-size: var(--sz-2xs);
     color: var(--c-zone-text-muted);
     opacity: 0.6;
     transition: transform var(--t-fast);
@@ -583,7 +584,7 @@ a.sidebar-zone-name:hover {
   }
   .sidebar-mobile-strip a {
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-family: var(--font-nav);
     color: var(--c-zone-text-muted);
     text-decoration: none;
@@ -601,4 +602,198 @@ a.sidebar-zone-name:hover {
     padding: var(--space-lg) var(--space-md);
   }
 
+}
+
+/* ════════════════════════════════════════════════════════════
+   PFC PAGE — Styles specific to pfc.html
+   (formerly pfc.css — merged here since pfc is a spoke page
+   like any other and the separation added no real benefit)
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Photo strip ────────────────────────────────────────────── */
+.about-photos {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px;
+  gap: 8px;
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.about-photo-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+/* When a real <img> is added, it fills the slot */
+.about-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--c-zone-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px dashed var(--c-zone-text-muted);
+  border-radius: var(--radius-md);
+}
+
+.photo-placeholder-label {
+  font-family: var(--f-zone-label);
+  font-size: var(--sz-xs);
+  letter-spacing: 0.1em;
+  color: var(--c-zone-text-muted);
+  opacity: 0.5;
+}
+
+/* ── Prose paragraphs ───────────────────────────────────────── */
+.about-concept + .about-prose { margin-top: var(--space-lg); }
+
+.about-prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-prose p {
+  font-size: var(--sz-base);
+  line-height: 1.75;
+  color: var(--c-zone-text);
+}
+
+.about-prose a {
+  color: var(--c-zone-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--t-fast);
+}
+.about-prose a:hover { opacity: 0.75; }
+
+/* ── Left / right concept split ────────────────────────────── */
+.about-concept {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-md);
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.concept-half {
+  border: 0.5px solid var(--c-zone-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--t-fast);
+}
+.concept-half:hover { border-color: var(--c-zone-accent); }
+
+.concept-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-md) var(--space-lg);
+  text-decoration: none;
+}
+
+.concept-half--left .concept-link {
+  background: color-mix(in srgb, var(--c-left-fill) 60%, transparent);
+}
+.concept-half--right .concept-link {
+  background: color-mix(in srgb, var(--c-right-grad-b) 20%, transparent);
+}
+
+.concept-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.concept-half--left  .concept-label { font-family: var(--font-left-body);  color: var(--c-left-text); }
+.concept-half--right .concept-label { font-family: var(--font-right-body); color: var(--c-right-text); }
+
+.concept-desc {
+  font-size: var(--sz-sm);
+  line-height: 1.5;
+  color: var(--c-zone-text-muted);
+}
+.concept-half--left  .concept-desc { font-family: var(--font-left-body); }
+.concept-half--right .concept-desc { font-family: var(--font-right-body); }
+
+.concept-arrow {
+  font-size: 1rem;
+  color: var(--c-zone-accent);
+  margin-top: 4px;
+  transition: transform var(--t-fast);
+}
+.concept-half:hover .concept-arrow { transform: translateX(4px); }
+
+.concept-divider {
+  font-size: 1.125rem;
+  color: var(--c-zone-text-muted);
+  opacity: 0.4;
+  text-align: center;
+}
+
+/* ── Currently ──────────────────────────────────────────────── */
+.about-currently {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.currently-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.currently-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.currently-dot--left  { background: var(--c-left-stroke); }
+.currently-dot--right { background: var(--c-right-stroke); }
+.currently-dot--cloud { background: var(--c-cloud-stroke); }
+.currently-dot--pfc   { background: var(--c-pfc-stroke); }
+
+.currently-label {
+  font-size: var(--sz-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-zone-text-muted);
+  font-family: var(--f-zone-label);
+  margin-bottom: 2px;
+}
+.currently-value {
+  font-size: var(--sz-base);
+  color: var(--c-zone-text);
+}
+
+/* ── PFC mobile overrides ───────────────────────────────────── */
+@media (max-width: 700px) {
+  .about-photos {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px 120px;
+  }
+  .about-photo-slot:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .about-concept {
+    grid-template-columns: 1fr;
+  }
+  .concept-divider { display: none; }
 }

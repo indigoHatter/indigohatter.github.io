@@ -1,6 +1,7 @@
 /* ============================================================
-   SPLASH.CSS -- Geometric splash page styles
+   SPLASH.CSS — Geometric splash page styles (index.html only)
    Shares tokens.css with the rest of the site.
+   Sizing: prefer var(--sz-*) tokens > bare rem > px. See SIZING.md.
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +41,7 @@ body {
 }
 html.theme-dark .toggle-icon::before, .theme-dark .toggle-icon::before {
   content: '\2600';
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--c-toggle-icon);
   position: absolute;
   top: 50%; left: 50%;
@@ -48,7 +49,7 @@ html.theme-dark .toggle-icon::before, .theme-dark .toggle-icon::before {
 }
 html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
   content: '\263D';
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--c-toggle-icon);
   position: absolute;
   top: 50%; left: 50%;
@@ -70,7 +71,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 
 .splash-name {
   font-family: var(--font-splash-title);
-  font-size: clamp(11px, 1.5vw, 24px);
+  font-size: clamp(0.6875rem, 1.5vw, 1.5rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -79,7 +80,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 }
 .splash-url {
   font-family: var(--font-left-splash);
-  font-size: clamp(9px, 1.2vw, 18px);
+  font-size: clamp(0.5625rem, 1.2vw, 1.125rem);
   color: var(--c-seam-vis);
   letter-spacing: 0.05em;
   margin-top: 3px;
@@ -137,7 +138,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
   transform: translateY(0);
 }
 .brain-menu h2 {
-  font-size: 11px;
+  font-size: var(--sz-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -148,7 +149,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .brain-menu ul { list-style: none; }
 .brain-menu li { padding: 3px 0; }
 .brain-menu a {
-  font-size: 12px;
+  font-size: 0.75rem;
   opacity: 0.85;
   text-decoration: none;
   transition: opacity var(--t-fast);
@@ -209,11 +210,11 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .menu-cloud h2 {
   font-family: var(--font-cloud-menu-heading);
   color: var(--c-menu-cloud-head);
-  font-size: 14px;
+  font-size: 0.875rem;
   letter-spacing: 0;
   text-transform: none;
 }
-.menu-cloud a { font-family: var(--font-cloud-menu-body); color: var(--c-menu-cloud-item); font-size: 13px; }
+.menu-cloud a { font-family: var(--font-cloud-menu-body); color: var(--c-menu-cloud-item); font-size: var(--sz-sm); }
 
 .menu-pfc {
   /* Sits above the PFC bar — bottom of menu aligns ~8px above bar top (y=44 = ~14% of SVG) */
@@ -234,7 +235,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 .splash-footer { text-align: center; }
 .splash-hint {
   font-family: var(--font-splash-title);
-  font-size: 11px;
+  font-size: var(--sz-xs);
   letter-spacing: 0.08em;
   color: var(--c-text-muted);
   transition: color var(--t-slow) var(--ease-out);

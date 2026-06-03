@@ -36,13 +36,14 @@ Spoke pages (`left`, `right`, `dream`, `pfc`) share a sidebar + main layout. The
 
 ## Design System
 
-- **`css/tokens.css`** — single source of truth for all colors, fonts, spacing, radii, and transitions (both dark and light themes).
-- **`css/zone-tokens.css`** — per-zone `--c-zone-*` and `--f-zone-*` overrides, scoped by body class + theme class.
-- **`css/spoke.css`** — shared layout for all spoke pages.
-- **`css/pfc.css`** — pfc.html-specific styles (photo strip, concept split, currently section).
+- **`css/tokens.css`** — single source of truth for all colors, fonts, spacing, radii, and transitions (both dark and light themes). Zone tokens (`--c-zone-*`, `--f-zone-*`) live here too, scoped by body class.
+- **`css/spoke.css`** — shared layout for all spoke pages, including pfc-specific components (photo strip, concept split, currently section) at the bottom.
 - **`css/splash.css`** — index.html styles.
+- **`css/SIZING.md`** — reference doc explaining every deliberate non-token sizing decision.
 
 Color rules should reference CSS custom properties only — no hardcoded hex values outside of `tokens.css`. Fallback values inside `var(--token)` calls are intentionally absent; all tokens are defined for both themes.
+
+**Sizing rule:** Prefer `var(--sz-*)` tokens first, bare `rem` second, `px` only for structural elements that must be fixed: widths/heights, `0.5px` hairline borders, media query breakpoints, and decorative nudges (gaps, transforms, offsets) of ≤ 8px. Never use `px` for font sizes. See `css/SIZING.md` for the full rationale and a table of deliberate exceptions.
 
 ## Fonts
 

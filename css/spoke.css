@@ -46,7 +46,7 @@ body {
   border-right: 0.5px solid var(--c-zone-border);
   display: flex;
   flex-direction: column;
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg) 0 0;
   background: var(--c-zone-sidebar-bg);
   transition: background var(--t-slow) var(--ease-out),
               border-color var(--t-slow) var(--ease-out);
@@ -57,6 +57,10 @@ body {
 
 /* Home link — back to splash */
 .sidebar-home {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--c-zone-sidebar-bg);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -69,7 +73,7 @@ body {
   font-family: var(--font-nav);
   font-size: 11px;
   letter-spacing: 0.06em;
-  transition: color var(--t-fast);
+  transition: color var(--t-fast), background var(--t-slow) var(--ease-out);
 }
 .sidebar-home:hover { color: var(--c-zone-text); }
 .sidebar-home-glyph {
@@ -187,12 +191,16 @@ a.sidebar-zone-name:hover {
 
 /* Theme toggle in sidebar footer */
 .sidebar-footer {
-  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+  background: var(--c-zone-sidebar-bg);
+  z-index: 1;
   padding: var(--space-md);
   border-top: 0.5px solid var(--c-zone-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: background var(--t-slow) var(--ease-out);
 }
 .sidebar-theme-btn {
   background: none;
@@ -438,10 +446,17 @@ a.sidebar-zone-name:hover {
    These divs exist to enable the mobile 3-row layout. On desktop they
    are invisible to the flex algorithm — their children behave as direct
    children of .spoke-sidebar.
+
+   Exception: .sidebar-zones is NOT display:contents so it can flex-grow
+   and push .sidebar-footer to the viewport bottom when content is short.
 */
-.sidebar-brand-row,
-.sidebar-zones {
+.sidebar-brand-row {
   display: contents;
+}
+.sidebar-zones {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 /* Mobile strip and current-zone caret are desktop-invisible */
@@ -453,8 +468,9 @@ a.sidebar-zone-name:hover {
 
 /* Footer must sort after all zones in the flex column.
    With .sidebar-brand-row { display:contents }, home and footer become
-   direct flex children — but footer appears before the zones in DOM order.
-   A high order value moves it to the end so margin-top:auto works correctly. */
+   direct flex children of .spoke-sidebar — but footer appears before
+   .sidebar-zones in DOM order. A high order value keeps it last so
+   position:sticky bottom:0 anchors it correctly. */
 .sidebar-footer {
   order: 999;
 }

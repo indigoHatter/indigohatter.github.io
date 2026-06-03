@@ -7,6 +7,7 @@
 
 # Desktop Version
 * `index.html` eventually needs hover menus repositioned better. (Hobbies menu looks like it's laying on top of Right brain. Right menu could come closer? PFC menu looks offcenter due to placement of About and Contact.)
+    * Speaking of: as soon as the viewport is too small for the hover menus to be completely seen (~990px with current layout), it should trigger the smaller state. ...Or, we could add logic that moves the menus dynamically based on viewport size: only move the menu if it's clipped by the current viewport, meaning, not every menu gets moved just because one doesn't fit anymore.
 
 # Mobile Version
 * darkmode index is too small/dark to read

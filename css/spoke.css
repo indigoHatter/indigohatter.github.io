@@ -327,6 +327,17 @@ a.sidebar-zone-name:hover {
   grid-column: 1 / -1;
   line-height: 1.5;
 }
+.spoke-entry-bullets {
+  font-size: 0.875rem;
+  color: var(--c-zone-text-muted);
+  grid-column: 1 / -1;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.spoke-entry-bullets li + li {
+  margin-top: 0.25rem;
+}
 
 /* Tag pills */
 .spoke-tags {

@@ -3,12 +3,13 @@
    Schema:
      JSONResume + extensions
    Extensions:
-     work.location    | not in spec, widely supported by themes
-     work.headline    | 2-3 sentence short-form summary (resume/portfolio use)
-     work.keywords    | skill-chip tags (UI use); distinct from highlights[]
-     education.meta   | free-text subtitle line (school/honors)
-     education.detail | prose note (coursework, thesis, etc.)
-     services.*       | custom section fields [title, meta, detail]
+     work.location      | not in spec, widely supported by themes
+     work.headline      | 2-3 sentence short-form summary (resume/portfolio use)
+     work.highlightsCap | optional numeric cap for highlights list shown on portfolio card (blank = defaults to HIGHLIGHTS_CAP in content.js)
+     work.keywords      | skill-chip tags (UI use); distinct from highlights[]
+     education.meta     | free-text subtitle line (school/honors)
+     education.detail   | prose note (coursework, thesis, etc.)
+     services.*         | custom section fields [title, meta, detail]
 
    Rendering targets:
      Resume / portfolio card  |  headline + highlights + keywords
@@ -58,7 +59,8 @@ const LEFT_DATA = {
       url:         "",
       location:    "Prescott, AZ",
       startDate:   "2019-10",
-      endDate:     "2025-01",
+      endDate:      "2025-01",
+      highlightsCap: 5,
       headline:    "Multi-role contributor across repair, inspection, lead, and process improvement functions at an FAA Part 145 avionics repair station. Drove shop first-pass yield above the 90% goal and reduced daily reporting time by ~83% through Excel automation. Formally appointed Process Improvement Specialist in 2023.",
       summary:     "Progressive responsibilities across repair technician, FAA Repairman, group lead, and process improvement functions at an FAA Part 145 avionics repair station. Performed hands-on troubleshooting and repair of audio control panels, data adapters, and control heads using approved technical data in compliance with FAA and EASA regulations. As an FAA-certificated Repairman (Nov 2021), authorized return-to-service via FAA Form 8130-3 with EASA dual-release, and drove first-pass yield from the high 80s % to low-to-mid 90s % through an educational coaching approach to quality misses. Directed daily workflow for a team of ~20 technicians as informal group lead. Formally appointed Process Improvement Specialist (Dec 2023), following earlier recognition for process improvements, including independent Excel automation work that reduced reporting time by ~83%. Executed improvement initiatives stemming from a value stream mapping exercise, including foot traffic reduction design and ERP-integrated parts ordering workflow. Owned monthly and quarterly KPI reporting — aggregating TAT and OTD data, synthesizing root causes, and co-presenting customer-specific corrective action reports to executive and sales leadership. Facilitated cross-functional pre-meetings to align department stakeholders before quarterly executive review.",
       highlights: [
@@ -100,7 +102,8 @@ const LEFT_DATA = {
       url:         "https://www.homedepot.com",
       location:    "Prescott Valley, AZ",
       startDate:   "2019-01",
-      endDate:     "2019-10",
+      endDate:      "2019-10",
+      highlightsCap: 3,
       headline:    "",
       summary:     "Overnight merchandising crew member executing corporate planogram-driven resets across hardware, appliance, and general merchandise departments. Worked across solo, paired, and full-crew configurations depending on project scope and scale.",
       highlights: [
@@ -126,10 +129,11 @@ const LEFT_DATA = {
       url:         "",
       location:    "Prescott, AZ",
       startDate:   "2018-05",
-      endDate:     "2018-11",
+      endDate:      "2018-11",
+      highlightsCap: "",
       headline:    "Technical support role at a wearables startup supporting FDM 3D printers, foot scanners, and networked kiosks across in-house and Costco roadshow locations. Assumed expanded hardware, networking, and field support responsibilities over time. Improved field printer uptime and supported concurrent roadshow locations as part of a small technical team.",
       summary:     "Hired through a technical training program into a support role; assumed progressive expansion of responsibilities. Maintained and repaired FDM 3D printers, 3D foot scanners, and networked self-service kiosks across in-house and field (roadshow) locations. Diagnosed and resolved network connectivity issues including firmware updates and physical layer troubleshooting. Produced internal knowledge-base articles and optimized video walkthroughs for low-bandwidth environments. Developed refurbishing checklists and an equipment uptime tracking system. Managed show logistics and vendor relations at Costco roadshow locations.",
-      highlights: [],
+      highlights: ["Took lead on several projects with many large moves, beating project timeline by average of ~10%."],
       keywords: [
         "Technical Support",
         "FDM 3D Printing",

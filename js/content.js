@@ -7,6 +7,10 @@
 (function () {
   'use strict';
 
+  // Max highlights rendered per work entry (portfolio card view).
+  // Override per entry via item.highlightsCap in the data file.
+  const HIGHLIGHTS_CAP = 4;
+
   /* ── Date formatting ─────────────────────────────────────── */
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun',
                   'Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -39,10 +43,10 @@
     return wrap;
   }
 
-  function makeHighlightsList(arr) {
+  function makeHighlightsList(arr, cap = HIGHLIGHTS_CAP) {
     if (!arr || !arr.length) return null;
     const ul = el('ul', 'spoke-entry-bullets');
-    arr.forEach(h => {
+    arr.slice(0, cap).forEach(h => {
       const li = document.createElement('li');
       li.textContent = h;
       ul.appendChild(li);
@@ -73,6 +77,7 @@
   /* ── Entry factories ─────────────────────────────────────── */
 
   function makeWorkEntry(item) {
+    const cap   = Number.isFinite(item.highlightsCap) ? item.highlightsCap : HIGHLIGHTS_CAP;
     const title = (item.position && item.name)
       ? item.position + ' — ' + item.name
       : (item.position || item.name || '');
@@ -83,7 +88,7 @@
         : null,
       item.location                  ? el('span', 'spoke-entry-meta',   item.location)              : null,
       (item.headline || item.summary) ? el('p',    'spoke-entry-detail', item.headline || item.summary) : null,
-      makeHighlightsList(item.highlights),
+      makeHighlightsList(item.highlights, cap),
       makeTagsEl(item.keywords),
     ]);
   }

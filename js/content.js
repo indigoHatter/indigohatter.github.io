@@ -39,6 +39,17 @@
     return wrap;
   }
 
+  function makeHighlightsList(arr) {
+    if (!arr || !arr.length) return null;
+    const ul = el('ul', 'spoke-entry-bullets');
+    arr.forEach(h => {
+      const li = document.createElement('li');
+      li.textContent = h;
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
   function makeEntry(children) {
     const entry = el('div', 'spoke-entry');
     children.forEach(child => { if (child) entry.appendChild(child); });
@@ -70,8 +81,9 @@
       (item.startDate || item.endDate)
         ? el('span', 'spoke-entry-date', dateRange(item.startDate, item.endDate))
         : null,
-      item.location ? el('span', 'spoke-entry-meta', item.location) : null,
-      item.summary  ? el('p',    'spoke-entry-detail', item.summary) : null,
+      item.location                  ? el('span', 'spoke-entry-meta',   item.location)              : null,
+      (item.headline || item.summary) ? el('p',    'spoke-entry-detail', item.headline || item.summary) : null,
+      makeHighlightsList(item.highlights),
       makeTagsEl(item.keywords),
     ]);
   }
@@ -116,6 +128,22 @@
     ]);
   }
 
+  function makeSkillEntry(item) {
+    return makeEntry([
+      el('span', 'spoke-entry-title', item.name),
+      item.level    ? el('span', 'spoke-entry-meta', item.level) : null,
+      makeTagsEl(item.keywords),
+    ]);
+  }
+
+  function makeCertificateEntry(item) {
+    return makeEntry([
+      el('span', 'spoke-entry-title', item.name),
+      item.date   ? el('span', 'spoke-entry-date', formatDate(item.date)) : null,
+      item.issuer ? el('span', 'spoke-entry-meta',  item.issuer)          : null,
+    ]);
+  }
+
   function makeActingEntry(item) {
     const title = (item.role && item.production)
       ? item.role + ' — ' + item.production
@@ -149,11 +177,13 @@
 
   function renderLeft() {
     if (typeof LEFT_DATA === 'undefined') return;
-    renderInto('resume',       LEFT_DATA.work,         makeWorkEntry);
-    renderInto('education',    LEFT_DATA.education,    makeEducationEntry);
-    renderInto('awards',       LEFT_DATA.awards,       makeAwardEntry);
-    renderInto('publications', LEFT_DATA.publications, makePublicationEntry);
-    renderInto('services',     LEFT_DATA.services,     makeServiceEntry);
+    renderInto('resume',        LEFT_DATA.work,         makeWorkEntry);
+    renderInto('skills',        LEFT_DATA.skills,       makeSkillEntry);
+    renderInto('education',     LEFT_DATA.education,    makeEducationEntry);
+    renderInto('certificates',  LEFT_DATA.certificates, makeCertificateEntry);
+    renderInto('awards',        LEFT_DATA.awards,       makeAwardEntry);
+    renderInto('publications',  LEFT_DATA.publications, makePublicationEntry);
+    renderInto('services',      LEFT_DATA.services,     makeServiceEntry);
   }
 
   function renderRight() {

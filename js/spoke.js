@@ -28,7 +28,9 @@
       sections: [
         { label: 'About',                id: 'bio' },
         { label: 'Résumé',               id: 'resume' },
+        { label: 'Skills',               id: 'skills' },
         { label: 'Education',            id: 'education' },
+        { label: 'Certifications',       id: 'certifications' },
         { label: 'Awards',               id: 'awards' },
         { label: 'Publications',         id: 'publications' },
         { label: 'Professional services',id: 'services' },

@@ -213,11 +213,11 @@ const LEFT_DATA = {
     }
   ],
 
-  /* ── Certificates ──────────────────────────────────────────
+  /* ── Certifications ────────────────────────────────────────
      Rendered as: name  |  date
                   issuer
   */
-  certificates: [
+  certifications: [
     {
       name:   "CompTIA A+",
       date:   "",

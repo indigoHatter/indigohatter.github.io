@@ -141,7 +141,7 @@
     ]);
   }
 
-  function makeCertificateEntry(item) {
+  function makeCertificationEntry(item) {
     return makeEntry([
       el('span', 'spoke-entry-title', item.name),
       item.date   ? el('span', 'spoke-entry-date', formatDate(item.date)) : null,
@@ -185,7 +185,7 @@
     renderInto('resume',        LEFT_DATA.work,         makeWorkEntry);
     renderInto('skills',        LEFT_DATA.skills,       makeSkillEntry);
     renderInto('education',     LEFT_DATA.education,    makeEducationEntry);
-    renderInto('certificates',  LEFT_DATA.certificates, makeCertificateEntry);
+    renderInto('certifications', LEFT_DATA.certifications, makeCertificationEntry);
     renderInto('awards',        LEFT_DATA.awards,       makeAwardEntry);
     renderInto('publications',  LEFT_DATA.publications, makePublicationEntry);
     renderInto('services',      LEFT_DATA.services,     makeServiceEntry);

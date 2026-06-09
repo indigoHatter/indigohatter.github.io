@@ -15,6 +15,7 @@ const RIGHT_DATA = {
      Rendered as: "Role — Production Title"  |  date
                   Company · Director
   */
+/* DISABLED UNTIL I HAVE TIME TO FILL IT IN
   acting: [
     {
       role:       "Role",
@@ -31,13 +32,14 @@ const RIGHT_DATA = {
       director:   "Director Name",
     },
   ],
-
+*/
   /* ── Production history ────────────────────────────────────
      Rendered as: name  |  startDate
                   entity
                   description
                   roles (chips)
   */
+/* DISABLED UNTIL I HAVE TIME TO FILL IT IN
   productions: [
     {
       name:        "Production Title",
@@ -47,5 +49,5 @@ const RIGHT_DATA = {
       roles:       ["Stage Management", "Lighting"],
     },
   ],
-
+*/
 };

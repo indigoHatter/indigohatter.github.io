@@ -47,7 +47,7 @@
   --font-pfc-menu-body:    'Inter', system-ui, sans-serif; /* same as --font-pfc-body */
 
   /* Standalone — not zone-scoped */
-  --font-splash-title: 'Inter', system-ui, sans-serif; /* porterwhatever logotype + footer hint */
+  --font-splash-title: 'Inter', system-ui, sans-serif;  /* porterwhatever logotype + footer hint */
   --font-nav:          system-ui, sans-serif;           /* zone-neutral chrome: sidebar home link */
 
   /* ── Font size scale ────────────────────────────────────────
@@ -61,8 +61,8 @@
   --sz-sm:   0.8125rem;                      /* 13px — meta, dates, sidebar nav */
   --sz-base: 0.9375rem;                      /* 15px — primary body prose */
   --sz-md:   1.0625rem;                      /* 17px — hero subtitle */
-  --sz-h2:   clamp(1.25rem, 3vw, 1.75rem);  /* 20–28px — section headings (fluid) */
-  --sz-h1:   clamp(1.75rem, 5vw, 3rem);     /* 28–48px — page titles (fluid) */
+  --sz-h2:   clamp(1.25rem, 3vw, 1.75rem);   /* 20–28px — section headings (fluid) */
+  --sz-h1:   clamp(1.75rem, 5vw, 3rem);      /* 28–48px — page titles (fluid) */
 
   /* ── Spacing scale ── */
   --space-xs:  0.25rem;
@@ -267,9 +267,10 @@ html.theme-dark .zone-left, .theme-dark .zone-left {
   --c-zone-text:       #d8d0bc;
   --c-zone-text-muted: #7a7060;
   --c-zone-heading:    #e8e0cc;
-  --c-zone-accent:     #c8b896;
+  --c-zone-accent:     #ddd0b0;
   --c-zone-border:     #2a2620;
   --c-zone-hover:      rgba(200, 184, 150, 0.06);
+  --c-zone-active-bg:  rgba(200, 184, 150, 0.03);
 }
 html.theme-light.zone-left, .theme-light.zone-left,
 html.theme-light .zone-left, .theme-light .zone-left {
@@ -278,9 +279,10 @@ html.theme-light .zone-left, .theme-light .zone-left {
   --c-zone-text:       #2a2318;
   --c-zone-text-muted: #7a6e58;
   --c-zone-heading:    #1a1510;
-  --c-zone-accent:     #6a5e48;
+  --c-zone-accent:     #3a2010;
   --c-zone-border:     #ccc4b0;
   --c-zone-hover:      rgba(106, 94, 72, 0.08);
+  --c-zone-active-bg:  rgba(106, 94, 72, 0.03);
 }
 
 /* ── ZONE: RIGHT BRAIN ───────────────────────────────────────
@@ -298,9 +300,10 @@ html.theme-dark .zone-right, .theme-dark .zone-right {
   --c-zone-text:       #e9d5ff;
   --c-zone-text-muted: #7c5cb0;
   --c-zone-heading:    #f3e8ff;
-  --c-zone-accent:     #c084fc;
+  --c-zone-accent:     #d8b4fe;
   --c-zone-border:     #2a1a40;
   --c-zone-hover:      rgba(192, 132, 252, 0.07);
+  --c-zone-active-bg:  rgba(192, 132, 252, 0.03);
 }
 html.theme-light.zone-right, .theme-light.zone-right,
 html.theme-light .zone-right, .theme-light .zone-right {
@@ -309,9 +312,10 @@ html.theme-light .zone-right, .theme-light .zone-right {
   --c-zone-text:       #2a1060;
   --c-zone-text-muted: #7c4aac;
   --c-zone-heading:    #1a0840;
-  --c-zone-accent:     #7c3aed;
+  --c-zone-accent:     #5b21b6;
   --c-zone-border:     #d8c0f0;
   --c-zone-hover:      rgba(124, 58, 237, 0.07);
+  --c-zone-active-bg:  rgba(124, 58, 237, 0.03);
 }
 
 /* ── ZONE: DREAM CLOUD ───────────────────────────────────────
@@ -332,6 +336,7 @@ html.theme-dark .zone-dream, .theme-dark .zone-dream {
   --c-zone-accent:     #60a5fa;
   --c-zone-border:     #0f2240;
   --c-zone-hover:      rgba(96, 165, 250, 0.07);
+  --c-zone-active-bg:  rgba(96, 165, 250, 0.03);
 }
 html.theme-light.zone-dream, .theme-light.zone-dream,
 html.theme-light .zone-dream, .theme-light .zone-dream {
@@ -343,6 +348,7 @@ html.theme-light .zone-dream, .theme-light .zone-dream {
   --c-zone-accent:     #2563eb;
   --c-zone-border:     #b0d4f0;
   --c-zone-hover:      rgba(37, 99, 235, 0.07);
+  --c-zone-active-bg:  rgba(37, 99, 235, 0.03);
 }
 
 /* ── ZONE: PFC ───────────────────────────────────────────────
@@ -360,9 +366,10 @@ html.theme-dark .zone-pfc, .theme-dark .zone-pfc {
   --c-zone-text:       #cbd5e1;
   --c-zone-text-muted: #4a5568;
   --c-zone-heading:    #e2e8f0;
-  --c-zone-accent:     #818cf8;
+  --c-zone-accent:     #a5b4fc;
   --c-zone-border:     #1a1a2e;
   --c-zone-hover:      rgba(129, 140, 248, 0.07);
+  --c-zone-active-bg:  rgba(129, 140, 248, 0.03);
 }
 html.theme-light.zone-pfc, .theme-light.zone-pfc,
 html.theme-light .zone-pfc, .theme-light .zone-pfc {
@@ -371,7 +378,8 @@ html.theme-light .zone-pfc, .theme-light .zone-pfc {
   --c-zone-text:       #1e2a38;
   --c-zone-text-muted: #4a6278;
   --c-zone-heading:    #0f1e2e;
-  --c-zone-accent:     #2d6a9f;
+  --c-zone-accent:     #1d4ed8;
   --c-zone-border:     #b8c8d8;
   --c-zone-hover:      rgba(45, 106, 159, 0.07);
+  --c-zone-active-bg:  rgba(45, 106, 159, 0.03);
 }

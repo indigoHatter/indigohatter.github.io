@@ -180,7 +180,9 @@ a.sidebar-zone-name:hover {
 }
 .sidebar-links a.is-active {
   color: var(--c-zone-accent);
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: var(--c-zone-active-bg);
 }
 
 /* Sidebar divider */
@@ -326,6 +328,17 @@ a.sidebar-zone-name:hover {
   color: var(--c-zone-text-muted);
   grid-column: 1 / -1;
   line-height: 1.5;
+}
+.spoke-entry-bullets {
+  font-size: 0.875rem;
+  color: var(--c-zone-text-muted);
+  grid-column: 1 / -1;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.spoke-entry-bullets li + li {
+  margin-top: 0.25rem;
 }
 
 /* Tag pills */
@@ -492,7 +505,7 @@ a.sidebar-zone-name:hover {
     border-bottom: none; /* each row provides its own bottom border */
     flex-direction: column;
     padding: 0;
-    overflow: visible;
+    overflow-x: clip;
   }
 
   /* Very short viewports (landscape phone, etc.) — unfreeze the header so
@@ -574,13 +587,14 @@ a.sidebar-zone-name:hover {
   .sidebar-mobile-strip {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: var(--space-xs) var(--space-md);
-    gap: var(--space-md);
+    padding: 0 var(--space-md);
+    gap: 0;
     border-bottom: 0.5px solid var(--c-zone-border);
-    scrollbar-width: thin;
-    scrollbar-color: var(--c-zone-border) transparent;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
   }
   .sidebar-mobile-strip a {
     white-space: nowrap;
@@ -588,13 +602,20 @@ a.sidebar-zone-name:hover {
     font-family: var(--font-nav);
     color: var(--c-zone-text-muted);
     text-decoration: none;
-    padding: 4px 0;
+    padding: var(--space-xs) calc(var(--space-md) / 2);
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
-    transition: color var(--t-fast);
+    transition: color var(--t-fast), background var(--t-fast);
   }
-  .sidebar-mobile-strip a:hover,
+  .sidebar-mobile-strip a:hover {
+    color: var(--c-zone-accent);
+  }
   .sidebar-mobile-strip a.is-active {
     color: var(--c-zone-accent);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background: var(--c-zone-active-bg);
   }
 
   .spoke-main {

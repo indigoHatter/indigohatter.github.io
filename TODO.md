@@ -1,27 +1,33 @@
 # TODO
 
 * ID should be unique, numerically increasing per category, sorted 1 to infinity, maintaning category order.
-* Status may contain either a tag (open, wip, staged, done, deferred, idea) or an estimated completion level (80%, 3/5, etc).
-   * "Done" will be left for later review before admin deletion. They may be temporarily kept to maintain "the next" unique serialized ID #.
+* Status may contain a tag (open, wip, staged, DONE, deferred, idea) and/or an estimated completion level (80%, 3/5, etc).
+   * "DONE" will be left for later review before admin deletion. They may be temporarily kept to maintain "the next" unique serialized ID #.
 * Rank (Rnk) is a numerical prioritization system, where 1 is highest. Blank assumes lower priority.
 * Page is blank when todo's scope is ambiguous or unknown.
    * "multi" only acceptable when multiple specific pages exist — different from "all".
 
+**Don't forget to check the Notes section at the bottom for relevant details!**
+
+As of 2026-06-08, "splash" and "index.html" will be used interchangably... until pretty URLs are fully implemented.
+
 | ID   | Status   | Rnk | Description                                                         | Page    |
 |------|----------|-----|---------------------------------------------------------------------|---------|
-| C1   | 60%      | 0   | Replace all placeholders (plus, reminder about links)               | spokes  |
-| C2   | 60%      | 0   | Add resume, photos, etc. (consider JSON Resume?)                    | spokes  |
+| C1   | wip 60%  | 0   | Replace all placeholders (plus, reminder about links)               | spokes  |
+| C2   | wip 60%  | 0   | Add resume, photos, etc. (consider JSON Resume?)                    | spokes  |
 | C3   | open     |     | Evaluate rename: indigohatter vs porterwhatever                     | all     |
 |      |          |     |                                                                     |         |
 | L2   | open     | 17  | Creative Projects has no JSON to pull from?                         | RIGHT   |
 | L3   | open     | 18  | Photos and Adventures have no JSON to pull from?                    | DREAM   |
 |      |          |     |                                                                     |         |
-| I1   | open     | 1   | Light/Dark mode toggle btn should use the opposite theme's colors   | all     |
+| I1   | DONE     | 1   | Light/Dark mode toggle btn should use the opposite theme's colors   | all     |
 | I2   | open     | 5   | Dark mode too dark. (see notes)                                     | multi   |
 | I3   | open     | 4   | Resume details font uses subdued font color.                        | LEFT    |
 | I4   | open     | 10  | Bump active-section threshold from 25% to 40% of viewport height    | spokes  |
+| I5   | open     |     | adjust light/dark mode toggle btns to be less jarring colors        |         |
+| I6   | open     |     | Splash's bgs are very similar to LEFT... make them space/cloudy!    | SPLASH  |
 |      |          |     |                                                                     |         |
-| S2   | 90%      | 14  | Audit manually-set variables vs tokens                              |         |
+| S2   | wip 90%  | 14  | Audit manually-set variables vs tokens                              |         |
 | S3   | open     | 15  | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
 | S5   | deferred | 30  | Graduated highlights cap via LEFT_DATA.config.highlightsCaps        | LEFT    |
 | S6   | open     | 19  | Nav consistency: index menu + sidebar gaps and label mismatches     |         |
@@ -31,7 +37,7 @@
 |      |          |     |                                                                     |         |
 | M1   | open     | 7   | Dark mode index too small/dark to read                              | SPLASH  |
 | M2   | open     | 2   | Remove hover menus on tap — just navigate on click                  | SPLASH  |
-| M3   | open     | 3   | Fix double-tap navbar — change to tap=navigate                      | spokes  |
+| M3   | staged   | 3   | Fix double-tap navbar — change to tap=navigate                      | spokes  |
 | M4   | staged   |     | Mobile navbar row 3 "autoscrolls" active selection?                 | spokes  |
 | M5   | open     | 9   | Mobile navbar occlusion causes incorrect active section highlight   | spokes  |
 |      |          |     |                                                                     |         |
@@ -39,6 +45,8 @@
 | O2   | open     | 11  | move all page-specific info in <head> lower on each page            | all     |
 | O3   | open     | 16  | Copy all profile mentions in various locations into left.json       |         |
 | O4   | open     |     | Convert `/data/*.js` into `.json` files                             |         |
+| O5   | planned  | 20  | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
+| O6   | planned  |     | Audit `tokens.css` for ways to increase references (see notes)      |         |
 |      |          |     |                                                                     |         |
 | F1   | idea     | 999 | Spotify widget (maybe in "Currently" section)                       |         |
 | F2   | idea     | 999 | Re-add brainstem/lobe to brain diagram for fitness/food             |         |
@@ -83,6 +91,8 @@
 ### (O) Other
 * O3: Copying, not moving. This is to turn `left.json` into an (overly) complete resume.
 * O4: There's lots of comments in the code which will need to be extracted... perhaps into an `.md` file?
+* O6: Can tokens (and brain) be merged? Can things be set more referentially?
+    * A thought driving this: light/dark mode toggles are set to each other's bg, but if one is changed, the other may be out of date. This currently seems necessary, however, because the bgs are set within theme styles, which are inaccessible to the opposite theme (meaning, right.light can't read right.dark.bg... therefore, right.light.opp.bg must exist and be set manually to whatever value right.light.bg is set to, and both must be updated simultaneously). Is there a way to improve this?
 
 
 ### (F) Future

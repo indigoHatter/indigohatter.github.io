@@ -36,8 +36,8 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 | D1   | open     | 6   | Reposition hover menus on index.html; add viewport-clipping logic   | SPLASH  |
 |      |          |     |                                                                     |         |
 | M1   | open     | 7   | Dark mode index too small/dark to read                              | SPLASH  |
-| M2   | open     | 2   | Remove hover menus on tap — just navigate on click                  | SPLASH  |
-| M3   | staged   | 3   | Fix double-tap navbar — change to tap=navigate                      | spokes  |
+| M2   | DONE     | 2   | Remove hover menus on tap — just navigate on click                  | SPLASH  |
+| M3   | DONE     | 3   | Fix double-tap navbar — change to tap=navigate                      | spokes  |
 | M4   | staged   |     | Mobile navbar row 3 "autoscrolls" active selection?                 | spokes  |
 | M5   | open     | 9   | Mobile navbar occlusion causes incorrect active section highlight   | spokes  |
 |      |          |     |                                                                     |         |
@@ -47,6 +47,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 | O4   | open     |     | Convert `/data/*.js` into `.json` files                             |         |
 | O5   | planned  | 20  | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
 | O6   | planned  |     | Audit `tokens.css` for ways to increase references (see notes)      |         |
+| O7   | planned  | 21  | Collect all commented "change this to change behavior" into a doc   |         |
 |      |          |     |                                                                     |         |
 | F1   | idea     | 999 | Spotify widget (maybe in "Currently" section)                       |         |
 | F2   | idea     | 999 | Re-add brainstem/lobe to brain diagram for fitness/food             |         |
@@ -84,8 +85,8 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
     * Observed: ~990px is roughly where menus get clipped.
     * Idea: Two options. (1) hard breakpoint that triggers the mobile-style smaller state, or (2) dynamic logic that only repositions a menu if it would be clipped by the current viewport (so not every menu moves just because one doesn't fit). PFC menu's About/Contact links also look off-center due to their placement — could be improved independently.
 ### (M) Mobile
-* M2: On index.html, mobile taps should just navigate directly to the zone, not open the hover menu first.
-* M3: Change behavior to tap=navigate. Instructions are annotated in the code.
+* DONE ~~M2: On index.html, mobile taps should just navigate directly to the zone, not open the hover menu first.~~
+* DONE ~~M3: Change behavior to tap=navigate.~~
 * M4: Code present and commented out in `spoke.js`, near `line 375`.
 * M5: Offset active-section threshold by mobile navbar height so occluded content behind navbar doesn't register as on-screen.
 ### (O) Other
@@ -93,6 +94,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 * O4: There's lots of comments in the code which will need to be extracted... perhaps into an `.md` file?
 * O6: Can tokens (and brain) be merged? Can things be set more referentially?
     * A thought driving this: light/dark mode toggles are set to each other's bg, but if one is changed, the other may be out of date. This currently seems necessary, however, because the bgs are set within theme styles, which are inaccessible to the opposite theme (meaning, right.light can't read right.dark.bg... therefore, right.light.opp.bg must exist and be set manually to whatever value right.light.bg is set to, and both must be updated simultaneously). Is there a way to improve this?
+* O7: Copying, not moving. This is to build some `TODO-options.md` or similar that has all the possible "change this to change that" behaviors logged. (Next step is probably to make final decisions and axe a few of these.)
 
 
 ### (F) Future

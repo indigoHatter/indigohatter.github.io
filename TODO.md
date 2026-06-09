@@ -20,11 +20,11 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 | L2   | open     | 17  | Creative Projects has no JSON to pull from?                         | RIGHT   |
 | L3   | open     | 18  | Photos and Adventures have no JSON to pull from?                    | DREAM   |
 |      |          |     |                                                                     |         |
-| I1   | DONE     | 1   | Light/Dark mode toggle btn should use the opposite theme's colors   | all     |
+| I1   | deferred | 1   | Light/Dark mode toggle btn should use the opposite theme's colors   | all     |
 | I2   | open     | 5   | Dark mode too dark. (see notes)                                     | multi   |
 | I3   | open     | 4   | Resume details font uses subdued font color.                        | LEFT    |
 | I4   | open     | 10  | Bump active-section threshold from 25% to 40% of viewport height    | spokes  |
-| I5   | open     |     | adjust light/dark mode toggle btns to be less jarring colors        |         |
+| I5   | deferred |     | adjust light/dark mode toggle btns to be less jarring colors        |         |
 | I6   | open     |     | Splash's bgs are very similar to LEFT... make them space/cloudy!    | SPLASH  |
 |      |          |     |                                                                     |         |
 | S2   | wip 90%  | 14  | Audit manually-set variables vs tokens                              |         |
@@ -73,6 +73,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
     * See also: M1.
 * I3: Each resume entry has a subdued grey font underneath it. This is fine for the location and dates, but not for the summary/highlights themselves. (NOTE: This may also affect Right, but I have not yet checked.)
 * I4: This is primarily targeted at mobile, but will affect both mobile and desktop.
+* I5: depends on I1. Change was made and then abandoned (lost to git diffs).
 ### (S) Structure
 * S3: Also: rename root `index.html` to `/splash/index.html`, then have root index point to `/splash`?
 * S5: When implemented, cap resolution becomes item.highlightsCap (A) → LEFT_DATA.config.highlightsCaps[i] (B) → HIGHLIGHTS_CAP (C).

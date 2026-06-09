@@ -35,7 +35,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 | O2   | open     | 11  | move all page-specific info in <head> lower on each page            | all     |
 | O3   | open     | 16  | Copy all profile mentions in various locations into left.json       |         |
 | O4   | open     |     | Convert `/data/*.js` into `.json` files                             |         |
-| O5   | planned  | 20  | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
+| O5   | 260608   | 20  | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
 | O6   | planned  | 30  | Audit `tokens.css` for ways to increase references (see notes)      |         |
 | O7   | planned  | 21  | Collect all commented "change this to change behavior" into a doc   |         |
 |      |          |     |                                                                     |         |
@@ -59,6 +59,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 * I4: This is primarily targeted at mobile, but will affect both mobile and desktop.
 ### (S) Structure
 * S3: Also: rename root `index.html` to `/splash/index.html`, then have root index point to `/splash`?
+    * Remember to update canonical tags.
 * S5: When implemented, cap resolution becomes item.highlightsCap (A) → LEFT_DATA.config.highlightsCaps[i] (B) → HIGHLIGHTS_CAP (C).
     * A overrides B overrides C. A is per-item default, B is per-page default, and C is global default. (A,C are already implemented.)
     * Requires renderInto to forward entry index to factory functions (items.forEach((item, i) => makeFn(item, i))).

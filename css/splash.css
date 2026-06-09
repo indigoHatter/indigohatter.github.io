@@ -15,10 +15,10 @@ body {
               color      var(--t-slow) var(--ease-out);
 }
 html.theme-dark body {
-  background: radial-gradient(ellipse 120% 80% at 50% 35%, #0c0f28 0%, #07070f 55%, #040508 100%);
+  background: radial-gradient(ellipse 120% 80% at 50% 35%, #14183a 0%, #07070f 55%, #040508 100%);
 }
 html.theme-light body {
-  background: radial-gradient(ellipse 120% 80% at 50% 35%, #e8f0fc 0%, #f0ead8 60%, #ede8d8 100%);
+  background: radial-gradient(ellipse 120% 80% at 50% 35%, #f4f2ff 0%, #c2b8f2 55%, #aaa0e4 100%);
 }
 
 /* ── Theme toggle ── */

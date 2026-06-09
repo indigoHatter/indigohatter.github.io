@@ -1,7 +1,7 @@
 # TODO
 
 * ID should be unique, numerically increasing per category, sorted 1 to infinity, maintaning category order.
-* Status may contain either a tag (open, wip, done, deferred, idea) or an estimated completion level (80%, 3/5, etc).
+* Status may contain either a tag (open, wip, staged, done, deferred, idea) or an estimated completion level (80%, 3/5, etc).
    * "Done" will be left for later review before admin deletion. They may be temporarily kept to maintain "the next" unique serialized ID #.
 * Rank (Rnk) is a numerical prioritization system, where 1 is highest. Blank assumes lower priority.
 * Page is blank when todo's scope is ambiguous or unknown.
@@ -9,32 +9,42 @@
 
 | ID   | Status   | Rnk | Description                                                         | Page    |
 |------|----------|-----|---------------------------------------------------------------------|---------|
-| C1   | wip      | 0   | Replace all placeholders (plus, reminder about links)               | spokes  |
-| C2   | wip      | 0   | Add resume, photos, etc. (consider JSON Resume?)                    | spokes  |
+| C1   | 60%      | 0   | Replace all placeholders (plus, reminder about links)               | spokes  |
+| C2   | 60%      | 0   | Add resume, photos, etc. (consider JSON Resume?)                    | spokes  |
 | C3   | open     |     | Evaluate rename: indigohatter vs porterwhatever                     | all     |
 |      |          |     |                                                                     |         |
-| L2   | open     | 9   | Creative Projects has no JSON to pull from?                         | RIGHT   |
+| L2   | open     | 17  | Creative Projects has no JSON to pull from?                         | RIGHT   |
 | L3   | open     | 18  | Photos and Adventures have no JSON to pull from?                    | DREAM   |
+|      |          |     |                                                                     |         |
 | I1   | open     | 1   | Light/Dark mode toggle btn should use the opposite theme's colors   | all     |
 | I2   | open     | 5   | Dark mode too dark. (see notes)                                     | multi   |
 | I3   | open     | 4   | Resume details font uses subdued font color.                        | LEFT    |
-| S2   | 90%      | 15  | Audit manually-set variables vs tokens                              |         |
-| S3   | open     | 16  | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
+| I4   | open     | 10  | Bump active-section threshold from 25% to 40% of viewport height    | spokes  |
+|      |          |     |                                                                     |         |
+| S2   | 90%      | 14  | Audit manually-set variables vs tokens                              |         |
+| S3   | open     | 15  | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
 | S5   | deferred | 30  | Graduated highlights cap via LEFT_DATA.config.highlightsCaps        | LEFT    |
 | S6   | open     | 19  | Nav consistency: index menu + sidebar gaps and label mismatches     |         |
 | S7   | open     | 10  | Find way to unify menus (instead of updating index.html & spoke.js) | all     |
+|      |          |     |                                                                     |         |
 | D1   | open     | 6   | Reposition hover menus on index.html; add viewport-clipping logic   | SPLASH  |
+|      |          |     |                                                                     |         |
 | M1   | open     | 7   | Dark mode index too small/dark to read                              | SPLASH  |
 | M2   | open     | 2   | Remove hover menus on tap — just navigate on click                  | SPLASH  |
 | M3   | open     | 3   | Fix double-tap navbar — change to tap=navigate                      | spokes  |
+| M4   | staged   |     | Mobile navbar row 3 "autoscrolls" active selection?                 | spokes  |
+| M5   | open     | 9   | Mobile navbar occlusion causes incorrect active section highlight   | spokes  |
+|      |          |     |                                                                     |         |
 | O1   | open     | 8   | spoke-bio-note's "info" symbol looks bad when italic. Do <i>.       | RIGHT   |
 | O2   | open     | 11  | move all page-specific info in <head> lower on each page            | all     |
-| O3   | open     | 17  | Collect all profile mentions from various locations into left.json  |         |
+| O3   | open     | 16  | Copy all profile mentions in various locations into left.json       |         |
+| O4   | open     |     | Convert `/data/*.js` into `.json` files                             |         |
 |      |          |     |                                                                     |         |
 | F1   | idea     | 999 | Spotify widget (maybe in "Currently" section)                       |         |
 | F2   | idea     | 999 | Re-add brainstem/lobe to brain diagram for fitness/food             |         |
 | F3   | open     | 12  | Set reading "currently" to link to GoodReads, or find widget        | PFC     |
 | F4   | open     | 13  | Similar to F3 - link hobby items to relevant profiles               | DREAM   |
+|      |          |     |                                                                     |         |
 | Z1   | known    |     | Informal comment at bottom of `index.html`, kept for humor          | SPLASH  |
 | Z2   | deferred | 50  | CSS reset redundancy between splash.css and spoke.css               |         |
 
@@ -53,6 +63,7 @@
     * PFC subtitle ("bio"?) text not enough contrast.
     * See also: M1.
 * I3: Each resume entry has a subdued grey font underneath it. This is fine for the location and dates, but not for the summary/highlights themselves. (NOTE: This may also affect Right, but I have not yet checked.)
+* I4: This is primarily targeted at mobile, but will affect both mobile and desktop.
 ### (S) Structure
 * S3: Also: rename root `index.html` to `/splash/index.html`, then have root index point to `/splash`?
 * S5: When implemented, cap resolution becomes item.highlightsCap (A) → LEFT_DATA.config.highlightsCaps[i] (B) → HIGHLIGHTS_CAP (C).
@@ -67,7 +78,11 @@
 ### (M) Mobile
 * M2: On index.html, mobile taps should just navigate directly to the zone, not open the hover menu first.
 * M3: Change behavior to tap=navigate. Instructions are annotated in the code.
+* M4: Code present and commented out in `spoke.js`, near `line 375`.
+* M5: Offset active-section threshold by mobile navbar height so occluded content behind navbar doesn't register as on-screen.
 ### (O) Other
+* O3: Copying, not moving. This is to turn `left.json` into an (overly) complete resume.
+* O4: There's lots of comments in the code which will need to be extracted... perhaps into an `.md` file?
 
 
 ### (F) Future

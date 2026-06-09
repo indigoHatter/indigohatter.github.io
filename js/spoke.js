@@ -236,29 +236,12 @@
 
   /*
      Mobile tab tap logic:
-       Not open          → unfold: populate strip, mark is-open
-       Open + current    → (a) do nothing — matches desktop behaviour of
-                           not navigating to the page you're already on.
-                           TO CHANGE TO (b) collapse row 3 instead:
-                             zoneNav.classList.remove('is-open');
-                             populateStrip({ sections: [] }, false); // clears strip
-                             (or restore current zone's strip if preferred)
-       Open + not current → navigate to that zone's page
+       Current zone     → do nothing (strip already populated by openCurrentZone() on init)
+       Non-current zone → navigate immediately on first tap
   */
   function handleMobileTap(zoneNav, zone, isCurrent) {
-    const isOpen = zoneNav.classList.contains('is-open');
-
-    if (isOpen) {
-      if (isCurrent) {
-        return; /* (a) do nothing */
-      } else {
-        window.location.href = zone.page;
-      }
-    } else {
-      /* Close all, open this one */
-      document.querySelectorAll('.sidebar-zone').forEach(z => z.classList.remove('is-open'));
-      zoneNav.classList.add('is-open');
-      populateStrip(zone, isCurrent);
+    if (!isCurrent) {
+      window.location.href = zone.page;
     }
   }
 
@@ -267,8 +250,8 @@
      Desktop: clicking the trigger row (whitespace or caret) folds/unfolds
      the zone. Clicks on the zone name <a> pass through so the link navigates.
 
-     Mobile: all clicks on the trigger are intercepted (including the name
-     link — first tap unfolds, second tap on a non-current zone navigates).
+     Mobile: all clicks on the trigger are intercepted; tapping a non-current
+     zone navigates immediately on first tap.
 
      TO CHANGE DESKTOP WHITESPACE CLICKS TO NAVIGATE INSTEAD OF TOGGLE:
      Replace the desktop branch below with:

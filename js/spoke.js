@@ -32,7 +32,7 @@
         { label: 'Education',            id: 'education' },
         { label: 'Certifications',       id: 'certifications' },
         { label: 'Awards',               id: 'awards' },
-        { label: 'Publications',         id: 'publications' },
+//        { label: 'Publications',         id: 'publications' },
         { label: 'Professional services',id: 'services' },
       ],
     },
@@ -341,10 +341,20 @@
     }
   }
 
-  /* ── Active section highlighting via IntersectionObserver ── */
+  /* ── Active section highlighting ───────────────────────────
+     Replaces the old IntersectionObserver approach, which only
+     handled enter events and never updated the mobile strip.
+
+     Strategy: on each scroll tick, find the last section whose
+     top has crossed 25% of the viewport — that's the one the
+     user is currently reading. setActive() updates both the
+     desktop sidebar links and the mobile strip links (queried
+     live, since populateStrip() recreates those nodes on tab
+     switches).
+  */
   function initActiveLinks() {
-    const sections = document.querySelectorAll('.spoke-section[id]');
-    const links    = document.querySelectorAll('.sidebar-links a[href*="#"]');
+    const sections = Array.from(document.querySelectorAll('.spoke-section[id]'));
+    const links    = document.querySelectorAll('.sidebar-zone.is-current .sidebar-links a[href*="#"]');
     if (!sections.length || !links.length) return;
 
     const linkMap = {};
@@ -353,21 +363,52 @@
       if (hash) linkMap[hash] = link;
     });
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const link = linkMap[entry.target.id];
-        if (!link) return;
-        if (entry.isIntersecting) {
-          Object.values(linkMap).forEach(l => l.classList.remove('is-active'));
-          link.classList.add('is-active');
-        }
+    function setActive(id) {
+      Object.values(linkMap).forEach(l => l.classList.remove('is-active'));
+      if (linkMap[id]) linkMap[id].classList.add('is-active');
+      /* Mobile strip nodes are recreated by populateStrip() on each tab
+         switch, so query them live rather than capturing once at init. */
+      document.querySelectorAll('.sidebar-mobile-strip a').forEach(a => {
+        const hash = a.getAttribute('href').split('#')[1];
+        a.classList.toggle('is-active', hash === id);
       });
-    }, {
-      rootMargin: '-20% 0px -70% 0px',
-      threshold: 0,
-    });
+      /* Auto-scroll strip to keep active link in view. */
+      /*-------- STAGED EDIT: Uncomment if the strip does not scroll automatically on section change.
+      //  const strip      = document.querySelector('.sidebar-mobile-strip');
+      //  const activeLink = strip?.querySelector('a.is-active');
+      //  if (strip && activeLink) {
+      //   const linkLeft  = activeLink.offsetLeft;
+      //   const linkRight = linkLeft + activeLink.offsetWidth;
+      //   const viewLeft  = strip.scrollLeft;
+      //   const viewRight = viewLeft + strip.offsetWidth;
+      //   if (linkLeft < viewLeft)
+      //     strip.scrollLeft = linkLeft;
+      //   else if (linkRight > viewRight)
+      //     strip.scrollLeft = linkRight - strip.offsetWidth;
+      // }
+      */
+    }
 
-    sections.forEach(s => observer.observe(s));
+    function getActiveSection() {
+      const threshold = window.innerHeight * 0.25;
+      let active = sections[0];
+      for (const s of sections) {
+        if (s.getBoundingClientRect().top <= threshold) active = s;
+      }
+      return active;
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setActive(getActiveSection().id);
+        ticking = false;
+      });
+    }, { passive: true });
+
+    setActive(getActiveSection().id);
   }
 
   /* ── Init ────────────────────────────────────────────────── */

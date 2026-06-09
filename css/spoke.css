@@ -206,15 +206,15 @@ a.sidebar-zone-name:hover {
   transition: background var(--t-slow) var(--ease-out);
 }
 .sidebar-theme-btn {
-  background: none;
-  border: 0.5px solid var(--c-zone-border);
+  background: var(--c-zone-toggle-bg);
+  border: 0.5px solid var(--c-zone-toggle-border);
   border-radius: 20px;
   padding: 4px 12px;
   font-size: 0.75rem;
   font-family: var(--f-zone-body);
-  color: var(--c-zone-text-muted);
+  color: var(--c-zone-toggle-text);
   cursor: pointer;
-  transition: color var(--t-fast), border-color var(--t-fast);
+  transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
 }
 .sidebar-theme-btn:hover {
   color: var(--c-zone-text);
@@ -325,13 +325,13 @@ a.sidebar-zone-name:hover {
 }
 .spoke-entry-detail {
   font-size: 0.875rem;
-  color: var(--c-zone-text-muted);
+  color: var(--c-zone-text-entry);
   grid-column: 1 / -1;
   line-height: 1.5;
 }
 .spoke-entry-bullets {
   font-size: 0.875rem;
-  color: var(--c-zone-text-muted);
+  color: var(--c-zone-text-entry);
   grid-column: 1 / -1;
   line-height: 1.5;
   margin: 0;
@@ -408,7 +408,6 @@ a.sidebar-zone-name:hover {
 .spoke-bio-note {
   margin-top: var(--space-md);
   font-size: 0.75rem;
-  font-style: italic;
   color: var(--c-zone-text-muted);
   opacity: 0.7;
 }

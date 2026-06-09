@@ -12,6 +12,20 @@
   var hasTouched = false;
   document.addEventListener('touchstart', function () { hasTouched = true; }, { once: true, passive: true });
 
+  /* Shift a menu horizontally so it stays within the viewport.
+     Uses the CSS `translate` property (composites with `transform`) so
+     the existing show/hide translateY animation is unaffected. */
+  function clampToViewport(menu) {
+    menu.style.translate = '';
+    var rect = menu.getBoundingClientRect();
+    var vw   = window.innerWidth;
+    var GAP  = 8;
+    var dx   = 0;
+    if (rect.right > vw - GAP)  dx = vw - GAP - rect.right;
+    else if (rect.left < GAP)   dx = GAP - rect.left;
+    if (dx !== 0) menu.style.translate = Math.round(dx) + 'px 0';
+  }
+
   /* Exposed globally so SVG inline onmouseenter/leave can call them */
   window.showMenu = function (menuId) {
     if (hasTouched) return;
@@ -21,6 +35,7 @@
       clearTimeout(menu._hideTimer);
       menu._hideTimer = null;
     }
+    clampToViewport(menu);
     menu.classList.add('visible');
   };
 
@@ -29,6 +44,7 @@
     if (!menu) return;
     menu._hideTimer = setTimeout(function () {
       menu.classList.remove('visible');
+      menu.style.translate = '';
     }, 120);
   };
 

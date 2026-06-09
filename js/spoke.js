@@ -356,20 +356,18 @@
         a.classList.toggle('is-active', hash === id);
       });
       /* Auto-scroll strip to keep active link in view. */
-      /*-------- STAGED EDIT: Uncomment if the strip does not scroll automatically on section change.
-      //  const strip      = document.querySelector('.sidebar-mobile-strip');
-      //  const activeLink = strip?.querySelector('a.is-active');
-      //  if (strip && activeLink) {
-      //   const linkLeft  = activeLink.offsetLeft;
-      //   const linkRight = linkLeft + activeLink.offsetWidth;
-      //   const viewLeft  = strip.scrollLeft;
-      //   const viewRight = viewLeft + strip.offsetWidth;
-      //   if (linkLeft < viewLeft)
-      //     strip.scrollLeft = linkLeft;
-      //   else if (linkRight > viewRight)
-      //     strip.scrollLeft = linkRight - strip.offsetWidth;
-      // }
-      */
+        const strip      = document.querySelector('.sidebar-mobile-strip');
+        const activeLink = strip?.querySelector('a.is-active');
+        if (strip && activeLink) {
+         const linkLeft  = activeLink.offsetLeft;
+         const linkRight = linkLeft + activeLink.offsetWidth;
+         const viewLeft  = strip.scrollLeft;
+         const viewRight = viewLeft + strip.offsetWidth;
+         if (linkLeft < viewLeft)
+           strip.scrollLeft = linkLeft;
+         else if (linkRight > viewRight)
+           strip.scrollLeft = linkRight - strip.offsetWidth;
+       }
     }
 
     function getActiveSection() {

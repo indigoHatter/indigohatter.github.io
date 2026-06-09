@@ -14,6 +14,12 @@ body {
   transition: background var(--t-slow) var(--ease-out),
               color      var(--t-slow) var(--ease-out);
 }
+html.theme-dark body {
+  background: radial-gradient(ellipse 120% 80% at 50% 35%, #0c0f28 0%, #07070f 55%, #040508 100%);
+}
+html.theme-light body {
+  background: radial-gradient(ellipse 120% 80% at 50% 35%, #e8f0fc 0%, #f0ead8 60%, #ede8d8 100%);
+}
 
 /* ── Theme toggle ── */
 .theme-toggle {
@@ -71,7 +77,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 
 .splash-name {
   font-family: var(--font-splash-title);
-  font-size: clamp(0.6875rem, 1.5vw, 1.5rem);
+  font-size: clamp(var(--sz-sm), 1.5vw, 1.5rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -80,7 +86,7 @@ html.theme-light .toggle-icon::before, .theme-light .toggle-icon::before {
 }
 .splash-url {
   font-family: var(--font-left-splash);
-  font-size: clamp(0.5625rem, 1.2vw, 1.125rem);
+  font-size: clamp(var(--sz-xs), 1.2vw, 1.125rem);
   color: var(--c-seam-vis);
   letter-spacing: 0.05em;
   margin-top: 3px;

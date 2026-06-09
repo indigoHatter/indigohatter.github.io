@@ -7,8 +7,14 @@
 (function () {
   'use strict';
 
+  /* On touch devices, tapping a zone should navigate directly — not open the menu.
+     We detect the first touchstart and suppress showMenu for the rest of the session. */
+  var hasTouched = false;
+  document.addEventListener('touchstart', function () { hasTouched = true; }, { once: true, passive: true });
+
   /* Exposed globally so SVG inline onmouseenter/leave can call them */
   window.showMenu = function (menuId) {
+    if (hasTouched) return;
     var menu = document.getElementById(menuId);
     if (!menu) return;
     if (menu._hideTimer) {

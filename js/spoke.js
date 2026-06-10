@@ -312,12 +312,13 @@
     }
 
     if (closingLinks) {
-      /* Open when the close animation is halfway done. --t-med is 250ms,
+      /* Open when the close animation is halfway done. [Compare to --t-med = 250ms.]
          Adjust this value to taste:
            0   = simultaneous (if scrollbar can draw, it may flash briefly)
            50  = mostly simultaneous (feels snappy, but slightly too fast)
-           125 = midpoint (feels smooth, but still too slow)
-           250 = fully sequential (feels slow) */
+           80  = [current] feels like great trade-off.
+           125 = midpoint (feels smooth, but too slow)
+           250 = fully sequential (feels really slow) */
       setTimeout(openZone, 80);
     } else {
       openZone(); /* nothing was animating closed; expand immediately */
@@ -325,11 +326,8 @@
   }
 
   /* ── Active section highlighting ───────────────────────────
-     Replaces the old IntersectionObserver approach, which only
-     handled enter events and never updated the mobile strip.
-
      Strategy: on each scroll tick, find the last section whose
-     top has crossed 25% of the viewport — that's the one the
+     top has crossed [threshold]% of the viewport — that's the one the
      user is currently reading. setActive() updates both the
      desktop sidebar links and the mobile strip links (queried
      live, since populateStrip() recreates those nodes on tab
@@ -371,7 +369,17 @@
     }
 
     function getActiveSection() {
-      const threshold = window.innerHeight * 0.25;
+      /* On mobile, offset by the top navbar height so sections hidden
+         behind it don't register as active. Uses the full sidebar offsetHeight
+         since on mobile it renders as a top bar covering all three rows.
+         Otherwise, in desktop-mode, use offsetHeight of 0. */
+      const navbarHeight = isMobileLayout()
+        ? (document.querySelector('.spoke-sidebar')?.offsetHeight ?? 0)
+        : 0;
+      /* [Threshhold]: Adjust number at end of line to change what % of
+         the windowspace triggers when the next section becomes active.
+         Higher = later. Currently set to 32.5%. */
+      const threshold = navbarHeight + (window.innerHeight - navbarHeight) * 0.325;
       let active = sections[0];
       for (const s of sections) {
         if (s.getBoundingClientRect().top <= threshold) active = s;

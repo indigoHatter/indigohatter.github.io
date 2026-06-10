@@ -1,8 +1,10 @@
 # TODO
 
 * ID should be unique, numerically increasing per category, sorted 1 to infinity, maintaning category order.
-* Status may contain a tag (open, wip, staged, DONE, deferred, idea) and/or an estimated completion level (80%, 3/5, etc).
-   * "DONE" will be left for later review before admin deletion. They may be temporarily kept to maintain "the next" unique serialized ID #.
+* Status may contain a tag and/or an estimated completion level (80%, 3/5, etc).
+   * Tags: (open, wip, staged, DONE, planned, deferred, idea). "wip" might be expressed as "wip xx%".
+   * "DONE" items will be reviewed for deletion from list by an admin.
+      * They may be temporarily kept in list to maintain "the next" unique serialized ID #.
 * Rank (Rnk) is a numerical prioritization system, where 1 is highest. Blank assumes lower priority.
 * Page is blank when todo's scope is ambiguous or unknown.
    * "multi" only acceptable when multiple specific pages exist — different from "all".
@@ -13,39 +15,39 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 
 | ID   | Status   | Rnk | Description                                                         | Page    |
 |------|----------|-----|---------------------------------------------------------------------|---------|
-| C1   | wip 60%  | 0   | Replace all placeholders, resume, photos (ps. reminder about links) | spokes  |
+| C1   | wip 60%  |   0 | Replace all placeholders, resume, photos (PS. reminder about links) | spokes  |
 | C3   | open     |     | Evaluate rename: indigohatter vs porterwhatever                     | all     |
 |      |          |     |                                                                     |         |
-| L2   | open     | 17  | Creative Projects has no JSON to pull from?                         | RIGHT   |
-| L3   | open     | 18  | Photos and Adventures have no JSON to pull from?                    | DREAM   |
+| L2   | open     |  14 | Merge 'currently' to hobbies? Expand hobbies past single-line JSON? | multi   |
+| L3   | open     |   4 | Left's body font needs to be more legible                           | LEFT    |
 |      |          |     |                                                                     |         |
-| I4   | open     | 10  | Bump active-section threshold from 25% to 40% of viewport height    | spokes  |
 | I6   | DONE     | . . | . . .                                                               | . . . . |
 |      |          |     |                                                                     |         |
-| S2   | wip 90%  | 14  | Audit manually-set variables vs tokens                              |         |
-| S3   | open     | 15  | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
-| S5   | deferred | 30  | Graduated highlights cap via LEFT_DATA.config.highlightsCaps        | LEFT    |
-| S6   | open     | 19  | Nav consistency: index menu + sidebar gaps and label mismatches     |         |
-| S7   | open     | 10  | Find way to unify menus (instead of updating index.html & spoke.js) | all     |
+| S2   | wip 90%  |  21 | Audit manually-set variables vs tokens                              |         |
+| S3   | open     |  15 | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
+| S5   | deferred |  70 | Graduated highlights cap via LEFT_DATA.config.highlightsCaps        | LEFT    |
+| S6   | open     |  18 | Nav consistency: index menu + sidebar gaps and label mismatches     |         |
+| S7   | open     |  19 | Find way to unify menus (instead of updating index.html & spoke.js) | all     |
+| S8   | open     |  13 | Creative Projects has no JSON to pull from?                         | RIGHT   |
+| S9   | open     |  15 | Photos and Adventures have no JSON to pull from?                    | DREAM   |
 |      |          |     |                                                                     |         |
-| D1   | DONE     | . . | . . .                                                               | . . . . |
+| D2   | open     |   8 | Fine-tune default hover-menu open area.                             | SPLASH  |
 |      |          |     |                                                                     |         |
-| M5   | open     | 9   | Mobile navbar occlusion causes incorrect active section highlight   | spokes  |
+| M5   | DONE     | . . | . . .                                                               | . . . . |
 |      |          |     |                                                                     |         |
-| O2   | open     | 11  | move all page-specific info in <head> lower on each page            | all     |
-| O3   | open     | 16  | Copy all profile mentions in various locations into left.json       |         |
-| O4   | open     |     | Convert `/data/*.js` into `.json` files                             |         |
-| O5   | 260608   | 20  | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
-| O6   | planned  | 30  | Audit `tokens.css` for ways to increase references (see notes)      |         |
-| O7   | planned  | 21  | Collect all commented "change this to change behavior" into a doc   |         |
+| O3   | open     |   9 | Copy all profile mentions in various locations into left.json       |         |
+| O4   | open     |  30 | Convert `/data/*.js` into `.json` files                             |         |
+| O5   | 260608   |  25 | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
+| O6   | planned  |  21 | Audit `tokens.css` for ways to increase references (see notes)      |         |
+| O7   | planned  |  20 | Collect all commented "change this to change behavior" into a doc   |         |
 |      |          |     |                                                                     |         |
-| F1   | idea     | 12c | Spotify widget or Last.fm scrobble link or... (see notes)           |         |
+| F1   | idea     |  12a| Spotify widget or Last.fm scrobble link or... (see notes)           |         |
 | F2   | idea     | 999 | Re-add brainstem/lobe to brain diagram for fitness/food             |         |
-| F3   | open     | 12a | Set reading "currently" to link to GoodReads, or find widget        | PFC     |
-| F4   | open     | 12b | Similar to F3 - link hobby items to relevant profiles               | DREAM   |
+| F3   | open     |  12 | Set reading "currently" to link to GoodReads, or find widget        | PFC     |
+| F4   | open     |  12 | Similar to F3 - link hobby items to relevant profiles               | DREAM   |
 |      |          |     |                                                                     |         |
 | Z1   | known    | . . | Informal comment at bottom of `index.html`, kept for humor          | SPLASH  |
-| Z2   | deferred | 50  | CSS reset redundancy between splash.css and spoke.css               |         |
+| Z2   | deferred |  80 | CSS reset redundancy between splash.css and spoke.css               |         |
 
 
 ---
@@ -55,18 +57,18 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 ### (C) Content
 * C1: Reminder: contact links (etc) need `_blank` + `noopener`. 
 ### (L) Layout
+* L2: A thought on hobbies/currently: Should I move the "Currently..." stuff from PFC to Dreams? Or, perhaps I just need to expand out the Hobbies area... it's currently just a one-liner JSON entry per field, rather than fully-developed pages with content. (Maybe it doesn't need to be JSON... but it'd still be cool if it was set to pull content from a folder/file so that the html page can just be a one-stop shop. Though, I guess it doesn't matter either way... I think I just keep forgetting that I have access to the whole codebase, so an edit is an edit regardless of where it is made.)
+* L3: Left needs a more legible font for the body. The typewriter font can remain for headers and titles and sidebar nav, but should not be used in the body. (While we're at it... what other fonts is it using? Same for the other sections)
 ### (I) Interface
-* I4: This is primarily targeted at mobile, but will affect both mobile and desktop.
 ### (S) Structure
 * S3: Also: rename root `index.html` to `/splash/index.html`, then have root index point to `/splash`?
     * Remember to update canonical tags.
 * S5: When implemented, cap resolution becomes item.highlightsCap (A) → LEFT_DATA.config.highlightsCaps[i] (B) → HIGHLIGHTS_CAP (C).
     * A overrides B overrides C. A is per-item default, B is per-page default, and C is global default. (A,C are already implemented.)
     * Requires renderInto to forward entry index to factory functions (items.forEach((item, i) => makeFn(item, i))).
-    * S6: PFC index hover menu missing Bio, Why a brain?, Currently (spoke.js has them; index only shows About + Contact). Label mismatches: left sidebar/index say "Awards" but h2 says "Awards & Honors"; PFC sidebar says "Bio" but h2 says "The short version". `contact-form` section in pfc.html has no nav entry (likely intentional placeholder). HOWEVER!!! Some of this mismatch may be intentional (such as section header `<h2>` text vs spoke's nav text). Confirm each change before implementing.
+* S6: PFC index hover menu missing Bio, Why a brain?, Currently (spoke.js has them; index only shows About + Contact). Label mismatches: left sidebar/index say "Awards" but h2 says "Awards & Honors"; PFC sidebar says "Bio" but h2 says "The short version". `contact-form` section in pfc.html has no nav entry (likely intentional placeholder). HOWEVER!!! Some of this mismatch may be intentional (such as section header `<h2>` text vs spoke's nav text). Confirm each change before implementing.
 ### (D) Desktop
 ### (M) Mobile
-* M5: Offset active-section threshold by mobile navbar height so occluded content behind navbar doesn't register as on-screen.
 ### (O) Other
 * O3: Copying, not moving. This is to turn `left.json` into an (overly) complete resume.
 * O4: There's lots of comments in the code which will need to be extracted... perhaps into an `.md` file?
@@ -88,7 +90,7 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
 
 
 
-### Freeform prose:
-Left needs a more legible font for the body. The typewriter font can remain for headers and titles and sidebar nav, but should not be used in the body. (While we're at it... what other fonts is it using? Same for the other sections)
-
+### (?) Freeform prose:
 porterwhatever.io on spokes still lets sidebar scroll above it (as in, the drawn background for the text doesn't take up as much space as it seems like it should). The space above it is empty padding not claimed by the text? Anyway, it gives it a transparent effect, similar to a previous issue we had with the sidebar.
+
+Should I put a JSON Resume tool in the tools section?

@@ -219,8 +219,9 @@ const LEFT_DATA = {
         "Digital systems (logic design, microcontrollers, embedded systems)",
         "Radio communications (theory, modulation, troubleshooting)",
         "Robotics (kinematics, control systems, programming)",
+        "Information Networking (A+, Network+, Security+, Windows Server/AD, databases, etc.)"
       ],
-      meta:        "",
+      meta:        "Electronics technician w/ certified networking & database coursework · Top-of-class honors student",
       detail:      "Graduated with honors (4.0 GPA) while working 40+ hours per week in avionics repair. Completed coursework in circuit analysis, industrial automation, digital systems, radio communications, robotics, and more."
     }
   ],

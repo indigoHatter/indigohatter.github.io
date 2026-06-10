@@ -1,6 +1,16 @@
-# ai.txt for https://indigohatter.github.io
-# Spec: https://site.ai/ai.txt
+updated: 2026-06-09
+scope: https://indigohatter.github.io
+# spec: https://aitxt.ing/ai.txt
+# spec: https://spawning.ai/ai.txt
+---
 
+# Title
+porterwhatever.io portfolio
+
+# Description
+Personal portfolio page for an individual who is an electrical engineer, thespian, student, and hobbyist.
+
+# Allow/Disallow list (akin to robots.txt)
 User-agent: *
 Allow: inference
 Allow: summarization

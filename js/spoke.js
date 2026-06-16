@@ -312,8 +312,7 @@
     }
 
     if (closingLinks) {
-      /* Open when the close animation is halfway done. [Compare to --t-med = 250ms.]
-         Adjust this value to taste:
+      /* Delay the open animation to start X time after close animation starts. [Compare to --t-med = 250ms.]
            0   = simultaneous (if scrollbar can draw, it may flash briefly)
            50  = mostly simultaneous (feels snappy, but slightly too fast)
            80  = [current] feels like great trade-off.
@@ -376,10 +375,11 @@
       const navbarHeight = isMobileLayout()
         ? (document.querySelector('.spoke-sidebar')?.offsetHeight ?? 0)
         : 0;
-      /* [Threshhold]: Adjust number at end of line to change what % of
-         the windowspace triggers when the next section becomes active.
-         Higher = later. Currently set to 32.5%. */
-      const threshold = navbarHeight + (window.innerHeight - navbarHeight) * 0.325;
+      /* [Threshhold]: Adjust to change what % of the windowspace from top
+         is the "active reading" trigger line.
+         Higher # = later. */
+      const threshold = navbarHeight + (window.innerHeight - navbarHeight)
+        * 0.325;  /* 0.325 = 32.5% from top */
       let active = sections[0];
       for (const s of sections) {
         if (s.getBoundingClientRect().top <= threshold) active = s;

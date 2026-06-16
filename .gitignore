@@ -2,4 +2,7 @@
 Thumbs.db
 *.zip
 
-/data/ref
+/.venv/
+
+/data/ref/
+/data/json/

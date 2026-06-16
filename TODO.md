@@ -13,41 +13,42 @@
 
 As of 2026-06-08, "splash" and "index.html" will be used interchangably... until pretty URLs are fully implemented.
 
-| ID   | Status   | Rnk | Description                                                         | Page    |
-|------|----------|-----|---------------------------------------------------------------------|---------|
-| C1   | wip 60%  |   0 | Replace all placeholders, resume, photos (PS. reminder about links) | spokes  |
-| C3   | open     |     | Evaluate rename: indigohatter vs porterwhatever                     | all     |
-|      |          |     |                                                                     |         |
-| L2   | open     |  14 | Merge 'currently' to hobbies? Expand hobbies past single-line JSON? | multi   |
-| L3   | open     |   4 | Left's body font needs to be more legible                           | LEFT    |
-|      |          |     |                                                                     |         |
-| I6   | DONE     | . . | . . .                                                               | . . . . |
-|      |          |     |                                                                     |         |
-| S2   | wip 90%  |  21 | Audit manually-set variables vs tokens                              |         |
-| S3   | open     |  15 | Pretty URLs (eg. `/left` instead of `/left.html`)                   | spokes  |
-| S5   | deferred |  70 | Graduated highlights cap via LEFT_DATA.config.highlightsCaps        | LEFT    |
-| S6   | open     |  18 | Nav consistency: index menu + sidebar gaps and label mismatches     |         |
-| S7   | open     |  19 | Find way to unify menus (instead of updating index.html & spoke.js) | all     |
-| S8   | open     |  13 | Creative Projects has no JSON to pull from?                         | RIGHT   |
-| S9   | open     |  15 | Photos and Adventures have no JSON to pull from?                    | DREAM   |
-|      |          |     |                                                                     |         |
-| D2   | open     |   8 | Fine-tune default hover-menu open area.                             | SPLASH  |
-|      |          |     |                                                                     |         |
-| M5   | DONE     | . . | . . .                                                               | . . . . |
-|      |          |     |                                                                     |         |
-| O3   | open     |   9 | Copy all profile mentions in various locations into left.json       |         |
-| O4   | open     |  30 | Convert `/data/*.js` into `.json` files                             |         |
-| O5   | 260608   |  25 | Check `CLAUDE.md` for up-to-date-ness and conciseness               |         |
-| O6   | planned  |  21 | Audit `tokens.css` for ways to increase references (see notes)      |         |
-| O7   | planned  |  20 | Collect all commented "change this to change behavior" into a doc   |         |
-|      |          |     |                                                                     |         |
-| F1   | idea     |  12a| Spotify widget or Last.fm scrobble link or... (see notes)           |         |
-| F2   | idea     | 999 | Re-add brainstem/lobe to brain diagram for fitness/food             |         |
-| F3   | open     |  12 | Set reading "currently" to link to GoodReads, or find widget        | PFC     |
-| F4   | open     |  12 | Similar to F3 - link hobby items to relevant profiles               | DREAM   |
-|      |          |     |                                                                     |         |
-| Z1   | known    | . . | Informal comment at bottom of `index.html`, kept for humor          | SPLASH  |
-| Z2   | deferred |  80 | CSS reset redundancy between splash.css and spoke.css               |         |
+| ID  | Status  | Rnk | Description                                                       | Source     |
+|-----|---------|-----|-------------------------------------------------------------------|------------|
+| C1  | wip 60% |   0 | Replace all placeholders  (PS. reminder about links)              | spokes     |
+| C3  | open    |     | Evaluate rename: indigohatter vs porterwhatever                   | all        |
+|     |         |     |                                                                   |            |
+| L2  | open    |  14 | Merge 'currently' to hobbies? Make hobbies more robust?           | multi      |
+| L3  | open    |   4 | Left's body font needs to be more legible                         | LEFT       |
+|     |         |     |                                                                   |            |
+| I6  | DONE    | . . | . . .                                                             | . . . .    |
+|     |         |     |                                                                   |            |
+| S2  | wip 90% |  21 | Audit manually-set variables vs tokens                            |            |
+| S3  | open    |  15 | Pretty URLs (eg. `/left` instead of `/left.html`)                 | spokes     |
+| S5  | defer'd |  70 | Graduated highlights cap via LEFT_DATA.config.highlightsCaps      | LEFT       |
+| S6  | open    |  18 | Nav consistency: index menu + sidebar gaps and label mismatches   |            |
+| S7  | open    |  19 | Put all menu text into one file?                                  | all        |
+| S8  | open    |  13 | Creative Projects has no JSON to pull from?                       | RIGHT      |
+| S9  | open    |  15 | Photos and Adventures have no JSON to pull from?                  | DREAM      |
+|     |         |     |                                                                   |            |
+| D2  | open    |   8 | Fine-tune default hover-menu open area.                           | splash.css |
+| D3  | open    |   8 | Can the position-reset ghosting (on mouseOut) be mitigated?       | brain.js   |
+|     |         |     |                                                                   |            |
+| M6  | open    |   7 | Adjust sizes of everything for mobile-friendliness                | all        |
+|     |         |     |                                                                   |            |
+| O3  | open    |   9 | Copy all profile mentions in various locations into left.json     |            |
+| O4  | open    |  30 | Convert `/data/*.js` into `.json` files                           |            |
+| O5  | 260608  |  25 | Check `CLAUDE.md` for up-to-date-ness and conciseness             |            |
+| O6  | plan'd  |  21 | Audit `tokens.css` for ways to increase references (see notes)    |            |
+| O7  | plan'd  |  20 | Collect all "change this to change behavior" //s into a doc       |            |
+|     |         |     |                                                                   |            |
+| F1  | idea    |  12a| Spotify widget or Last.fm scrobble link or... (see notes)         |            |
+| F2  | idea    | 999 | Re-add brainstem/lobe to brain diagram for fitness/food           |            |
+| F3  | open    |  12 | Set reading "currently" to link to GoodReads, or find widget      | PFC        |
+| F4  | open    |  12 | Similar to F3 - link hobby items to relevant profiles             | DREAM      |
+|     |         |     |                                                                   |            |
+| Z1  | known   | . . | Informal comment at bottom of `index.html`, kept for humor        | SPLASH     |
+| Z2  | defer'd |  80 | CSS reset redundancy between splash.css and spoke.css             |            |
 
 
 ---
@@ -67,14 +68,18 @@ As of 2026-06-08, "splash" and "index.html" will be used interchangably... until
     * A overrides B overrides C. A is per-item default, B is per-page default, and C is global default. (A,C are already implemented.)
     * Requires renderInto to forward entry index to factory functions (items.forEach((item, i) => makeFn(item, i))).
 * S6: PFC index hover menu missing Bio, Why a brain?, Currently (spoke.js has them; index only shows About + Contact). Label mismatches: left sidebar/index say "Awards" but h2 says "Awards & Honors"; PFC sidebar says "Bio" but h2 says "The short version". `contact-form` section in pfc.html has no nav entry (likely intentional placeholder). HOWEVER!!! Some of this mismatch may be intentional (such as section header `<h2>` text vs spoke's nav text). Confirm each change before implementing.
+* S7: If possible and not a pain. It'd be cool if index.html and (spokes).html and spokes.js etc etc could all be updated at once by updating one file with one source of truth for menu text.
 ### (D) Desktop
 ### (M) Mobile
+* M6: Size observations:
+    * Mobile navbar must be 44px high minimum per spec for touch items.
+    * Splash page is a little small on mobile... drawn wide, not tall, meaning there's lots of dead vertical space, which makes the middle feel even smaller.
 ### (O) Other
 * O3: Copying, not moving. This is to turn `left.json` into an (overly) complete resume.
 * O4: There's lots of comments in the code which will need to be extracted... perhaps into an `.md` file?
 * O6: Can tokens (and brain) be merged? Can things be set more referentially?
     * A thought driving this: light/dark mode toggles are set to each other's bg, but if one is changed, the other may be out of date. This currently seems necessary, however, because the bgs are set within theme styles, which are inaccessible to the opposite theme (meaning, right.light can't read right.dark.bg... therefore, right.light.opp.bg must exist and be set manually to whatever value right.light.bg is set to, and both must be updated simultaneously). Is there a way to improve this?
-* O7: Copying, not moving. This is to build some `TODO-options.md` or similar that has all the possible "change this to change that" behaviors logged. (Next step is probably to make final decisions and axe a few of these.)
+* O7: Copying, not moving. This is to build some `TODO-options.md` or similar that has all the possible "change this to change that" behaviors logged. (Next step is probably to make final decisions and axe a few of these.) May also consider checking old revisions for things I've already deleted... just to have the notes.
 
 
 ### (F) Future

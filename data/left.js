@@ -3,13 +3,17 @@
    Schema:
      JSONResume + extensions
    Extensions:
-     work.location      | not in spec, widely supported by themes
-     work.headline      | 2-3 sentence short-form summary (resume/portfolio use)
-     work.highlightsCap | optional numeric cap for highlights list shown on portfolio card (blank = defaults to HIGHLIGHTS_CAP in content.js)
-     work.keywords      | skill-chip tags (UI use); distinct from highlights[]
-     education.meta     | free-text subtitle line (school/honors)
-     education.detail   | prose note (coursework, thesis, etc.)
-     services.*         | custom section fields [title, meta, detail]
+     basics.inSummary     | LinkedIn bio
+     work.location        | not in spec, widely supported by themes
+     work.headline        | 2-3 sentence short-form summary (resume/portfolio use)
+     work.highlightsCap   | optional numeric cap for highlights list shown on portfolio card (blank = defaults to HIGHLIGHTS_CAP in content.js)
+     work.keywords        | skill-chip tags (UI use); distinct from highlights[]
+     education.meta       | free-text subtitle line (school/honors)
+     education.detail     | prose note (coursework, thesis, etc.)
+     education.activities | LinkedIn "Activities and societies" section (prose)
+     education.summary    | LinkedIn "Description" section (prose)
+     education.skills     | LinkedIn "Skills" section (list of strings)
+     services.*           | custom section fields [title, meta, detail]
 
    Rendering targets:
      Resume / portfolio card  |  headline + highlights + keywords
@@ -29,6 +33,7 @@ const LEFT_DATA = {
     phone: "+1 (636) 422-0191",
     url: "https://indigohatter.github.io",
     summary: "A data-driven, improvement-minded engineer with a strong foundation in electrical and mathematical principles, as well as compliance, quality, and process improvement. Skilled in troubleshooting, cross-functional team building, and both leading and coaching. Changemaker.",
+    inSummary: "Relocating to Tempe, AZ for Arizona State University [August 2026] // Looking to build the future, I'm back to school for a BS in Electrical Engineering. What started with curiosity in IT and electronics quickly became an engineering passion. I'm halfway through my degree and on my way to ASU to finish—drawn to the challenge of tight requirements and flawless performance. // As a Phi Theta Kappa (PTK) Honor Society chapter president, I led my chapter to 8th finalist for Most Distinguished in 2026—the top 0.7% of 1,244 chapters globally. I'm a high-performing student with a GPA just shy of 4.0, and I bring real work experience in avionics, manufacturing, quality, and repair. // I've collaborated across a variety of environments, both leading and following. That work has included Lean Six Sigma projects to reduce foot traffic and touch-time by 20%, high-scoring AS9100(D) quality audits, and KPI reporting time cut by more than half. // I'm open to ideas of all types and use both data and logic to assess decisions, but I recognize that culture drives numbers when no one's watching. Behind the desk: spreadsheets, documentation, SolidWorks. In the room: team-builder, coordinator, serial collaborator. After hours: theater kid, working on the next show. // What can we make together?",
     location: {
       address: "1040 N Windmill Way",
       postalCode: "AZ 86323",
@@ -186,7 +191,10 @@ const LEFT_DATA = {
       score:       "",
       courses:     [],
       meta:        "Ira A. Fulton Schools of Engineering · Barrett, The Honors College",
-      detail:      "In progress, starting Fall 2026."
+      detail:      "In progress, starting Fall 2026.",
+      activities:  "",
+      summary:     "Pursuing a BSE in Electrical Engineering — RF systems, signal processing, control systems — with honors through Barrett, The Honors College at ASU. Transferred from Yavapai College with an AS and pre-engineering coursework, Fall 2026.",
+      skills:      []
     },
     {
       institution: "Yavapai College",
@@ -203,7 +211,10 @@ const LEFT_DATA = {
         "Physics II (calculus-based E&M)",
       ],
       meta:        "Pre-engineering honors student · Phi Theta Kappa chapter president",
-      detail:      "Graduated with honors (3.9 GPA) while serving as PTK chapter president and working 20+ hours per week. Completed advanced coursework in mathematics and physics, including multivariable calculus, differential equations, and calculus-based physics sequences. Transferred to ASU's Ira A. Fulton Schools of Engineering in Fall 2026."
+      detail:      "Graduated with honors (3.9 GPA) while serving as PTK chapter president and working 20+ hours per week. Completed advanced coursework in mathematics and physics, including multivariable calculus, differential equations, and calculus-based physics sequences. Transferred to ASU's Ira A. Fulton Schools of Engineering in Fall 2026.",
+      activities:  "Chapter President (2025–2026) of Yavapai College's Phi Theta Kappa (PTK) honor society chapter, Beta Gamma Pi. * 8th Finalist for Most Distinguished Chapter — among 1,200+ chapters, placing us in the top 0.7% internationally. * Beta Alpha Continued Excellence Award * Distinguished Officer Team Award * Distinguished Honors in Action Award * Distinguished College Project Award",
+      summary:    "Building on an electronics background, I'm pursuing electrical engineering. Coursework included calculus I, II, III, differential equations, physics, and intro to engineering (including SolidWorks). Earned the Arizona General Education Transfer Certificate (AGEC). Student VA/VE Project — FarmBot Soil Sensor Improvement: Conducted a value engineering analysis on the FarmBot soil sensor, identifying failure modes and evaluating solutions including structural redesign, automated cleaning routines, and component replacement. Recommended implementing an automated cleaning cycle with a brush assembly to extend sensor lifespan. Findings were presented in a formal format, mirroring real-world VA/VE reporting to management.",
+      skills:      ["Physics", "Mathematics", "Leadership", "SOLIDWORKS", "Value Engineering", "Research Skills"]
     },
     {
       institution: "Yavapai College",
@@ -222,7 +233,10 @@ const LEFT_DATA = {
         "Information Networking (A+, Network+, Security+, Windows Server/AD, databases, etc.)"
       ],
       meta:        "Electronics technician w/ certified networking & database coursework · Top-of-class honors student",
-      detail:      "Graduated with honors (4.0 GPA) while working 40+ hours per week in avionics repair. Completed coursework in circuit analysis, industrial automation, digital systems, radio communications, robotics, and more."
+      detail:      "Graduated with honors (4.0 GPA) while working 40+ hours per week in avionics repair. Completed coursework in circuit analysis, industrial automation, digital systems, radio communications, robotics, and more.",
+      activities:  "Member of the Yavapai College's Phi Theta Kappa (PTK) honor society chapter, Beta Gamma Pi.",
+      summary:     "Practical technical skills for analyzing and repairing electronics, including radio equipment and process control (PLCs, robotics, three-phase motor buckets). Experience with microcontrollers, PLCs, robots (FANUC, Universal Robot), VHDL/Quartus II, oscilloscopes, function generators, spectrum analyzers. Student projects: * Arduino proximity alert system: Independent project. Built an ultrasonic sensor system with IR remote-configurable detection range; triggered a programmed melody on a piezo buzzer. * FANUC robotic block-sorting system: Team lead. Handled electrical integration and initiated the control program. Designed and oversaw fabrication of an adjustable-angle block feed ramp. Robot sorted blocks by material type (Hall sensor) and geometry (go/no-go limit switch) into four bins. Achieved first successful completion, lowest error rate, and competitive sort speed in a class-wide evaluation.",
+      skills:      ["Electronics Repair", "Robotics", "Electronic Troubleshooting", "Programmable Logic Controllers (PLCs)", "Electronics"]
     }
   ],
 

@@ -36,8 +36,8 @@ const LEFT_DATA = {
     inSummary: "Relocating to Tempe, AZ for Arizona State University [August 2026] // Looking to build the future, I'm back to school for a BS in Electrical Engineering. What started with curiosity in IT and electronics quickly became an engineering passion. I'm halfway through my degree and on my way to ASU to finish—drawn to the challenge of tight requirements and flawless performance. // As a Phi Theta Kappa (PTK) Honor Society chapter president, I led my chapter to 8th finalist for Most Distinguished in 2026—the top 0.7% of 1,244 chapters globally. I'm a high-performing student with a GPA just shy of 4.0, and I bring real work experience in avionics, manufacturing, quality, and repair. // I've collaborated across a variety of environments, both leading and following. That work has included Lean Six Sigma projects to reduce foot traffic and touch-time by 20%, high-scoring AS9100(D) quality audits, and KPI reporting time cut by more than half. // I'm open to ideas of all types and use both data and logic to assess decisions, but I recognize that culture drives numbers when no one's watching. Behind the desk: spreadsheets, documentation, SolidWorks. In the room: team-builder, coordinator, serial collaborator. After hours: theater kid, working on the next show. // What can we make together?",
     location: {
       address: "(provided upon request)",
-      postalCode: "AZ 86323",
-      city: "Chino Valley",
+      postalCode: "AZ 85282",
+      city: "Tempe",
       countryCode: "US",
       region: "Arizona"
     },
@@ -191,9 +191,9 @@ const LEFT_DATA = {
       score:       "",
       courses:     [],
       meta:        "Ira A. Fulton Schools of Engineering · Barrett, The Honors College",
-      detail:      "In progress, starting Fall 2026.",
+      detail:      "In progress, transferred in as junior for Fall 2026 semester.",
       activities:  "",
-      summary:     "Pursuing a BSE in Electrical Engineering — RF systems, signal processing, control systems — with honors through Barrett, The Honors College at ASU. Transferred from Yavapai College with an AS and pre-engineering coursework, Fall 2026.",
+      summary:     "Pursuing a BSE in Electrical Engineering — RF & signal processing, microelectronics, control systems — with honors through Barrett, The Honors College at ASU. Transferred from Yavapai College with an AAS, AS, and pre-engineering coursework, Fall 2026.",
       skills:      []
     },
     {

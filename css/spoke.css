@@ -633,7 +633,7 @@ a.sidebar-zone-name:hover {
 /* ── Photo strip ────────────────────────────────────────────── */
 .about-photos {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 220px;
   gap: 8px;
   margin-bottom: var(--space-xl);

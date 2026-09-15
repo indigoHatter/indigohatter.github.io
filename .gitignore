@@ -4,5 +4,8 @@ Thumbs.db
 
 /.venv/
 
+/scraps/
+
 /data/ref/
 /data/json/
+/data/photos/todo/
